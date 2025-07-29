@@ -79,7 +79,7 @@ export default function OurStorySection() {
         </div>
       </div>
       {/* stats part */}
-      <div className="flex justify-between items-center gap-10 max-w-[1000px] mx-auto my-24">
+      <div className="flex flex-col md:flex-row justify-between items-center gap-10 max-w-[1000px] mx-auto mt-24 mb-12">
         {stats?.map((stat) => (
           <div key={stat.id} className="">
             <div className="flex flex-col justify-center items-center">

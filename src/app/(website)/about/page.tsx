@@ -1,12 +1,10 @@
-import AboutBanner from "@/components/webpages/about-page/AboutBanner";
-import OurStorySection from "@/components/webpages/about-page/OurStorySection";
+import AboutUsPage from "@/components/webpages/about-page/AboutUsPage";
 import React from "react";
 
 export default function page() {
   return (
     <>
-      <AboutBanner />
-      <OurStorySection />
+      <AboutUsPage />
     </>
   );
 }
