@@ -4,6 +4,8 @@ import OurStorySection from "@/components/webpages/about-page/OurStorySection";
 import OurTeamSection from "@/components/webpages/about-page/OurTeamSection";
 import WhyChooseUsSection from "./WhyChooseUsSection";
 import AboutTestimonial from "./AboutTestimonial";
+import JourneySection from "./JourneySection";
+import AboutContactSection from "./AboutContactSection";
 export default function AboutUsPage() {
   return (
     <>
@@ -12,6 +14,8 @@ export default function AboutUsPage() {
       <OurTeamSection />
       <WhyChooseUsSection />
       <AboutTestimonial />
+      <JourneySection />
+      <AboutContactSection />
     </>
   );
 }
