@@ -2,7 +2,7 @@ import { Button } from "antd";
 
 const ResumeSection = () => {
   return (
-    <div className="container mx-auto my-12 px-2 md:px-4 flex flex-col md:flex-row justify-center items-center gap-10">
+    <div className="container mx-auto my-12 px-4 md:px-4 flex flex-col md:flex-row justify-center items-center gap-10">
       {/* Text Area */}
       <div style={{ flex: 1, width: "100%", maxWidth: "650px" }}>
         <p

@@ -9,7 +9,6 @@ export default function layout({ children }: { children: React.ReactNode }) {
       <nav className=" sticky top-0 z-50">
         <Navbar />
       </nav>
-
       {children}
       <footer>
         <Footer />

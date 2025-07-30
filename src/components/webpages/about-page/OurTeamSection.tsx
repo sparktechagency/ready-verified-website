@@ -29,7 +29,7 @@ export default function OurTeamSection() {
     },
   ];
   return (
-    <div className="container px-2 md:px-4 my-12 mx-auto">
+    <div className="container px-4 md:px-4 my-12 mx-auto">
       <h1 className="text-[40px] font-semibold text-center ">
         Our <span className="text-[#2FB236]">Team</span>
       </h1>
@@ -37,11 +37,11 @@ export default function OurTeamSection() {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
         {teamMembers?.map((member) => (
           <div key={member?._id}>
-            <div className=" p-4 border-2 border-[#1A5FA4] rounded-full lg:rounded-[400px] lg:h-[520px]">
+            <div className=" p-4 lg:pb-1 lg:pt-5 border-2 border-[#1A5FA4] rounded-full lg:rounded-[400px] lg:h-[520px]">
               <Image
                 src={member?.image}
                 alt={member.name}
-                className="w-full lg:h-[488px] object-cover rounded-[400px]"
+                className="w-full lg:h-[488px] object-cover  rounded-[400px]"
                 height={488}
                 width={360}
               />

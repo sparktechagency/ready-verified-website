@@ -30,7 +30,7 @@ export default function Navbar() {
 
   return (
     <nav className=" bg-[#F1F4F9]">
-      <div className="px-2 md:px-4  container mx-auto ">
+      <div className="px-4 md:px-4  container mx-auto ">
         <div className="flex justify-between items-center ">
           {/* Logo */}
           <div className="flex items-center  flex-shrink-0 p-2">

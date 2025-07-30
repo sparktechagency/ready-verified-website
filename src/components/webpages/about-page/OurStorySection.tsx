@@ -33,7 +33,7 @@ export default function OurStorySection() {
       className="my-12 "
     >
       {/* story part */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-16 container mx-auto px-2 md:px-4 justify-center items-center ">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-16 container mx-auto px-4 md:px-4 justify-center items-center ">
         {/* left side story */}
         <div>
           <h1 className="text-[40px] font-semibold">

@@ -81,7 +81,7 @@ export default function CVTemplatesSection() {
   );
 
   return (
-    <div className="container mx-auto px-2 md:px-4 my-12">
+    <div className="container mx-auto px-4 md:px-4 my-12">
       <div>
         {/* Successfully CV Section */}
         <div style={{ marginBottom: "60px" }}>

@@ -55,7 +55,7 @@ export default function FAQSection() {
   ];
 
   return (
-    <div className="container mx-auto px-2 md:px-4 my-12">
+    <div className="container mx-auto px-4 md:px-4 my-12">
       <div style={{ maxWidth: "1000px", margin: "0 auto" }}>
         <Title
           level={2}

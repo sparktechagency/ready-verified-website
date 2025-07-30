@@ -3,6 +3,7 @@
 import { Button, Typography, Row, Col } from "antd";
 import { ArrowRightOutlined } from "@ant-design/icons";
 import Image from "next/image";
+import Link from "next/link";
 
 const { Title, Paragraph } = Typography;
 
@@ -87,24 +88,26 @@ export default function AssessmentSection() {
           </div>
 
           {/* CTA Button */}
-          <Button
-            type="primary"
-            size="large"
-            icon={<ArrowRightOutlined />}
-            iconPosition="end"
-            style={{
-              backgroundColor: "#1A5FA4",
-              borderColor: "#1A5FA4",
-              height: "48px",
-              paddingLeft: "24px",
-              paddingRight: "24px",
-              fontSize: "16px",
-              fontWeight: "500",
-              borderRadius: "6px",
-            }}
-          >
-            Assessments
-          </Button>
+          <Link href={"/assessments"}>
+            <Button
+              type="primary"
+              size="large"
+              icon={<ArrowRightOutlined />}
+              iconPosition="end"
+              style={{
+                backgroundColor: "#1A5FA4",
+                borderColor: "#1A5FA4",
+                height: "48px",
+                paddingLeft: "24px",
+                paddingRight: "24px",
+                fontSize: "16px",
+                fontWeight: "500",
+                borderRadius: "6px",
+              }}
+            >
+              Assessments
+            </Button>
+          </Link>
         </div>
 
         {/* Right Content - Placeholder for your image */}
