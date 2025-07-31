@@ -84,6 +84,10 @@ export default function Sidebar() {
         height: "calc(100vh - 192px )",
         boxShadow: "0 0 10px rgba(0, 0, 0, 0.12)",
         borderRadius: "8px",
+        overflowY: "auto",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
       }}
     >
       <div
@@ -105,29 +109,34 @@ export default function Sidebar() {
         </div>
       </div>
 
-      <Menu
-        mode="inline"
-        selectedKeys={[pathname]}
-        style={{ border: "none", paddingTop: "16px" }}
-        items={menuItems.map((item) => ({
-          ...item,
-          style: {
-            gap: "5px",
-            borderRadius: "6px",
-            height: "48px",
-            lineHeight: "48px",
-          },
-        }))}
-        onClick={handleMenuClick}
-      />
+      {/* Middle Menu (flex-grow) */}
+      <div style={{ flexGrow: 1 }}>
+        <Menu
+          mode="inline"
+          selectedKeys={[pathname]}
+          style={{ border: "none", paddingTop: "16px" }}
+          items={menuItems.map((item) => ({
+            ...item,
+            style: {
+              gap: "5px",
+              borderRadius: "6px",
+              height: "48px",
+              lineHeight: "48px",
+            },
+          }))}
+          onClick={handleMenuClick}
+        />
+      </div>
 
       <div
-        style={{
-          position: "absolute",
-          bottom: "24px",
-          left: "16px",
-          right: "16px",
-        }}
+        style={
+          {
+            //   position: "absolute",
+            //   bottom: "24px",
+            //   left: "16px",
+            //   right: "16px",
+          }
+        }
       >
         <Button
           type="text"
