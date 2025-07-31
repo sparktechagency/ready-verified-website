@@ -79,7 +79,7 @@ const contactData = [
   },
 ];
 
-export default function AboutContactSection() {
+export default function ContactSection() {
   const { lg } = Grid.useBreakpoint();
   return (
     <div className=" mt-12 mb-20  text-center ">
