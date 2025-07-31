@@ -7,12 +7,15 @@ import PersonalInformation from "./PersonalInformation";
 import ProfessionalDetails from "./ProfessionalDetails";
 import OthersInformation from "./OthersInformation";
 import AssessmentQuestions from "./AssessmentQuestions";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 const steps = [
   { title: "Assessment", description: "" },
   { title: "Personal Information", description: "" },
   { title: "Professional Details", description: "" },
   { title: "Others Information", description: "" },
+  { title: "Quiz", description: "" },
 ];
 
 const AssessmentProcess: React.FC = () => {
@@ -20,19 +23,45 @@ const AssessmentProcess: React.FC = () => {
   const [selectedAssessment, setSelectedAssessment] = useState<string>("");
   const [showQuestions, setShowQuestions] = useState(false);
   const [form] = Form.useForm();
+  const router = useRouter();
+  const [allFormValues, setAllFormValues] = useState<Record<string, any>>({});
 
-  const handleNext = () => {
-    // if (currentStep === 0 && selectedAssessment === "coachability") {
-    //   setShowQuestions(true);
-    //   return;
-    // }
-    if (showQuestions) {
-      setShowQuestions(false);
-      setCurrentStep(currentStep + 1);
-      return;
-    }
-    if (currentStep < steps.length - 1) {
-      setCurrentStep(currentStep + 1);
+  const handleNext = async () => {
+    try {
+      // Validate and get current step's form values
+      const currentValues = await form.validateFields();
+      // Merge current step's values with previous values
+      setAllFormValues((prev) => ({
+        ...prev,
+        ...currentValues,
+      }));
+
+      if (showQuestions) {
+        setShowQuestions(false);
+        setCurrentStep(currentStep + 1);
+        return;
+      }
+
+      if (currentStep === steps.length - 1) {
+        const finalValues = {
+          ...allFormValues,
+          ...{
+            quiz: currentValues,
+          },
+          selectedAssessment,
+        };
+        console.log("All Form Values:", finalValues);
+        // navigate("/results", { state: { formData: finalValues } })
+        router.push("/assessments/assessment-process/payment");
+        return;
+      }
+
+      if (currentStep < steps.length - 1) {
+        setCurrentStep(currentStep + 1);
+      }
+    } catch (error) {
+      console.log('Form validation failed: ', error);
+      toast.error(`Please answer all the questions! `);
     }
   };
 
@@ -51,9 +80,6 @@ const AssessmentProcess: React.FC = () => {
   };
 
   const renderStepContent = () => {
-    if (showQuestions) {
-      return <AssessmentQuestions form={form} />;
-    }
     switch (currentStep) {
       case 0:
         return (
@@ -68,6 +94,13 @@ const AssessmentProcess: React.FC = () => {
         return <ProfessionalDetails form={form} />;
       case 3:
         return <OthersInformation form={form} />;
+      case 4:
+        return (
+          <AssessmentQuestions
+            selectedAssessment={selectedAssessment}
+            form={form}
+          />
+        );
       default:
         return (
           <AssessmentSelection
