@@ -71,10 +71,8 @@ export default function WhyChooseUsSection() {
           boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
           marginTop: lg && (_id === 2 || _id === 4) ? "-24px" : "",
           position: lg && (_id === 2 || _id === 4) ? "relative" : undefined,
-        }}
-        bodyStyle={{
           padding: "24px",
-          height: "100%",
+
           display: "flex",
           flexDirection: "column",
           alignItems: "center",

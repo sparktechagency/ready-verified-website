@@ -23,7 +23,7 @@ export default function MyCertificatePage() {
       <h1 className="text-xl font-semibold text-[#1A5FA4]">My Certificate</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
         {certificates?.map((certificate) => (
-          <div>
+          <div key={certificate._id} className="flex flex-col items-center">
             <Image
               src={certificate.image}
               alt="certificate"

@@ -50,6 +50,7 @@ export default function PricingPage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-12 mt-10">
           {pricingPlans.map((plan) => (
             <Card
+              key={plan.id}
               style={{
                 height: "100%",
                 backgroundColor: plan.highlighted ? "#E8EFF6" : "#F1F4F9",

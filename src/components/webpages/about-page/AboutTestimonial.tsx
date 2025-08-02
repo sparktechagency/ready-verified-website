@@ -44,10 +44,10 @@ const AboutTestimonial = () => {
           <Card
             key={idx}
             className={`rounded-xl shadow-sm hover:shadow-md transition duration-300  h-[280px] `}
-            bordered={false}
             style={{
               marginTop: lg && idx === 1 ? "-24px" : "",
               position: lg && idx === 1 ? "relative" : undefined,
+              border: "none",
             }}
           >
             <div className="flex justify-center mb-4">

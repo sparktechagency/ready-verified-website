@@ -73,18 +73,12 @@ export default function MySubscriptionPage() {
           <Card
             style={{
               height: "100%",
-              backgroundColor: subscriptionDetails.highlighted
-                ? "#E8EFF6"
-                : "#F1F4F9",
-              scale: subscriptionDetails.highlighted ? "1.05" : "1",
-            }}
-            className={`h-full pricing-card `}
-            bodyStyle={{
+              backgroundColor: "#E8EFF6",
               padding: "40px 32px",
-              height: "100%",
               display: "flex",
               flexDirection: "column",
             }}
+            className={`h-full pricing-card `}
           >
             <div className="text-center mb-8">
               {/* Price */}
