@@ -83,14 +83,16 @@ export default function Navbar() {
       <div className="px-4 md:px-4  container mx-auto ">
         <div className="flex justify-between items-center ">
           {/* Logo */}
-          <div className="flex items-center  flex-shrink-0 p-2">
-            <Image
-              src={"/images/logo.png"}
-              alt="Logo"
-              width={100}
-              height={30}
-            />
-          </div>
+          <Link href={"/"}>
+            <div className="flex items-center  flex-shrink-0 p-2">
+              <Image
+                src={"/images/logo.png"}
+                alt="Logo"
+                width={100}
+                height={30}
+              />
+            </div>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-1">
