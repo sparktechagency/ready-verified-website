@@ -81,7 +81,7 @@ export default function Sidebar() {
       width={280}
       style={{
         backgroundColor: "#F1F4F9",
-        height: "calc(100vh - 192px )",
+        height: "calc(100vh - 180px )",
         boxShadow: "0 0 10px rgba(0, 0, 0, 0.12)",
         borderRadius: "8px",
         overflowY: "auto",

@@ -65,12 +65,9 @@ export default function ProfileDetailsPage() {
             marginBottom: "24px",
           }}
         >
-          <Title
-            level={4}
-            style={{ margin: 0, color: "#1A5FA4", fontWeight: 500 }}
-          >
+          <h1 className="m-0 text-[#1A5FA4] font-semibold text-lg md:text-[24px]">
             Personal Information:
-          </Title>
+          </h1>
           <Button
             type="primary"
             onClick={() => setEditProfileVisible(true)}
@@ -270,12 +267,9 @@ export default function ProfileDetailsPage() {
             marginBottom: "24px",
           }}
         >
-          <Title
-            level={4}
-            style={{ margin: 0, color: "#1A5FA4", fontWeight: 500 }}
-          >
+          <h1 className="m-0 text-[#1A5FA4] font-semibold text-lg md:text-[24px]">
             Professional Details:
-          </Title>
+          </h1>
           <Button
             type="primary"
             onClick={() => setProfessionalDetailsVisible(true)}

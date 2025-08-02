@@ -79,8 +79,8 @@ export default function Navbar() {
     <DropdownContent user={user} handleMenuClick={handleMenuClick} />
   );
   return (
-    <nav className=" bg-[#F1F4F9]">
-      <div className="px-4 md:px-4  container mx-auto ">
+    <nav className=" bg-[#F1F4F9] ">
+      <div className="px-4 md:px-4  container mx-auto lg:py-2">
         <div className="flex justify-between items-center ">
           {/* Logo */}
           <Link href={"/"}>
@@ -89,7 +89,7 @@ export default function Navbar() {
                 src={"/images/logo.png"}
                 alt="Logo"
                 width={100}
-                height={30}
+                height={70}
               />
             </div>
           </Link>
@@ -100,7 +100,7 @@ export default function Navbar() {
               <Link
                 key={item.key}
                 href={item.href}
-                className={`px-4 py-2 text-sm font-medium rounded-md transition-colors duration-200 ${
+                className={`px-4 py-2 text-sm lg:text-md font-medium rounded-md transition-colors duration-200 ${
                   isActive(item.href)
                     ? "text-[#1a5fa4] font-fold scale-105 transition duration-300"
                     : "text-gray-700 hover:text-[#1a5fa4] "

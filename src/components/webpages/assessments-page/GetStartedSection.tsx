@@ -39,7 +39,7 @@ const GetStartedSection = () => {
   const { lg } = Grid.useBreakpoint();
 
   return (
-    <div className="my-12 container mx-auto px-4  flex justify-center items-center">
+    <div className="my-12 container mx-auto px-4  flex justify-center items-center ">
       <div className="bg-[#F1F4F9] rounded-2xl  pt-16 pb-8 px-4 lg:px-40 ">
         <Row gutter={[48, 48]} align="middle">
           {/* Left Column - Main Content */}

@@ -22,7 +22,7 @@ export default function Banner() {
     "Journalism",
   ];
   return (
-    <div className="bg-[#F2F6FF] text-center min-h-[calc(100vh-72px)] flex flex-col justify-center items-center py-12 lg:py-0 mb-12">
+    <div className="bg-[#F2F6FF] text-center min-h-[calc(100vh-88px)] flex flex-col justify-center items-center py-12 lg:py-0 md:mb-12">
       <Row style={{ padding: 8 }} justify="center">
         <Col>
           <h1

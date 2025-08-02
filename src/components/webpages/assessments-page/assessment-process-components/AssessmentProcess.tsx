@@ -60,7 +60,7 @@ const AssessmentProcess: React.FC = () => {
         setCurrentStep(currentStep + 1);
       }
     } catch (error) {
-      console.log('Form validation failed: ', error);
+      console.log("Form validation failed: ", error);
       toast.error(`Please answer all the questions! `);
     }
   };
@@ -123,7 +123,7 @@ const AssessmentProcess: React.FC = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 my-12 flex justify-center items-center flex-col min-h-[calc(100vh-72px)] ">
+    <div className="container mx-auto px-4 my-12 flex justify-center items-center flex-col h-[calc(100vh-180px)]">
       <div>
         <div
           className={`${selectedAssessment ? "block" : "hidden"}`}

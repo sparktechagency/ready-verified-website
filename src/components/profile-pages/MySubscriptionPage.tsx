@@ -57,10 +57,10 @@ export default function MySubscriptionPage() {
   return (
     <div>
       <h1
+        className=" text-lg md:text-2xl"
         style={{
           marginBottom: "32px",
           color: "#1A5FA4",
-          fontSize: "24px",
           fontWeight: 500,
         }}
       >

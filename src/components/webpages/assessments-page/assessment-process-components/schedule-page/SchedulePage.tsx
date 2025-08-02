@@ -127,7 +127,7 @@ export default function SchedulePage() {
   };
 
   return (
-    <div className="min-h-screen p-4">
+    <div className="min-h-[calc(100vh-86px)] p-4">
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-10 items-center">
           <div className="flex justify-center">

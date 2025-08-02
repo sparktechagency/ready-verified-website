@@ -7,7 +7,7 @@ import React from "react";
 export default function layout({ children }: { children: React.ReactNode }) {
   const { lg } = Grid.useBreakpoint();
   return (
-    <div className="flex  md:gap-6 my-14 container mx-auto p-4 min-h-screen">
+    <div className="flex md:gap-6 container mx-auto min-h-[calc(100vh-86px)] justify-center items-center p-4">
       <div className=" hidden md:block">
         <Sidebar />
       </div>
@@ -16,9 +16,9 @@ export default function layout({ children }: { children: React.ReactNode }) {
         style={{
           boxShadow: "0 0 10px rgba(0, 0, 0, 0.12)",
           borderRadius: "8px",
-          height: lg ? "calc(100vh - 192px )" : "",
+          // maxHeight: lg ? "calc(100vh - 88px )" : "",
         }}
-        className="overflow-auto flex-1 bg-[#F1F4F9] p-4 lg:p-8 rounded-md w-full "
+        className="overflow-auto flex-1 bg-[#F1F4F9] p-4 lg:p-8 rounded-md w-full h-[calc(100vh-180px)]"
       >
         {children}
       </div>

@@ -21,21 +21,10 @@ export default function AssessmentSection() {
         {/* Left Content */}
 
         <div className="w-full max-w-[600px]">
-          <Title
-            level={1}
-            style={{
-              fontSize: "44px",
-              fontWeight: "bold",
-              lineHeight: "1.2",
-              marginBottom: "24px",
-              color: "#333",
-              width: "100%",
-              maxWidth: "600px",
-            }}
-          >
+          <h1 className="text-4xl md:text-5xl font-bold text-left mb-4">
             Have your Assessment done by{" "}
             <span style={{ color: "#52c41a" }}>Professionals!</span>
-          </Title>
+          </h1>
 
           <Paragraph
             style={{

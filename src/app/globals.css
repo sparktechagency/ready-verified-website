@@ -159,10 +159,33 @@ body {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  background-color: #F1F4F9 !important;
+  background-color: #f1f4f9 !important;
   /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.12) */
 }
 
 .ant-layout-sider {
   box-shadow: 2px 0 8px 0 rgba(29, 35, 41, 0.05);
+}
+
+/* scroll bar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #dfdfdf00;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  /* background: #6b5ecc34;  */
+  background: #124374;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #0c2f52;
 }

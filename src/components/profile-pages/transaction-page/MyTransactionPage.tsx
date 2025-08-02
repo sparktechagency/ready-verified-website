@@ -72,9 +72,9 @@ export default function MyTransactionPage() {
   return (
     <div>
       <div style={{ marginBottom: "32px" }}>
-        <Title level={2} style={{ marginBottom: "8px" }}>
+        <h1 className="m-0 text-[#1A5FA4] font-semibold text-lg md:text-[24px]">
           Transaction History
-        </Title>
+        </h1>
         <Text type="secondary">
           View and manage your CV creation transactions
         </Text>
