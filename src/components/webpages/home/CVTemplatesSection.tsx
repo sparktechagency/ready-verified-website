@@ -54,7 +54,7 @@ export default function CVTemplatesSection() {
         marginBottom: "24px",
       }}
     >
-      <Title
+      {/* <Title
         level={3}
         style={{
           margin: 0,
@@ -64,7 +64,11 @@ export default function CVTemplatesSection() {
         }}
       >
         {title}
-      </Title>
+      </Title> */}
+      <h1 className="text-xl md:text-3xl font-semibold md:font-bold text-[#3D3D3D]">
+        {title}
+      </h1>
+
       <Button
         type="default"
         onClick={onSeeAll}

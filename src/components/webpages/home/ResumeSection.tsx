@@ -15,7 +15,7 @@ const ResumeSection = () => {
           WATCH OUR VIDEO
         </p>
         <h2
-          className="text-4xl md:text-5xl "
+          className="text-3xl md:text-5xl "
           style={{ fontWeight: 500, lineHeight: "1.2" }}
         >
           Get Better Solution For Your Resume!
@@ -31,7 +31,7 @@ const ResumeSection = () => {
             borderColor: "#124374",
             marginTop: "50px",
             height: 48,
-            fontWeight: 600
+            fontWeight: 600,
           }}
         >
           ORDER A RESUME NOW
