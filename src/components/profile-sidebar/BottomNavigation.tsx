@@ -88,10 +88,11 @@ export default function BottomNavigation() {
           display: "flex",
           justifyContent: "space-around",
           alignItems: "center",
-          maxWidth: "500px",
+          //   maxWidth: "400px",
           margin: "0 auto",
-          padding: "0 16px",
-          gap:2
+          padding: "0 8px",
+          gap: 2,
+          width: "100%",
         }}
       >
         {navItems.map((item) => (
@@ -102,16 +103,17 @@ export default function BottomNavigation() {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              padding: "8px 16px",
-              borderRadius: "20px",
+              padding: "4px 4px",
+              borderRadius: "8px",
               backgroundColor: isActive(item.key) ? "#185695" : "transparent",
               color: isActive(item.key) ? "white" : "#666",
               cursor: "pointer",
               transition: "all 0.3s ease",
-              minWidth: "60px",
+              //   minWidth: "60px",
+              width: "100%",
             }}
           >
-            <div style={{ fontSize: "20px", marginBottom: "2px" }}>
+            <div style={{ fontSize: "14px", marginBottom: "2px" }}>
               {item.icon}
             </div>
             <span
