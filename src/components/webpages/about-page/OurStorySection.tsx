@@ -30,7 +30,7 @@ export default function OurStorySection() {
         // backgroundSize: "cover",
         backgroundPosition: "bottom",
       }}
-      className="my-12 "
+      className="mt-12 "
     >
       {/* story part */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-16 container mx-auto px-4 md:px-4 justify-center items-center ">
@@ -63,31 +63,31 @@ export default function OurStorySection() {
           </p>
         </div>
         {/* right side img */}
-        <div className="flex justify-end">
+        <div className="flex justify-end  w-full">
           <Image
-            src={"/about/storyImg.png"}
+            src={"/about/banner_about.png"}
             alt="Our Story"
             width={700}
-            height={400}
+            height={640}
             style={{
               height: "auto",
-              width: "100%",
+              width: "auto",
               objectPosition: "center",
-              objectFit: "cover",
             }}
           />
         </div>
       </div>
       {/* stats part */}
-      <div className="flex flex-col md:flex-row justify-between items-center gap-10 max-w-[1000px] mx-auto mt-24 mb-12">
+      <div className="flex flex-col md:flex-row justify-between items-center gap-10 max-w-[1000px] mx-auto mt-12 pb-30">
         {stats?.map((stat) => (
-          <div key={stat.id} className="">
-            <div className="flex flex-col justify-center items-center">
+          <div key={stat.id} className="h-[72px]">
+            <div className="flex flex-col justify-center items-center h-[72px]">
               <Image
                 src={stat.image}
                 alt={stat.title}
                 width={100}
-                height={100}
+                height={72}
+                className="h-full object-cover"
               />
               <h1 className="text-5xl font-bold">{stat.value}</h1>
               <p className="text-[#ABABAB]  ">{stat.title} </p>

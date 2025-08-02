@@ -103,9 +103,9 @@ export default function Sidebar() {
             strong
             style={{ fontSize: "16px", display: "block", color: "#3D3D3D" }}
           >
-            Asadur R. Yead
+            Dennis E. Willie
           </Text>
-          <p className="text-[12px] text-[#858585]">yead191@gmail.com</p>
+          <p className="text-[12px] text-[#858585]">dennis_willie@gmail.com</p>
         </div>
       </div>
 

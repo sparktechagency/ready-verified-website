@@ -9,8 +9,8 @@ import ContactSection from "./AboutContactSection";
 export default function AboutUsPage() {
   return (
     <>
-      <AboutBanner />
       <OurStorySection />
+      <AboutBanner />
       <OurTeamSection />
       <WhyChooseUsSection />
       <AboutTestimonial />

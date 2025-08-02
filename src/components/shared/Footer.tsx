@@ -32,7 +32,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-[#0B2845] ">
-      <div className="container mx-auto px-4 md:px-4 pt-[100px] pb-[60px]">
+      <div className="container mx-auto px-4 md:px-4 pt-[100px] pb-[12px]">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {/* Left Section - Logo and Newsletter */}
           <div className="col-span-2 md:col-span-1">
