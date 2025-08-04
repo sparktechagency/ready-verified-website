@@ -9,7 +9,7 @@ interface SuccessModalProps {
   visible: boolean;
   onClose: () => void;
   title?: string;
-  description?: string;
+  description?: any;
 }
 
 const SuccessModal: React.FC<SuccessModalProps> = ({
@@ -26,9 +26,10 @@ const SuccessModal: React.FC<SuccessModalProps> = ({
       width={400}
       closable={false}
       className="success-modal"
+      centered
     >
-      <div className="text-center py-8">
-        <div className="flex items-center justify-start mb-4">
+      <div className="text-center pb-8">
+        <div className="flex  justify-start mb-4">
           <Button
             type="text"
             icon={<ArrowLeftOutlined />}

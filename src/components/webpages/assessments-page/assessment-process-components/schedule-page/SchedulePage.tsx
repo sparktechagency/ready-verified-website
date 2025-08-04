@@ -293,7 +293,23 @@ export default function SchedulePage() {
         visible={showSuccessModal}
         onClose={handleClose}
         title="Schedule Confirmed"
-        description={`Your appointment has been scheduled for ${months[currentMonth]} ${selectedDate}, ${selectedTime}. After admin approval, the Zoom link will be emailed to you within 48 hours. Please join at the scheduled date and time.`}
+        description={
+          <>
+            Your appointment has been scheduled for{" "}
+            <span style={{ color: "#2FB236", fontWeight: "bold" }}>
+              {months[currentMonth]} {selectedDate}, {selectedTime}
+            </span>
+            . After admin approval, the{" "}
+            <span style={{ color: "#2FB236", fontWeight: "bold" }}>
+              Zoom link
+            </span>{" "}
+            will be emailed to you within{" "}
+            <span style={{ color: "#2FB236", fontWeight: "bold" }}>
+              48 hours
+            </span>
+            . Please join at the scheduled date and time.
+          </>
+        }
       />
     </div>
   );

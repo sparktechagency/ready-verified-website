@@ -6,7 +6,7 @@ export default function AboutBanner() {
 
   return (
     <div
-      className="h-[200px] md:h-[380px] "
+      className="h-[200px] md:h-[480px] "
       style={{
         backgroundImage: `url('/about/banner.jpg')`,
         // height: lg ? 380 : 180,
