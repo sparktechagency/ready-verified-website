@@ -90,7 +90,7 @@ export default function CVTemplatesSection() {
         {/* Successfully CV Section */}
         <div style={{ marginBottom: "60px" }}>
           <SectionHeader
-            title="Successfully CV"
+            title="Branded Resume Templates"
             onSeeAll={() => console.log("See all successful CVs")}
           />
           <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -105,7 +105,7 @@ export default function CVTemplatesSection() {
         {/* Popular CV Section */}
         <div>
           <SectionHeader
-            title="Popular CV"
+            title="Branded Cover Letter Templates"
             onSeeAll={() => console.log("See all popular CVs")}
           />
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">

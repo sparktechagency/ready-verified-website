@@ -46,7 +46,7 @@ export default function Footer() {
                 }}
               >
                 <Image
-                  src={"/images/footerLogo.png"}
+                  src={"/images/logo.png"}
                   alt="logo"
                   width={122}
                   height={100}

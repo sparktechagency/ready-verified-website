@@ -1,4 +1,5 @@
 import { Button } from "antd";
+import Link from "next/link";
 import React from "react";
 
 export default function JourneySection() {
@@ -15,6 +16,8 @@ export default function JourneySection() {
       </div>
 
       <div className="mt-16 flex justify-center items-center gap-6">
+        <Link href={'/assessments'}>
+        
         <Button
           style={{
             backgroundColor: "#1A5FA4",
@@ -24,6 +27,7 @@ export default function JourneySection() {
         >
           Browse Assessments
         </Button>
+        </Link>
         <Button
           variant="outlined"
           style={{

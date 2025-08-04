@@ -88,17 +88,29 @@ export default function MyTransactionPage() {
               hoverable
               onClick={() => handleTransactionClick(transaction)}
             >
-              <div style={{ textAlign: "center", marginBottom: "16px" }}>
-                <Tag
-                  color={getStatusColor(transaction.status)}
-                  style={{ marginBottom: "12px" }}
+              <div
+                style={{
+                  textAlign: "center",
+                  marginBottom: "16px",
+                  backgroundColor: "#F1F4F9",
+                  padding: "8px",
+                }}
+              >
+                <div
+                  style={{
+                    textAlign: "center",
+                    // marginBottom: "16px",
+                    // backgroundColor: "#F1F4F9",
+                  }}
                 >
-                  {transaction.status.charAt(0).toUpperCase() +
-                    transaction.status.slice(1)}
-                </Tag>
-              </div>
-
-              <div style={{ textAlign: "center", marginBottom: "16px" }}>
+                  <Tag
+                    color={getStatusColor(transaction.status)}
+                    style={{ marginBottom: "12px" }}
+                  >
+                    {transaction.status.charAt(0).toUpperCase() +
+                      transaction.status.slice(1)}
+                  </Tag>
+                </div>
                 <div
                   style={{
                     width: "96px",

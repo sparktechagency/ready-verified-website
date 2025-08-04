@@ -13,6 +13,9 @@ export const metadata: Metadata = {
   title: "Ready Verified",
   description:
     "Ready Verified is an intelligent CV assessment platform that generates detailed evaluations to help candidates refine their resumes and improve their chances of success.",
+    icons:{
+      icon:"/ready_fav.png"
+    }
 };
 
 export default function RootLayout({

@@ -70,7 +70,7 @@ export default function Sidebar() {
           //   Cookies.remove("accessToken");
           //   Cookies.remove("refreshToken");
           toast.success("Logged out successfully");
-          router.push("/auth/login");
+          router.push("/");
         },
       },
     });

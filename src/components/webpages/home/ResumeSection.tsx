@@ -34,7 +34,7 @@ const ResumeSection = () => {
             fontWeight: 600,
           }}
         >
-          ORDER A RESUME NOW
+          ORDER BUSINESS CARDS
         </Button>
       </div>
 

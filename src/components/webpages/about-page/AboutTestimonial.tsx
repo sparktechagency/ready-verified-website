@@ -35,7 +35,7 @@ const AboutTestimonial = () => {
   const { lg } = Grid.useBreakpoint();
 
   return (
-    <section className="  px-4 text-center my-12">
+    <section className="  px-4 text-center my-12 pb-12">
       <h2 className="text-2xl md:text-[40px] font-semibold text-gray-800 mb-12">
         What our candidates say
       </h2>
