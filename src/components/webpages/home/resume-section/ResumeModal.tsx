@@ -11,6 +11,7 @@ import {
   Typography,
   Space,
   DatePicker,
+  Grid,
 } from "antd";
 import {
   UserOutlined,
@@ -38,6 +39,7 @@ export default function ResumeModal({
   handleCancel,
   isModalVisible,
 }: ResumeModalProps) {
+  const { lg } = Grid.useBreakpoint();
   return (
     <Modal
       title={
@@ -171,6 +173,7 @@ export default function ResumeModal({
       >
         <Space size="middle">
           <Button
+            size={lg ? "large" : "small"}
             type="primary"
             icon={<SaveOutlined />}
             style={{ background: "#2563EB", borderColor: "#2563EB" }}
@@ -178,6 +181,7 @@ export default function ResumeModal({
             Save Card
           </Button>
           <Button
+            size={lg ? "large" : "small"}
             type="primary"
             icon={<ExportOutlined />}
             style={{ background: "#16A34A", borderColor: "#16A34A" }}
@@ -185,6 +189,7 @@ export default function ResumeModal({
             Export
           </Button>
           <Button
+            size={lg ? "large" : "small"}
             type="primary"
             icon={<PrinterOutlined />}
             style={{ background: "#9333EA", borderColor: "#9333EA" }}
