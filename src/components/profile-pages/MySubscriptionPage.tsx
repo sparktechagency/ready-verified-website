@@ -67,9 +67,9 @@ export default function MySubscriptionPage() {
         My Subscription Plan
       </h1>
 
-      <div className="grid col-span-1 md:grid-cols-9 gap-5 items-start">
+      <div className="grid col-span-1 lg:grid-cols-9 gap-5 items-start">
         {/* Free Plan Card */}
-        <div className="md:col-span-3">
+        <div className="lg:col-span-3">
           <Card
             style={{
               height: "100%",
@@ -132,7 +132,7 @@ export default function MySubscriptionPage() {
         </div>
 
         {/* Yearly Subscription Card */}
-        <div className="md:col-span-6">
+        <div className="lg:col-span-6">
           <div
             style={{
               height: "100%",

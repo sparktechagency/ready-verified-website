@@ -33,9 +33,9 @@ export default function OurStorySection() {
       className="mt-12 "
     >
       {/* story part */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-16 container mx-auto px-4 md:px-4 justify-center items-center ">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 container mx-auto px-4 md:px-4 justify-center items-center ">
         {/* left side story */}
-        <div>
+        <div className="mb-8">
           <h1 className="text-[40px] font-semibold">
             Our <span className="text-[#2FB236] mb-5">Story</span>
           </h1>
@@ -63,7 +63,7 @@ export default function OurStorySection() {
           </p>
         </div>
         {/* right side img */}
-        <div className="flex justify-end  w-full">
+        <div className="flex justify-center  h-full w-full">
           <Image
             src={"/about/banner_about.png"}
             alt="Our Story"
@@ -78,7 +78,7 @@ export default function OurStorySection() {
         </div>
       </div>
       {/* stats part */}
-      <div className="flex flex-col md:flex-row justify-between items-center gap-4 lg:gap-10 max-w-[1000px] mx-auto mt-12 pb-30">
+      <div className=" max-w-[1200px] mx-auto mt-12 pb-10 lg:pb-30 grid grid-cols-1 md:grid-cols-3">
         {stats?.map((stat) => (
           <div key={stat.id} className=" lg:h-[72px]">
             <div className="flex flex-col justify-center items-center lg:h-[72px]">
@@ -87,7 +87,7 @@ export default function OurStorySection() {
                 alt={stat.title}
                 width={100}
                 height={72}
-                className="h-full object-cover"
+                className="h-full  object-cover "
               />
               <h1 className="text-3xl lg:text-5xl font-bold">{stat.value}</h1>
               <p className="text-[#ABABAB]  ">{stat.title} </p>

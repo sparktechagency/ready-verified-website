@@ -54,7 +54,7 @@ export default function PaymentPage() {
   return (
     <div className="min-h-[calc(100vh-72px)] flex flex-col justify-center items-center  p-4">
       <div className="max-w-6xl  mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 w-full justify-center items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-10 w-full justify-center items-center">
           {/* Left Column - Payment Methods & Summary */}
           <div>
             <div className="space-y-6">

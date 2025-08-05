@@ -47,7 +47,7 @@ export default function PricingPage() {
         </div>
 
         {/* Pricing Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-12 mt-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-12 mt-10">
           {pricingPlans.map((plan) => (
             <Card
               key={plan.id}
@@ -67,7 +67,7 @@ export default function PricingPage() {
               <div className="text-center mb-8">
                 {/* Price */}
                 <div className="mb-4">
-                  <span className="text-5xl font-bold text-[#3D3D3D]">
+                  <span className="text-4xl lg:text-5xl font-bold text-[#3D3D3D]">
                     {plan.price}
                   </span>
                   <span className="text-lg text-[#3D3D3D]">{plan.period}</span>

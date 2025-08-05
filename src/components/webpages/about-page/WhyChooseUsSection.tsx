@@ -125,7 +125,7 @@ export default function WhyChooseUsSection() {
   return (
     <div className=" bg-[#E8EFF6] py-[60px] my-12">
       <div className="container px-4 md:px-8 mx-auto py-12">
-        <div className="flex flex-col md:flex-row items-center justify-center gap-8">
+        <div className="flex flex-col lg:flex-row items-center justify-center gap-8">
           {/* Left Content */}
           <Col xs={24} lg={10}>
             <div>
