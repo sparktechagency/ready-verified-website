@@ -94,6 +94,7 @@ export default function MyTransactionPage() {
                   marginBottom: "16px",
                   backgroundColor: "#F1F4F9",
                   padding: "8px",
+                  borderRadius: "12px",
                 }}
               >
                 <div

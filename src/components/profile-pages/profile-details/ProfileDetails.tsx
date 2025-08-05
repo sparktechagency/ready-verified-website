@@ -85,7 +85,7 @@ export default function ProfileDetailsPage() {
         </div>
 
         <Row gutter={[32, 16]}>
-          <Col span={8}>
+          <Col xs={24} sm={12} md={8}>
             <div>
               <Text strong>Full Name</Text>
               <div style={{ color: "#8c8c8c", marginTop: "4px" }}>
@@ -93,7 +93,7 @@ export default function ProfileDetailsPage() {
               </div>
             </div>
           </Col>
-          <Col span={8}>
+          <Col xs={12} sm={12} md={8}>
             <div>
               <Text strong>Middle Initial</Text>
               <div style={{ color: "#8c8c8c", marginTop: "4px" }}>
@@ -101,7 +101,7 @@ export default function ProfileDetailsPage() {
               </div>
             </div>
           </Col>
-          <Col span={8}>
+          <Col xs={12} sm={12} md={8}>
             <div>
               <Text strong>Last Name</Text>
               <div style={{ color: "#8c8c8c", marginTop: "4px" }}>
@@ -112,7 +112,7 @@ export default function ProfileDetailsPage() {
         </Row>
 
         <Row gutter={[32, 16]} style={{ marginTop: "16px" }}>
-          <Col span={8}>
+          <Col xs={12} sm={12} md={8}>
             <div>
               <Text strong>Suffix</Text>
               <div style={{ color: "#8c8c8c", marginTop: "4px" }}>
@@ -120,7 +120,7 @@ export default function ProfileDetailsPage() {
               </div>
             </div>
           </Col>
-          <Col span={8}>
+          <Col xs={12} sm={12} md={8}>
             <div>
               <Text strong>Email</Text>
               <div style={{ color: "#8c8c8c", marginTop: "4px" }}>
@@ -128,7 +128,7 @@ export default function ProfileDetailsPage() {
               </div>
             </div>
           </Col>
-          <Col span={8}>
+          <Col xs={12} sm={12} md={8}>
             <div>
               <Text strong>Cell Number</Text>
               <div style={{ color: "#8c8c8c", marginTop: "4px" }}>
@@ -139,7 +139,7 @@ export default function ProfileDetailsPage() {
         </Row>
 
         <Row gutter={[32, 16]} style={{ marginTop: "16px" }}>
-          <Col span={8}>
+          <Col xs={12} sm={12} md={8}>
             <div>
               <Text strong>Street Address</Text>
               <div style={{ color: "#8c8c8c", marginTop: "4px" }}>
@@ -147,7 +147,7 @@ export default function ProfileDetailsPage() {
               </div>
             </div>
           </Col>
-          <Col span={8}>
+          <Col xs={12} sm={12} md={8}>
             <div>
               <Text strong>Secondary Street Address</Text>
               <div style={{ color: "#8c8c8c", marginTop: "4px" }}>
@@ -155,7 +155,7 @@ export default function ProfileDetailsPage() {
               </div>
             </div>
           </Col>
-          <Col span={8}>
+          <Col xs={12} sm={12} md={8}>
             <div>
               <Text strong>City</Text>
               <div style={{ color: "#8c8c8c", marginTop: "4px" }}>
@@ -166,7 +166,7 @@ export default function ProfileDetailsPage() {
         </Row>
 
         <Row gutter={[32, 16]} style={{ marginTop: "16px" }}>
-          <Col span={8}>
+          <Col xs={12} sm={12} md={8}>
             <div>
               <Text strong>State</Text>
               <div style={{ color: "#8c8c8c", marginTop: "4px" }}>
@@ -174,7 +174,7 @@ export default function ProfileDetailsPage() {
               </div>
             </div>
           </Col>
-          <Col span={8}>
+          <Col xs={12} sm={12} md={8}>
             <div>
               <Text strong>Zip</Text>
               <div style={{ color: "#8c8c8c", marginTop: "4px" }}>
@@ -182,7 +182,7 @@ export default function ProfileDetailsPage() {
               </div>
             </div>
           </Col>
-          <Col span={8}>
+          <Col xs={12} sm={12} md={8}>
             <div>
               <Text strong>Country</Text>
               <div style={{ color: "#8c8c8c", marginTop: "4px" }}>
@@ -193,7 +193,7 @@ export default function ProfileDetailsPage() {
         </Row>
 
         <Row gutter={[32, 16]} style={{ marginTop: "16px" }}>
-          <Col span={8}>
+          <Col xs={12} sm={12} md={8}>
             <div>
               <Text strong>Date of Birth</Text>
               <div style={{ color: "#8c8c8c", marginTop: "4px" }}>
@@ -201,7 +201,7 @@ export default function ProfileDetailsPage() {
               </div>
             </div>
           </Col>
-          <Col span={8}>
+          <Col xs={12} sm={12} md={8}>
             <div>
               <Text strong>Gender</Text>
               <div style={{ color: "#8c8c8c", marginTop: "4px" }}>
@@ -209,7 +209,7 @@ export default function ProfileDetailsPage() {
               </div>
             </div>
           </Col>
-          <Col span={8}>
+          <Col xs={12} sm={12} md={8}>
             <div>
               <Text strong>Race or Ethnic Group</Text>
               <div style={{ color: "#8c8c8c", marginTop: "4px" }}>
@@ -220,7 +220,7 @@ export default function ProfileDetailsPage() {
         </Row>
 
         <Row gutter={[32, 16]} style={{ marginTop: "16px" }}>
-          <Col span={8}>
+          <Col xs={12} sm={12} md={8}>
             <div>
               <Text strong>Education</Text>
               <div style={{ color: "#8c8c8c", marginTop: "4px" }}>
@@ -228,7 +228,7 @@ export default function ProfileDetailsPage() {
               </div>
             </div>
           </Col>
-          <Col span={8}>
+          <Col xs={12} sm={12} md={8}>
             <div>
               <Text strong>High School Name</Text>
               <div style={{ color: "#8c8c8c", marginTop: "4px" }}>
@@ -236,7 +236,7 @@ export default function ProfileDetailsPage() {
               </div>
             </div>
           </Col>
-          <Col span={8}>
+          <Col xs={12} sm={12} md={8}>
             <div>
               <Text strong>High School Graduation Year(YYYY)</Text>
               <div style={{ color: "#8c8c8c", marginTop: "4px" }}>
@@ -247,7 +247,7 @@ export default function ProfileDetailsPage() {
         </Row>
 
         <Row gutter={[32, 16]} style={{ marginTop: "16px" }}>
-          <Col span={8}>
+          <Col xs={12} sm={12} md={8}>
             <div>
               <Text strong>Additional Languages</Text>
               <div style={{ color: "#8c8c8c", marginTop: "4px" }}>
@@ -287,7 +287,7 @@ export default function ProfileDetailsPage() {
         </div>
 
         <Row gutter={[32, 16]}>
-          <Col span={8}>
+          <Col xs={12} sm={12} md={8}>
             <div>
               <Text strong>Job Title</Text>
               <div style={{ color: "#8c8c8c", marginTop: "4px" }}>
@@ -295,7 +295,7 @@ export default function ProfileDetailsPage() {
               </div>
             </div>
           </Col>
-          <Col span={8}>
+          <Col xs={12} sm={12} md={8}>
             <div>
               <Text strong>Industry</Text>
               <div style={{ color: "#8c8c8c", marginTop: "4px" }}>
@@ -306,7 +306,7 @@ export default function ProfileDetailsPage() {
         </Row>
 
         <Row gutter={[32, 16]} style={{ marginTop: "16px" }}>
-          <Col span={8}>
+          <Col xs={12} sm={12} md={8}>
             <div>
               <Text strong>Experience</Text>
               <div style={{ color: "#8c8c8c", marginTop: "4px" }}>
@@ -314,7 +314,7 @@ export default function ProfileDetailsPage() {
               </div>
             </div>
           </Col>
-          <Col span={8}>
+          <Col xs={24} sm={12} md={8}>
             <div>
               <Text strong>LinkedIn Profile website</Text>
               <div style={{ color: "#8c8c8c", marginTop: "4px" }}>
@@ -325,7 +325,7 @@ export default function ProfileDetailsPage() {
         </Row>
 
         <Row gutter={[32, 16]} style={{ marginTop: "16px" }}>
-          <Col span={8}>
+          <Col xs={12} sm={12} md={8}>
             <div>
               <Text strong>Skills</Text>
               <div style={{ color: "#8c8c8c", marginTop: "4px" }}>
@@ -333,7 +333,7 @@ export default function ProfileDetailsPage() {
               </div>
             </div>
           </Col>
-          <Col span={8}>
+          <Col xs={12} sm={12} md={8}>
             <div>
               <Text strong>Languages</Text>
               <div style={{ color: "#8c8c8c", marginTop: "4px" }}>
@@ -344,7 +344,7 @@ export default function ProfileDetailsPage() {
         </Row>
 
         <Row gutter={[32, 16]} style={{ marginTop: "16px" }}>
-          <Col span={8}>
+          <Col xs={12} sm={12} md={8}>
             <div>
               <Text strong>Resume</Text>
               <div style={{ color: "#8c8c8c", marginTop: "4px" }}>

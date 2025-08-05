@@ -44,20 +44,21 @@ export default function EditProfileModal({
       footer={null}
       width={800}
       closable={false}
+      centered
     >
       <Form form={form} layout="vertical" style={{ marginTop: "24px" }}>
-        <Row gutter={16}>
-          <Col span={8}>
+        <Row gutter={[16, 16]}>
+          <Col  xs={24} sm={12} md={8}>
             <Form.Item label="Full Name*" name="fullName">
               <Input placeholder="Dennis" />
             </Form.Item>
           </Col>
-          <Col span={8}>
+          <Col  xs={24} sm={12} md={8}>
             <Form.Item label="Middle Initial" name="middleInitial">
               <Input />
             </Form.Item>
           </Col>
-          <Col span={8}>
+          <Col xs={24} sm={12} md={8}>
             <Form.Item label="Last Name*" name="lastName">
               <Input placeholder="Willie" />
             </Form.Item>
@@ -65,17 +66,17 @@ export default function EditProfileModal({
         </Row>
 
         <Row gutter={16}>
-          <Col span={8}>
+          <Col xs={24} sm={12} md={8}>
             <Form.Item label="Suffix" name="suffix">
               <Input placeholder="Suffix" />
             </Form.Item>
           </Col>
-          <Col span={8}>
+          <Col xs={24} sm={12} md={8}>
             <Form.Item label="Email*" name="email">
               <Input placeholder="dennis.willie@example.com" />
             </Form.Item>
           </Col>
-          <Col span={8}>
+          <Col xs={24} sm={12} md={8}>
             <Form.Item label="Cell Number*" name="cellNumber">
               <Input placeholder="+1 (555) 123-4567" />
             </Form.Item>
@@ -96,17 +97,17 @@ export default function EditProfileModal({
         </Row>
 
         <Row gutter={16}>
-          <Col span={8}>
+          <Col xs={24} sm={12} md={8}>
             <Form.Item label="City*" name="city">
               <Input placeholder="New York" />
             </Form.Item>
           </Col>
-          <Col span={8}>
+          <Col xs={24} sm={12} md={8}>
             <Form.Item label="State*" name="state">
               <Input placeholder="NY" />
             </Form.Item>
           </Col>
-          <Col span={8}>
+          <Col xs={24} sm={12} md={8}>
             <Form.Item label="Zip*" name="zip">
               <Input placeholder="10001" />
             </Form.Item>
@@ -114,7 +115,7 @@ export default function EditProfileModal({
         </Row>
 
         <Row gutter={16}>
-          <Col span={8}>
+          <Col xs={24} sm={12} md={8}>
             <Form.Item label="Country*" name="country">
               <Select placeholder="Select Country">
                 <Option value="us">United States</Option>
@@ -123,12 +124,12 @@ export default function EditProfileModal({
               </Select>
             </Form.Item>
           </Col>
-          <Col span={8}>
+          <Col xs={24} sm={12} md={8}>
             <Form.Item label="Date of Birth*" name="dateOfBirth">
               <Input placeholder="MM/DD/YYYY" />
             </Form.Item>
           </Col>
-          <Col span={8}>
+          <Col xs={24} sm={12} md={8}>
             <Form.Item label="Gender" name="gender">
               <Radio.Group>
                 <Radio value="male">Male</Radio>
