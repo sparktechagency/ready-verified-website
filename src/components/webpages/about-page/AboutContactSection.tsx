@@ -82,7 +82,7 @@ const contactData = [
 export default function ContactSection() {
   const { lg } = Grid.useBreakpoint();
   return (
-    <div className=" mt-12 mb-20  text-center ">
+    <div className=" mt-12 mb-20  text-center md:p-6 ">
       <h2 className="text-[40px] font-semibold mb-10">
         We Are Here <span className="text-[#2FB236]">To Help You</span>
       </h2>

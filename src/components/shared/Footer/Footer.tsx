@@ -7,6 +7,7 @@ import {
   EnvironmentOutlined,
 } from "@ant-design/icons";
 import Image from "next/image";
+import SocialIcons from "./SocialIcons";
 
 const { Title, Paragraph, Text, Link } = Typography;
 
@@ -31,7 +32,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-[#0B2845] ">
+    <footer className="bg-[#021325] ">
       <div className="container mx-auto px-4 md:px-4 pt-[100px] pb-[12px]">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {/* Left Section - Logo and Newsletter */}
@@ -67,38 +68,10 @@ export default function Footer() {
                 growth opportunities, enhancing skills and advancing
                 professional success.
               </Paragraph>
-
-              {/* Newsletter Subscription */}
-              <div className="flex items-center gap-2 w-full">
-                <Input
-                  placeholder="Your Email"
-                  style={{
-                    backgroundColor: "transparent",
-                    borderColor: "#F1F1F1",
-                    color: "white",
-                    width: "70%",
-                  }}
-                  styles={{
-                    input: {
-                      backgroundColor: "transparent",
-                      color: "white",
-                    },
-                  }}
-                />
-                <Button
-                  type="primary"
-                  onClick={handleSubscribe}
-                  style={{
-                    backgroundColor: "#F1F1F1",
-                    borderColor: "#F1F1F1",
-                    fontWeight: "500",
-                    color: "#414141",
-                  }}
-                >
-                  Subscribe
-                </Button>
-              </div>
             </div>
+
+            {/* icons */}
+            <SocialIcons />
           </div>
 
           {/* Middle Section - Useful Links */}
@@ -261,16 +234,46 @@ export default function Footer() {
 
         {/* Bottom Border */}
         <div
+          className="flex flex-col md:flex-row justify-between items-center mb-5 gap-5"
           style={{
             borderTop: "1px solid rgba(255, 255, 255, 0.1)",
+            borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
             marginTop: "40px",
-            paddingTop: "20px",
-            textAlign: "center",
+            padding: "20px 0",
           }}
         >
           <Text style={{ color: "rgba(255, 255, 255, 0.6)", fontSize: "14px" }}>
-            © 2024 ReadyVerified. All rights reserved.
+            Stay updated with our latest features and assessment templates
           </Text>
+          {/* Newsletter Subscription */}
+          <div className="flex items-center gap-2 ">
+            <Input
+              placeholder="Your Email"
+              style={{
+                backgroundColor: "#1F2937",
+                borderColor: "#F1F1F1",
+                color: "white",
+              }}
+              styles={{
+                input: {
+                  backgroundColor: "#1F2937",
+                  color: "white",
+                },
+              }}
+            />
+            <Button
+              type="primary"
+              onClick={handleSubscribe}
+              style={{
+                backgroundColor: "#1A5FA4",
+                borderColor: "#1A5FA4",
+                fontWeight: "500",
+                color: "white",
+              }}
+            >
+              Subscribe
+            </Button>
+          </div>
         </div>
       </div>
     </footer>
