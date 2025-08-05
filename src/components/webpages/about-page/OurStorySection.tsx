@@ -78,10 +78,10 @@ export default function OurStorySection() {
         </div>
       </div>
       {/* stats part */}
-      <div className="flex flex-col md:flex-row justify-between items-center gap-10 max-w-[1000px] mx-auto mt-12 pb-30">
+      <div className="flex flex-col md:flex-row justify-between items-center gap-4 lg:gap-10 max-w-[1000px] mx-auto mt-12 pb-30">
         {stats?.map((stat) => (
-          <div key={stat.id} className="h-[72px]">
-            <div className="flex flex-col justify-center items-center h-[72px]">
+          <div key={stat.id} className=" lg:h-[72px]">
+            <div className="flex flex-col justify-center items-center lg:h-[72px]">
               <Image
                 src={stat.image}
                 alt={stat.title}
@@ -89,7 +89,7 @@ export default function OurStorySection() {
                 height={72}
                 className="h-full object-cover"
               />
-              <h1 className="text-5xl font-bold">{stat.value}</h1>
+              <h1 className="text-3xl lg:text-5xl font-bold">{stat.value}</h1>
               <p className="text-[#ABABAB]  ">{stat.title} </p>
             </div>
           </div>

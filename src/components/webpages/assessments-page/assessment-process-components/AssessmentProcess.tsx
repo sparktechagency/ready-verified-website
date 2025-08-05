@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Steps, Button, Form } from "antd";
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import AssessmentSelection from "./AssessmentSelection";
@@ -25,9 +25,17 @@ const AssessmentProcess: React.FC = () => {
   const [form] = Form.useForm();
   const router = useRouter();
   const [allFormValues, setAllFormValues] = useState<Record<string, any>>({});
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  const scrollToContent = () => {
+    if (window.innerWidth <= 768 && contentRef.current) {
+      contentRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
 
   const handleNext = async () => {
     try {
+      scrollToContent();
       // Validate and get current step's form values
       const currentValues = await form.validateFields();
       // Merge current step's values with previous values
@@ -123,9 +131,10 @@ const AssessmentProcess: React.FC = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 my-12 flex justify-center items-center flex-col h-[calc(100vh-180px)]">
+    <div className="container mx-auto px-4 my-12 flex justify-center items-center flex-col min-h-[calc(100vh-180px)]">
       <div>
         <div
+          ref={contentRef}
           className={`${selectedAssessment ? "block" : "hidden"}`}
           style={{
             marginBottom: "40px",

@@ -70,13 +70,10 @@ export default function ResumeModal({
       onCancel={handleCancel}
       width={900}
       footer={null}
-      styles={{
-        body: { padding: "24px" },
-      }}
     >
-      <Row gutter={24}>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-0 ">
         {/* Live Preview - Left Side */}
-        <Col span={12}>
+        <div>
           <Card
             title="Live Preview"
             style={{ height: "100%" }}
@@ -84,10 +81,10 @@ export default function ResumeModal({
           >
             <BusinessCardPreview />
           </Card>
-        </Col>
+        </div>
 
         {/* Form - Right Side */}
-        <Col span={12}>
+        <div>
           <Card
             title="Personal Information"
             style={{ height: "100%" }}
@@ -163,8 +160,8 @@ export default function ResumeModal({
               </Button>
             </Space>
           </Card>
-        </Col>
-      </Row>
+        </div>
+      </div>
 
       {/* Actions Section */}
       <Card
