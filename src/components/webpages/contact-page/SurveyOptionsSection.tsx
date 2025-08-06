@@ -89,11 +89,12 @@ const SurveyOptionsSection = () => {
                   icon={option.tagIcon}
                   color={option.tagColor}
                   style={{
-                    borderRadius: "6px",
+                    borderRadius: "30px",
                     fontWeight: "500",
                     fontSize: "11px",
-                    backgroundColor:"#FEF9C3",
-                    color:"black"
+                    backgroundColor: "#FEF9C3",
+                    color: "black",
+                    padding: "6px 16px",
                   }}
                 >
                   {option.tagText}

@@ -58,7 +58,7 @@ export default function FAQSection() {
     <div className="container mx-auto px-4 md:px-4 my-12">
       <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
         <h1 className="text-2xl md:text-[40px] font-[600] text-center mb-12 text-[#333]">
-          Frequently Asked Questions
+          Frequently Asked <span className="text-[#2FB236]">Questions</span>
         </h1>
         <ConfigProvider
           theme={{

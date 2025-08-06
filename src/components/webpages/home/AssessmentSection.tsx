@@ -21,7 +21,7 @@ export default function AssessmentSection() {
         {/* Left Content */}
 
         <div className="w-full max-w-[600px]">
-          <h1 className="text-4xl md:text-5xl font-bold text-left mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold text-left mb-4 leading-16">
             Have your Assessment done by{" "}
             <span style={{ color: "#52c41a" }}>Professionals!</span>
           </h1>

@@ -13,22 +13,26 @@ import {
   schoolToEmployer,
   Step,
 } from "@/data/StepData";
+import { FaUserGraduate } from "react-icons/fa";
 
 const tabs = [
   {
     key: "1",
     label: "Job Seeker to Employer",
     steps: jobSeekerToEmployerSteps,
+    icon: <UserOutlined className="text-[18px]" />,
   },
   {
     key: "2",
     label: "Employer to Job Seeker",
     steps: employerToJobSeekerSteps,
+    icon: <Briefcase className="text-[12px]" />,
   },
   {
     key: "3",
     label: "School to Employer",
     steps: schoolToEmployer,
+    icon: <FaUserGraduate className="text-[18px]" />,
   },
 ];
 
@@ -52,7 +56,7 @@ export default function HowItWorks() {
       {/* Header */}
       <div className="text-center mb-10">
         <h2 className="text-4xl font-bold text-gray-900">
-          How It <span className="text-green-500">Works</span>.
+          How It <span className="text-[#2FB236]">Works</span>
         </h2>
         <p className="text-gray-500 max-w-xl mx-auto mt-4">
           Discover how ReadyVerified connects different stakeholders in the
@@ -66,12 +70,13 @@ export default function HowItWorks() {
           <button
             key={tab.key}
             onClick={() => setActiveTab(tab.key)}
-            className={`px-2 md:px-5 py-2 rounded-lg border transition-all text-sm md:h-[56px] font-medium cursor-pointer ${
+            className={`px-2 md:px-8 py-2 rounded-lg border transition-all text-sm md:h-[56px] font-medium cursor-pointer inline-flex items-center gap-2  ${
               activeTab === tab.key
                 ? "bg-[#1A5FA4] text-white border-[#1A5FA4]"
-                : "bg-white text-gray-700 border-[#1A5FA4] hover:border-blue-500"
+                : "bg-transparent text-gray-700 border-[#1A5FA4] hover:border-blue-500"
             }`}
           >
+            {tab.icon}
             {tab.label}
           </button>
         ))}

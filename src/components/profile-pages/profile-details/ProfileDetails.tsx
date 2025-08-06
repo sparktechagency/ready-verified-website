@@ -1,6 +1,6 @@
 "use client";
 
-import { Card, Row, Col, Typography, Button } from "antd";
+import { Card, Row, Col, Typography, Button, Input } from "antd";
 import { useState } from "react";
 import EditProfileModal from "./EditProfileModal";
 import ProfessionalDetailsModal from "./ProfessionalDetailsModal";
@@ -43,16 +43,35 @@ export default function ProfileDetailsPage() {
     languages: "English, Spanish",
     resume: "resume.pdf",
   });
-
-  const handlePersonalInfoUpdate = (updatedInfo: any) => {
-    setPersonalInfo(updatedInfo);
-    setEditProfileVisible(false);
+  const labelStyle = {
+    display: "block",
+    fontWeight: 600,
+    marginBottom: "4px",
   };
 
-  const handleProfessionalInfoUpdate = (updatedInfo: any) => {
-    setProfessionalInfo(updatedInfo);
-    setProfessionalDetailsVisible(false);
+  const inputStyle = {
+    backgroundColor: "#E8EFF6",
+    borderRadius: "6px",
+    borderColor: "#E8EFF6",
   };
+  interface ReadOnlyFieldProps {
+    label: string;
+    value: string;
+    required?: boolean;
+  }
+
+  const ReadOnlyField = ({
+    label,
+    value,
+    required = false,
+  }: ReadOnlyFieldProps) => (
+    <div>
+      <label style={labelStyle}>
+        {label} {required && <span style={{ color: "red" }}>*</span>}
+      </label>
+      <Input value={value} readOnly style={inputStyle} />
+    </div>
+  );
 
   return (
     <div className="w-full ">
@@ -86,174 +105,125 @@ export default function ProfileDetailsPage() {
 
         <Row gutter={[32, 16]}>
           <Col xs={24} sm={12} md={8}>
-            <div>
-              <Text strong>Full Name</Text>
-              <div style={{ color: "#8c8c8c", marginTop: "4px" }}>
-                {personalInfo.fullName}
-              </div>
-            </div>
+            <ReadOnlyField
+              label="Full Name"
+              value={personalInfo.fullName}
+              required
+            />
           </Col>
-          <Col xs={12} sm={12} md={8}>
-            <div>
-              <Text strong>Middle Initial</Text>
-              <div style={{ color: "#8c8c8c", marginTop: "4px" }}>
-                {personalInfo.middleInitial}
-              </div>
-            </div>
+          <Col xs={24} sm={12} md={8}>
+            <ReadOnlyField
+              label="Middle Initial"
+              value={personalInfo.middleInitial}
+            />
           </Col>
-          <Col xs={12} sm={12} md={8}>
-            <div>
-              <Text strong>Last Name</Text>
-              <div style={{ color: "#8c8c8c", marginTop: "4px" }}>
-                {personalInfo.lastName}
-              </div>
-            </div>
+          <Col xs={24} sm={12} md={8}>
+            <ReadOnlyField
+              label="Last Name"
+              value={personalInfo.lastName}
+              required
+            />
           </Col>
         </Row>
 
-        <Row gutter={[32, 16]} style={{ marginTop: "16px" }}>
-          <Col xs={12} sm={12} md={8}>
-            <div>
-              <Text strong>Suffix</Text>
-              <div style={{ color: "#8c8c8c", marginTop: "4px" }}>
-                {personalInfo.suffix}
-              </div>
-            </div>
+        <Row gutter={[32, 16]} style={{ marginTop: 16 }}>
+          <Col xs={24} sm={12} md={8}>
+            <ReadOnlyField label="Suffix" value={personalInfo.suffix} />
           </Col>
-          <Col xs={12} sm={12} md={8}>
-            <div>
-              <Text strong>Email</Text>
-              <div style={{ color: "#8c8c8c", marginTop: "4px" }}>
-                {personalInfo.email}
-              </div>
-            </div>
+          <Col xs={24} sm={12} md={8}>
+            <ReadOnlyField label="Email" value={personalInfo.email} required />
           </Col>
-          <Col xs={12} sm={12} md={8}>
-            <div>
-              <Text strong>Cell Number</Text>
-              <div style={{ color: "#8c8c8c", marginTop: "4px" }}>
-                {personalInfo.cellNumber}
-              </div>
-            </div>
+          <Col xs={24} sm={12} md={8}>
+            <ReadOnlyField
+              label="Cell Number"
+              value={personalInfo.cellNumber}
+              required
+            />
           </Col>
         </Row>
 
-        <Row gutter={[32, 16]} style={{ marginTop: "16px" }}>
-          <Col xs={12} sm={12} md={8}>
-            <div>
-              <Text strong>Street Address</Text>
-              <div style={{ color: "#8c8c8c", marginTop: "4px" }}>
-                {personalInfo.streetAddress}
-              </div>
-            </div>
+        <Row gutter={[32, 16]} style={{ marginTop: 16 }}>
+          <Col xs={24} sm={12} md={8}>
+            <ReadOnlyField
+              label="Street Address"
+              value={personalInfo.streetAddress}
+              required
+            />
           </Col>
-          <Col xs={12} sm={12} md={8}>
-            <div>
-              <Text strong>Secondary Street Address</Text>
-              <div style={{ color: "#8c8c8c", marginTop: "4px" }}>
-                {personalInfo.secondaryStreetAddress}
-              </div>
-            </div>
+          <Col xs={24} sm={12} md={8}>
+            <ReadOnlyField
+              label="Secondary Street Address"
+              value={personalInfo.secondaryStreetAddress}
+            />
           </Col>
-          <Col xs={12} sm={12} md={8}>
-            <div>
-              <Text strong>City</Text>
-              <div style={{ color: "#8c8c8c", marginTop: "4px" }}>
-                {personalInfo.city}
-              </div>
-            </div>
+          <Col xs={24} sm={12} md={8}>
+            <ReadOnlyField label="City" value={personalInfo.city} required />
           </Col>
         </Row>
 
-        <Row gutter={[32, 16]} style={{ marginTop: "16px" }}>
-          <Col xs={12} sm={12} md={8}>
-            <div>
-              <Text strong>State</Text>
-              <div style={{ color: "#8c8c8c", marginTop: "4px" }}>
-                {personalInfo.state}
-              </div>
-            </div>
+        <Row gutter={[32, 16]} style={{ marginTop: 16 }}>
+          <Col xs={24} sm={12} md={8}>
+            <ReadOnlyField label="State" value={personalInfo.state} required />
           </Col>
-          <Col xs={12} sm={12} md={8}>
-            <div>
-              <Text strong>Zip</Text>
-              <div style={{ color: "#8c8c8c", marginTop: "4px" }}>
-                {personalInfo.zip}
-              </div>
-            </div>
+          <Col xs={24} sm={12} md={8}>
+            <ReadOnlyField label="Zip" value={personalInfo.zip} required />
           </Col>
-          <Col xs={12} sm={12} md={8}>
-            <div>
-              <Text strong>Country</Text>
-              <div style={{ color: "#8c8c8c", marginTop: "4px" }}>
-                {personalInfo.country}
-              </div>
-            </div>
+          <Col xs={24} sm={12} md={8}>
+            <ReadOnlyField
+              label="Country"
+              value={personalInfo.country}
+              required
+            />
           </Col>
         </Row>
 
-        <Row gutter={[32, 16]} style={{ marginTop: "16px" }}>
-          <Col xs={12} sm={12} md={8}>
-            <div>
-              <Text strong>Date of Birth</Text>
-              <div style={{ color: "#8c8c8c", marginTop: "4px" }}>
-                {personalInfo.dateOfBirth}
-              </div>
-            </div>
+        <Row gutter={[32, 16]} style={{ marginTop: 16 }}>
+          <Col xs={24} sm={12} md={8}>
+            <ReadOnlyField
+              label="Date of Birth"
+              value={personalInfo.dateOfBirth}
+              required
+            />
           </Col>
-          <Col xs={12} sm={12} md={8}>
-            <div>
-              <Text strong>Gender</Text>
-              <div style={{ color: "#8c8c8c", marginTop: "4px" }}>
-                {personalInfo.gender}
-              </div>
-            </div>
+          <Col xs={24} sm={12} md={8}>
+            <ReadOnlyField
+              label="Gender"
+              value={personalInfo.gender}
+              required
+            />
           </Col>
-          <Col xs={12} sm={12} md={8}>
-            <div>
-              <Text strong>Race or Ethnic Group</Text>
-              <div style={{ color: "#8c8c8c", marginTop: "4px" }}>
-                {personalInfo.raceOrEthnicGroup}
-              </div>
-            </div>
+          <Col xs={24} sm={12} md={8}>
+            <ReadOnlyField
+              label="Race or Ethnic Group"
+              value={personalInfo.raceOrEthnicGroup}
+            />
           </Col>
         </Row>
 
-        <Row gutter={[32, 16]} style={{ marginTop: "16px" }}>
-          <Col xs={12} sm={12} md={8}>
-            <div>
-              <Text strong>Education</Text>
-              <div style={{ color: "#8c8c8c", marginTop: "4px" }}>
-                {personalInfo.education}
-              </div>
-            </div>
+        <Row gutter={[32, 16]} style={{ marginTop: 16 }}>
+          <Col xs={24} sm={12} md={8}>
+            <ReadOnlyField label="Education" value={personalInfo.education} />
           </Col>
-          <Col xs={12} sm={12} md={8}>
-            <div>
-              <Text strong>High School Name</Text>
-              <div style={{ color: "#8c8c8c", marginTop: "4px" }}>
-                {personalInfo.highSchoolName}
-              </div>
-            </div>
+          <Col xs={24} sm={12} md={8}>
+            <ReadOnlyField
+              label="High School Name"
+              value={personalInfo.highSchoolName}
+            />
           </Col>
-          <Col xs={12} sm={12} md={8}>
-            <div>
-              <Text strong>High School Graduation Year(YYYY)</Text>
-              <div style={{ color: "#8c8c8c", marginTop: "4px" }}>
-                {personalInfo.highSchoolGraduationYear}
-              </div>
-            </div>
+          <Col xs={24} sm={12} md={8}>
+            <ReadOnlyField
+              label="High School Graduation Year(YYYY)"
+              value={personalInfo.highSchoolGraduationYear}
+            />
           </Col>
         </Row>
 
-        <Row gutter={[32, 16]} style={{ marginTop: "16px" }}>
-          <Col xs={12} sm={12} md={8}>
-            <div>
-              <Text strong>Additional Languages</Text>
-              <div style={{ color: "#8c8c8c", marginTop: "4px" }}>
-                {personalInfo.additionalLanguages}
-              </div>
-            </div>
+        <Row gutter={[32, 16]} style={{ marginTop: 16 }}>
+          <Col xs={24} sm={12} md={8}>
+            <ReadOnlyField
+              label="Additional Languages"
+              value={personalInfo.additionalLanguages}
+            />
           </Col>
         </Row>
       </div>
@@ -287,70 +257,53 @@ export default function ProfileDetailsPage() {
         </div>
 
         <Row gutter={[32, 16]}>
-          <Col xs={12} sm={12} md={8}>
-            <div>
-              <Text strong>Job Title</Text>
-              <div style={{ color: "#8c8c8c", marginTop: "4px" }}>
-                {professionalInfo.jobTitle}
-              </div>
-            </div>
-          </Col>
-          <Col xs={12} sm={12} md={8}>
-            <div>
-              <Text strong>Industry</Text>
-              <div style={{ color: "#8c8c8c", marginTop: "4px" }}>
-                {professionalInfo.industry}
-              </div>
-            </div>
-          </Col>
-        </Row>
-
-        <Row gutter={[32, 16]} style={{ marginTop: "16px" }}>
-          <Col xs={12} sm={12} md={8}>
-            <div>
-              <Text strong>Experience</Text>
-              <div style={{ color: "#8c8c8c", marginTop: "4px" }}>
-                {professionalInfo.experience}
-              </div>
-            </div>
+          <Col xs={24} sm={12} md={8}>
+            <ReadOnlyField
+              label="Job Title"
+              value={professionalInfo.jobTitle}
+              required
+            />
           </Col>
           <Col xs={24} sm={12} md={8}>
-            <div>
-              <Text strong>LinkedIn Profile website</Text>
-              <div style={{ color: "#8c8c8c", marginTop: "4px" }}>
-                {professionalInfo.linkedInProfile}
-              </div>
-            </div>
+            <ReadOnlyField
+              label="Industry"
+              value={professionalInfo.industry}
+              required
+            />
           </Col>
         </Row>
 
-        <Row gutter={[32, 16]} style={{ marginTop: "16px" }}>
-          <Col xs={12} sm={12} md={8}>
-            <div>
-              <Text strong>Skills</Text>
-              <div style={{ color: "#8c8c8c", marginTop: "4px" }}>
-                {professionalInfo.skills}
-              </div>
-            </div>
+        <Row gutter={[32, 16]} style={{ marginTop: 16 }}>
+          <Col xs={24} sm={12} md={8}>
+            <ReadOnlyField
+              label="Experience"
+              value={professionalInfo.experience}
+              required
+            />
           </Col>
-          <Col xs={12} sm={12} md={8}>
-            <div>
-              <Text strong>Languages</Text>
-              <div style={{ color: "#8c8c8c", marginTop: "4px" }}>
-                {professionalInfo.languages}
-              </div>
-            </div>
+          <Col xs={24} sm={12} md={8}>
+            <ReadOnlyField
+              label="LinkedIn Profile website"
+              value={professionalInfo.linkedInProfile}
+            />
           </Col>
         </Row>
 
-        <Row gutter={[32, 16]} style={{ marginTop: "16px" }}>
-          <Col xs={12} sm={12} md={8}>
-            <div>
-              <Text strong>Resume</Text>
-              <div style={{ color: "#8c8c8c", marginTop: "4px" }}>
-                {professionalInfo.resume}
-              </div>
-            </div>
+        <Row gutter={[32, 16]} style={{ marginTop: 16 }}>
+          <Col xs={24} sm={12} md={8}>
+            <ReadOnlyField label="Skills" value={professionalInfo.skills} />
+          </Col>
+          <Col xs={24} sm={12} md={8}>
+            <ReadOnlyField
+              label="Languages"
+              value={professionalInfo.languages}
+            />
+          </Col>
+        </Row>
+
+        <Row gutter={[32, 16]} style={{ marginTop: 16 }}>
+          <Col xs={24} sm={12} md={8}>
+            <ReadOnlyField label="Resume" value={professionalInfo.resume} />
           </Col>
         </Row>
       </div>
