@@ -31,8 +31,12 @@ export default function OurTeamSection() {
   return (
     <div className="container px-4 md:px-4 my-12 mx-auto">
       <h1 className="text-[40px] font-semibold text-center ">
-        Our <span className="text-[#2FB236]">Team</span>
+        About the <span className="text-[#2FB236]">Founder</span>
       </h1>
+      <p className="text-center text-[#ABABAB] mt-2 text-[14px] md:text-base">
+        Meet the visionary behind our mission to create meaningful impact
+        through innovative solutions.
+      </p>
       {/* team members */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
         {teamMembers?.map((member) => (

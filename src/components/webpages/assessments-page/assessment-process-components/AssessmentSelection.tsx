@@ -77,7 +77,7 @@ const AssessmentSelection: React.FC<AssessmentSelectionProps> = ({
               cursor: "pointer",
               border:
                 selectedAssessment === option.id
-                  ? "2px solid #96B5D5"
+                  ? "2px solid #1A5FA4"
                   : "1px solid #96B5D5",
               backgroundColor:
                 selectedAssessment === option.id ? "#1A5FA4" : "#E8EFF6",

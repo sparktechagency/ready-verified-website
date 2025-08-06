@@ -189,3 +189,7 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #0c2f52;
 }
+
+/* :where(.css-dev-only-do-not-override-7t2xvq).ant-input::placeholder {
+  color: white !important;
+} */

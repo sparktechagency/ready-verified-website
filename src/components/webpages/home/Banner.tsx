@@ -36,7 +36,7 @@ export default function Banner() {
               maxWidth: "900px",
             }}
           >
-            Build Stunning Assessment with{" "}
+           Empower Your Career with{" "}
             <span style={{ color: "#52c41a" }}>26,000+</span> Template
           </h1>
 

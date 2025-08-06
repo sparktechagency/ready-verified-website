@@ -16,7 +16,7 @@ export default function AssessmentSection() {
   ];
 
   return (
-    <div className="container mx-auto my-12 p-4">
+    <div className="container mx-auto my-12 p-4 ">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 justify-center items-center">
         {/* Left Content */}
 
@@ -100,42 +100,41 @@ export default function AssessmentSection() {
         </div>
 
         {/* Right Content - Placeholder for your image */}
-        <div>
+
+        <div
+          style={{
+            height: "auto",
+            backgroundColor: "#e8f4fd",
+            borderRadius: "24px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            border: "none",
+          }}
+        >
           <div
             style={{
-              height: "auto",
-              backgroundColor: "#e8f4fd",
-              borderRadius: "24px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              border: "none",
+              textAlign: "center",
+              color: "#666",
+              backgroundImage: "url('/home-images/assesmentBg.jpg')",
             }}
           >
             <div
               style={{
-                textAlign: "center",
-                color: "#666",
-                backgroundImage: "url('/home-images/assesmentBg.jpg')",
+                fontSize: "14px",
+                padding: 30,
               }}
             >
-              <div
+              <Image
+                src={"/home-images/assesmentImg.png"}
+                alt="Assessment image"
+                height={733}
+                width={837}
                 style={{
-                  fontSize: "14px",
-                  padding: 30,
+                  width: "100%",
+                  height: "auto",
                 }}
-              >
-                <Image
-                  src={"/home-images/assesmentImg.png"}
-                  alt="Assessment image"
-                  height={733}
-                  width={837}
-                  style={{
-                    width: "100%",
-                    height: "auto",
-                  }}
-                />
-              </div>
+              />
             </div>
           </div>
         </div>

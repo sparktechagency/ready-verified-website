@@ -83,7 +83,7 @@ export default function ContactSection() {
   const { lg } = Grid.useBreakpoint();
   return (
     <div className=" mt-12 mb-20  text-center md:p-6 ">
-      <h2 className="text-[40px] font-semibold mb-10">
+      <h2 className="text-3xl md:text-[40px] font-semibold mb-10">
         We Are Here <span className="text-[#2FB236]">To Help You</span>
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 max-w-7xl mx-auto">

@@ -212,7 +212,7 @@ export default function Footer() {
                   }}
                 />
                 <Link
-                  href="mailto:readyverified@gmail.com"
+                  href="mailto:ready.verified.usa@gmail.com"
                   style={{
                     color: "rgba(255, 255, 255, 0.8)",
                     fontSize: "14px",
@@ -225,7 +225,7 @@ export default function Footer() {
                     e.currentTarget.style.color = "rgba(255, 255, 255, 0.8)";
                   }}
                 >
-                  readyverified@gmail.com
+                  ready.verified.usa@gmail.com
                 </Link>
               </div>
             </Space>
