@@ -8,8 +8,9 @@ import {
 } from "@ant-design/icons";
 import Image from "next/image";
 import SocialIcons from "./SocialIcons";
+import Link from "next/link";
 
-const { Title, Paragraph, Text, Link } = Typography;
+const { Title, Paragraph, Text } = Typography;
 
 export default function Footer() {
   const handleSubscribe = () => {
@@ -18,7 +19,7 @@ export default function Footer() {
   };
 
   const usefulLinks = [
-    { title: "About Us", href: "/about" },
+    { title: "About Us", href: "/about-us" },
     { title: "Privacy Policy", href: "/privacy" },
     { title: "Terms & Condition", href: "/terms" },
   ];

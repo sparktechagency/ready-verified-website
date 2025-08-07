@@ -1,10 +1,10 @@
-import AboutUsPage from "@/components/webpages/about-page/AboutUsPage";
+import AboutPage from "@/components/webpages/about-page/AboutPage";
 import React from "react";
 
 export default function page() {
   return (
     <>
-      <AboutUsPage />
+      <AboutPage />
     </>
   );
 }

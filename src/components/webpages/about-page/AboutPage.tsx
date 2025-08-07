@@ -7,7 +7,7 @@ import AboutTestimonial from "./AboutTestimonial";
 import JourneySection from "./JourneySection";
 import ContactSection from "./AboutContactSection";
 import FAQSection from "../home/Faq";
-export default function AboutUsPage() {
+export default function AboutPage() {
   return (
     <>
       <OurStorySection />
