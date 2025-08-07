@@ -6,17 +6,31 @@ import FAQ from "@/components/webpages/home/Faq";
 import ResumeSection from "@/components/webpages/home/resume-section/ResumeSection";
 import TestimonialSection from "@/components/webpages/home/TestimonialSection";
 import HowItWorks from "./HowItWorksSection";
+import EmployerHome from "@/components/Employer-school-pages/EmployerHome";
 
 export default function HomePage() {
+  const user = {
+    name: "John Doe",
+    email: "johndoe@example.com",
+    role: "user",
+  };
   return (
     <>
-      <Banner />
-      <AssessmentSection />
-      <HowItWorks />
-      <CVTemplatesSection />
-      <ResumeSection />
-      <FAQ />
-      <TestimonialSection />
+      {user?.role === "employee" ? (
+        <>
+          <EmployerHome />
+        </>
+      ) : (
+        <>
+          <Banner />
+          <AssessmentSection />
+          <HowItWorks />
+          <CVTemplatesSection />
+          <ResumeSection />
+          <FAQ />
+          <TestimonialSection />
+        </>
+      )}
     </>
   );
 }

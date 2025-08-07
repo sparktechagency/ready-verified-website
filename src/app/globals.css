@@ -193,3 +193,23 @@ body {
 /* :where(.css-dev-only-do-not-override-7t2xvq).ant-input::placeholder {
   color: white !important;
 } */
+.custom-hover-tag:hover {
+  border-color: #1a5fa4;
+}
+
+/* Change table header background */
+.custom-table .ant-table-thead > tr > th {
+  background-color: #1a5fa4 !important;
+  color: white !important;
+}
+
+/* Set background color for even rows */
+.custom-table .ant-table-tbody > tr.even-row {
+  background-color: #e8eff6 !important;
+  /* padding: 2px !important; */
+}
+
+/* Even row hover style - override AntD's default */
+.custom-table .ant-table-tbody > tr.even-row:hover > td {
+  background-color: #d8e3ef !important;
+}
