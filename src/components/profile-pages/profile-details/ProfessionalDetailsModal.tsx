@@ -20,7 +20,7 @@ export default function ProfessionalDetailsModal({
 
   const handleSave = () => {
     form.validateFields().then((values) => {
-      console.log("Professional details:", values);
+      // console.log("Professional details:", values);
       onClose();
     });
   };

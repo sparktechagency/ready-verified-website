@@ -77,6 +77,14 @@ export default function ProfileDetailsPage() {
     <div className="w-full ">
       {/* Personal Information Section */}
       <div style={{ marginBottom: "24px" }}>
+        {/* customer id */}
+        <div className="px-4 py-4 bg-[#487FB6] rounded-sm text-[#F1F1F1] text-[14px] flex items-center justify-between mb-4">
+          <h4 className=" ">
+            Customer ID:{" "}
+            <span className="text-[#FFC400] font-bold">#123456</span>
+          </h4>
+          <p className="">Last update: Jan 15, 2025</p>
+        </div>
         <div
           style={{
             display: "flex",

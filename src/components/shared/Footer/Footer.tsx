@@ -14,7 +14,7 @@ const { Title, Paragraph, Text } = Typography;
 
 export default function Footer() {
   const handleSubscribe = () => {
-    console.log("Subscribe clicked");
+    // console.log("Subscribe clicked");
     // Handle subscription logic here
   };
 

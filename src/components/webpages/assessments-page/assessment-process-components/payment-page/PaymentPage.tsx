@@ -42,7 +42,7 @@ export default function PaymentPage() {
 
   const handleBack = () => {
     // Handle back navigation
-    console.log("Navigate back");
+    // console.log("Navigate back");
     router.push("/assessments/assessment-process");
   };
 

@@ -20,7 +20,7 @@ export default function RoleSelectionPage() {
       return toast.error("Please select a role");
     }
     if (selectedRole) {
-      console.log("Selected role:", selectedRole);
+      // console.log("Selected role:", selectedRole);
       Cookies.set("role", selectedRole, { path: "/" });
       // Handle continue logic here
       router.push("/auth/register");

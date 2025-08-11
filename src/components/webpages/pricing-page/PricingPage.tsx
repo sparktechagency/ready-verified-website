@@ -7,7 +7,7 @@ const { Title, Text, Paragraph } = Typography;
 
 export default function PricingPage() {
   const handleGetStarted = (planId: string) => {
-    console.log(`Selected plan: ${planId}`);
+    // console.log(`Selected plan: ${planId}`);
     // Handle plan selection logic here
   };
 

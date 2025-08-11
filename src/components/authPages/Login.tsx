@@ -13,7 +13,7 @@ export default function Login() {
   const [form] = Form.useForm();
   const router = useRouter();
   const onFinish = (values: any) => {
-    console.log("Login values:", values);
+    // console.log("Login values:", values);
     toast.success("Login Successful");
     router.push("/");
   };

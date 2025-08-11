@@ -10,7 +10,7 @@ export default function ResetPassPage() {
   const [isModalVisible, setIsModalVisible] = React.useState(false);
 
   const onFinish = (values: any) => {
-    console.log(values);
+    // console.log(values);
     setIsModalVisible(true);
     // router.push("/auth/login");
     // toast.promise(resetPassword(values).unwrap(), {

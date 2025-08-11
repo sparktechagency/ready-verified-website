@@ -10,7 +10,7 @@ export default function ForgotPasswordPage() {
   const [form] = Form.useForm();
   const router = useRouter();
   const onFinish = (values: any) => {
-    console.log("Login values:", values);
+    // console.log("Login values:", values);
     Cookies.set("resetEmail", values.email || "", {
       expires: 1,
       path: "/",

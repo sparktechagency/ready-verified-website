@@ -20,7 +20,7 @@ export default function EditProfileModal({
 
   const handleSave = () => {
     form.validateFields().then((values) => {
-      console.log("Form values:", values);
+      // console.log("Form values:", values);
       onClose();
     });
   };

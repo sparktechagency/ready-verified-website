@@ -116,7 +116,7 @@ export default function SchedulePage() {
     setTimeout(() => {
       setLoading(false);
       setShowSuccessModal(true);
-      console.log("selectedDate:", selectedDate, "selectedTime:", selectedTime);
+      // console.log("selectedDate:", selectedDate, "selectedTime:", selectedTime);
       message.success("Schedule booked successfully!");
     }, 1500);
   };

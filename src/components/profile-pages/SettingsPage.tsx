@@ -8,7 +8,7 @@ export default function SettingsPage() {
 
   // console.log(agentData);
   const onFinish = (values: any) => {
-    console.log("settings values", values);
+    // console.log("settings values", values);
   };
 
   //   useEffect(() => {

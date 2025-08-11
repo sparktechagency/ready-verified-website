@@ -9,11 +9,11 @@ const { Text } = Typography;
 
 export default function VerifyOtpPage() {
   const [email, setEmail] = useState(Cookies.get("resetEmail") || "");
-  console.log(email);
+  // console.log(email);
   const [form] = Form.useForm();
   const router = useRouter();
   const onFinish = (values: any) => {
-    console.log("verify otp values:", parseInt(values.otp));
+    // console.log("verify otp values:", parseInt(values.otp));
     toast.success("OTP verified successfully");
     router.push("/auth/reset-password");
   };

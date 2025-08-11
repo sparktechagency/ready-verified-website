@@ -27,7 +27,7 @@ export default function RegisterPage() {
       contact: values.contact,
       role: Cookies.get("role"),
     };
-    console.log("signup values:", newUser);
+    // console.log("signup values:", newUser);
 
     toast.success("Sign Up Successful");
     router.push("/auth/login");
