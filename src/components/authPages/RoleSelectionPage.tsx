@@ -51,15 +51,15 @@ export default function RoleSelectionPage() {
           <Col xs={24} sm={12} md={10}>
             <Card
               hoverable
-              onClick={() => handleRoleSelect("jobseeker")}
+              onClick={() => handleRoleSelect("CANDIDATE")}
               style={{
                 height: "160px",
                 cursor: "pointer",
                 backgroundColor:
-                  selectedRole === "jobseeker" ? "#1A5FA4" : "transparent",
-                color: selectedRole === "jobseeker" ? "#fff" : "#333",
+                  selectedRole === "CANDIDATE" ? "#1A5FA4" : "transparent",
+                color: selectedRole === "CANDIDATE" ? "#fff" : "#333",
                 border:
-                  selectedRole === "jobseeker"
+                  selectedRole === "CANDIDATE"
                     ? "2px solid #1A5FA4"
                     : "1px solid #1A5FA4",
                 borderRadius: "8px",
@@ -77,14 +77,14 @@ export default function RoleSelectionPage() {
                 style={{
                   fontSize: "32px",
                   marginBottom: "12px",
-                  color: selectedRole === "jobseeker" ? "#fff" : "#1A5FA4",
+                  color: selectedRole === "CANDIDATE" ? "#fff" : "#1A5FA4",
                 }}
               />
               <Title
                 level={4}
                 style={{
                   margin: 0,
-                  color: selectedRole === "jobseeker" ? "#fff" : "#333",
+                  color: selectedRole === "CANDIDATE" ? "#fff" : "#333",
                 }}
               >
                 Job seeker
@@ -95,15 +95,15 @@ export default function RoleSelectionPage() {
           <Col xs={24} sm={12} md={10}>
             <Card
               hoverable
-              onClick={() => handleRoleSelect("employer")}
+              onClick={() => handleRoleSelect("EMPLOYEE")}
               style={{
                 height: "160px",
                 cursor: "pointer",
                 backgroundColor:
-                  selectedRole === "employer" ? "#1A5FA4" : "transparent",
-                color: selectedRole === "employer" ? "#fff" : "#333",
+                  selectedRole === "EMPLOYEE" ? "#1A5FA4" : "transparent",
+                color: selectedRole === "EMPLOYEE" ? "#fff" : "#333",
                 border:
-                  selectedRole === "employer"
+                  selectedRole === "EMPLOYEE"
                     ? "2px solid #1A5FA4"
                     : "1px solid #1A5FA4",
                 borderRadius: "8px",
@@ -121,17 +121,17 @@ export default function RoleSelectionPage() {
                 style={{
                   fontSize: "32px",
                   marginBottom: "12px",
-                  color: selectedRole === "employer" ? "#fff" : "#1A5FA4",
+                  color: selectedRole === "EMPLOYEE" ? "#fff" : "#1A5FA4",
                 }}
               />
               <Title
                 level={4}
                 style={{
                   margin: 0,
-                  color: selectedRole === "employer" ? "#fff" : "#333",
+                  color: selectedRole === "EMPLOYEE" ? "#fff" : "#333",
                 }}
               >
-                Employer/
+                EMPLOYEE/
                 <br />
                 School
               </Title>

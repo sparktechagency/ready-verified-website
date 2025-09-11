@@ -3,12 +3,15 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { CheckCircle, LogOut, LogOutIcon, Menu, User, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import DropdownContent from "./dropdownContent";
-import { Avatar, Button, Divider, Dropdown, Typography } from "antd";
+import { Avatar, Dropdown, Typography } from "antd";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { useAuthContext } from "@/contexts/AuthContext";
+import getProfile from "@/utils/getProfile";
+import { imgUrl } from "@/app/(website)/layout";
 
 const navigationItems = [
   { key: "home", label: "Home", href: "/" },
@@ -18,13 +21,12 @@ const navigationItems = [
   { key: "contact", label: "Contact Us", href: "/contact" },
 ];
 
-export default function Navbar() {
+export default function Navbar({ user }: any) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
-  const { Text } = Typography;
   const router = useRouter();
   const isActive = (href: string) => pathname === href;
-
+  const { logout } = useAuthContext();
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
@@ -32,28 +34,8 @@ export default function Navbar() {
   const closeMobileMenu = () => {
     setMobileMenuOpen(false);
   };
-
-  // const user = null
-  const user = {
-    name: "Dennis E. Willie",
-    suffix: "",
-    email: "dennis_willie@gmail.com",
-    contact: "+1 9864752060",
-    streetAddress: "Secondary Street Address",
-    additionalAddressInfo: "",
-    city: "San Jose",
-    state: "California",
-    zip: "95132",
-    country: "United States",
-    dob: "", 
-    gender: "Male",
-    raceOrEthnicGroup: "Caucasian/White",
-    education: "College 1",
-    highSchoolName: "Independence",
-    highSchoolGraduationYear: "2009",
-    additionalLanguages: "College 1",
-    image: "/user/user1.jpg",
-  };
+  // const user = await getProfile()
+  console.log(user, imgUrl + user?.image);
 
   const handleMenuClick = ({ key }: { key: string }) => {
     if (key === "profile") {
@@ -66,10 +48,11 @@ export default function Navbar() {
         action: {
           label: "Logout",
           onClick: async () => {
-            // Cookies.remove("accessToken");
-            // Cookies.remove("refreshToken");
-            toast.success("Logged out successfully");
-            router.push("/");
+            toast.promise(logout(), {
+              loading: "Logging out...",
+              success: "Logged out successfully",
+              error: "Error logging out",
+            });
           },
         },
       });
@@ -121,7 +104,7 @@ export default function Navbar() {
                 arrow
               >
                 <Avatar
-                  src={user.image}
+                  src={imgUrl + user.image}
                   size="large"
                   className="cursor-pointer border border-gray-300"
                 />
@@ -146,7 +129,7 @@ export default function Navbar() {
                 arrow
               >
                 <Avatar
-                  src={user.image}
+                  src={imgUrl + user?.image}
                   size="large"
                   className="cursor-pointer border border-gray-300"
                 />

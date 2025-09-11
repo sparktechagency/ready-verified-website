@@ -3,6 +3,9 @@ import React from "react";
 import { Button, ConfigProvider, Form, Input, Modal, Space } from "antd";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
+import { myFetch } from "@/utils/myFetch";
+import Cookies from "js-cookie";
 
 export default function ResetPassPage() {
   const [form] = Form.useForm();
@@ -10,8 +13,7 @@ export default function ResetPassPage() {
   const [isModalVisible, setIsModalVisible] = React.useState(false);
 
   const onFinish = (values: any) => {
-    // console.log(values);
-    setIsModalVisible(true);
+    console.log(values);
     // router.push("/auth/login");
     // toast.promise(resetPassword(values).unwrap(), {
     //   loading: "Resetting password...",
@@ -24,6 +26,28 @@ export default function ResetPassPage() {
     //   },
     //   error: (res) => `Error: ${res.data?.message || "Something went wrong"}`,
     // });
+    toast.promise(
+      myFetch("/auth/reset-password", {
+        method: "POST",
+        body: values,
+        headers: {
+          Authorization: `${Cookies.get("resetToken")}`,
+        },
+      }),
+      {
+        loading: "Resetting password...",
+        success: (res) => {
+          if (res?.success) {
+            setIsModalVisible(true);
+            Cookies.remove("resetEmail");
+            Cookies.remove("resetToken");
+            return <b>{res.message}</b>;
+          }
+          throw new Error(res?.message || "Something went wrong");
+        },
+        error: (res) => `Error: ${res.data?.message || "Something went wrong"}`,
+      }
+    );
   };
 
   const handleModalOk = () => {
@@ -180,6 +204,7 @@ export default function ResetPassPage() {
           onOk={handleModalOk}
           onCancel={handleModalOk}
           footer={null}
+          centered
         >
           <h1 className="text-3xl font-semibold text-center mb-4">
             Successfully

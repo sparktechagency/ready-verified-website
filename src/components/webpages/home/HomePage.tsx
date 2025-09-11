@@ -7,16 +7,13 @@ import ResumeSection from "@/components/webpages/home/resume-section/ResumeSecti
 import TestimonialSection from "@/components/webpages/home/TestimonialSection";
 import HowItWorks from "./HowItWorksSection";
 import EmployerHome from "@/components/Employer-school-pages/EmployerHome";
+import getProfile from "@/utils/getProfile";
 
-export default function HomePage() {
-  const user = {
-    name: "John Doe",
-    email: "johndoe@example.com",
-    role: "user",
-  };
+export default async function HomePage() {
+  const user = (await getProfile()) || null;
   return (
     <>
-      {user?.role === "employee" ? (
+      {user?.role === "EMPLOYEE" ? (
         <>
           <EmployerHome />
         </>

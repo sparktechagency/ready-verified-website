@@ -1,3 +1,4 @@
+import { imgUrl } from "@/app/(website)/layout";
 import { Avatar, Button, Divider, Typography } from "antd";
 import { LogOut, User } from "lucide-react";
 import React from "react";
@@ -16,17 +17,17 @@ export default function DropdownContent({ user, handleMenuClick }: Props) {
         <div className="flex items-center gap-4">
           <Avatar
             size={48}
-            src={user.image}
+            src={imgUrl + user?.image}
             className="bg-blue-600 text-white font-semibold"
           >
             {user.name.charAt(0).toUpperCase()}
           </Avatar>
           <div className="flex-1 min-w-0">
             <Text className="text-gray-900 font-semibold text-base block truncate">
-              {user.name}
+              {user?.name}
             </Text>
             <Text className="text-gray-600 text-sm block truncate">
-              {user.email}
+              {user?.email}
             </Text>
           </div>
         </div>

@@ -8,14 +8,39 @@ import Link from "next/link";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import SocialLogin from "./SocialLogin";
+import { myFetch } from "@/utils/myFetch";
+import Cookies from "js-cookie";
 
 export default function Login() {
   const [form] = Form.useForm();
   const router = useRouter();
   const onFinish = (values: any) => {
-    // console.log("Login values:", values);
-    toast.success("Login Successful");
-    router.push("/");
+    console.log("Login values:", values);
+    const loginUser = {
+      email: values.email,
+      password: values.password,
+    };
+    try {
+      toast.promise(
+        myFetch("/auth/login", { method: "POST", body: loginUser }),
+        {
+          loading: "Logging In...",
+          success: (res) => {
+            if (res?.success) {
+              Cookies.set("accessToken", res?.data || "");
+              router.push("/");
+              return res?.message || "Login Successful!";
+            }
+            throw new Error(res?.message || "Login Failed");
+          },
+          error: (err) => err.message || "Error Logging In",
+        }
+      );
+    } catch (error: unknown) {
+      toast.error(
+        error instanceof Error ? error.message : "Error fetching data"
+      );
+    }
   };
   return (
     <div className="flex flex-col min-h-screen justify-center items-center ">

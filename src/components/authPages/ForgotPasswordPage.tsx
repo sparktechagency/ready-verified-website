@@ -5,18 +5,34 @@ import Image from "next/image";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
+import { myFetch } from "@/utils/myFetch";
 
 export default function ForgotPasswordPage() {
   const [form] = Form.useForm();
   const router = useRouter();
   const onFinish = (values: any) => {
     // console.log("Login values:", values);
-    Cookies.set("resetEmail", values.email || "", {
-      expires: 1,
-      path: "/",
-    });
-    toast.success("OTP sent to your email");
-    router.push("/auth/verify-otp");
+    toast.promise(
+      myFetch("/auth/forget-password", {
+        method: "POST",
+        body: { email: values.email },
+      }),
+      {
+        loading: "Sending OTP...",
+        success: (res) => {
+          if (res?.success) {
+            Cookies.set("resetEmail", values.email || "", {
+              expires: 1,
+              path: "/",
+            });
+            router.push("/auth/verify-otp");
+            return res?.message || "OTP sent successfully";
+          }
+          throw new Error(res?.message || "Failed to send OTP");
+        },
+        error: (err) => err.message || "Error sending OTP",
+      }
+    );
   };
   return (
     <div className="flex min-h-screen justify-center items-center ">

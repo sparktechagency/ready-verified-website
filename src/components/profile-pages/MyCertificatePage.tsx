@@ -1,7 +1,11 @@
+"use client";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-export default function MyCertificatePage() {
+export default async function MyCertificatePage() {
+  const res = await fetch("https://your-backend.com/html-content");
+  const htmlContent = await res.text();
+
   const certificates = [
     {
       _id: 1,
@@ -43,6 +47,8 @@ export default function MyCertificatePage() {
           </div>
         ))}
       </div>
+      {/* render html */}
+      <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
     </div>
   );
 }

@@ -1,36 +1,47 @@
 "use client";
 import React from "react";
-import { Button, Form, Input, Checkbox, Divider, Space } from "antd";
-import {
-  GoogleOutlined,
-  FacebookOutlined,
-  EyeInvisibleOutlined,
-  EyeTwoTone,
-} from "@ant-design/icons";
+import { Button, Form, Input } from "antd";
+import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
 import Image from "next/image";
 import Link from "next/link";
-import { FaFacebook } from "react-icons/fa";
-import { FcGoogle } from "react-icons/fc";
+
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import LoginImg from "/images/login.png";
 import SocialLogin from "./SocialLogin";
 import Cookies from "js-cookie";
+import { myFetch } from "@/utils/myFetch";
 export default function RegisterPage() {
   const [form] = Form.useForm();
   const router = useRouter();
-  const onFinish = (values: any) => {
+  const onFinish = async (values: any) => {
     const newUser = {
       name: values.name,
       email: values.email,
-      password: values.password,
       contact: values.contact,
+      password: values.password,
       role: Cookies.get("role"),
     };
-    // console.log("signup values:", newUser);
+    console.log("signup values:", newUser);
+    try {
+      toast.promise(myFetch("/user", { method: "POST", body: newUser }), {
+        loading: "Signing Up...",
+        success: (res) => {
+          if (res?.success) {
+            router.push("/auth/login");
+            return res?.message || "Sign Up Successful!";
+          }
+          throw new Error(res?.message || "Sign Up Failed");
+        },
+        error: (err) => err.message || "Error Signing Up",
+      });
+    } catch (error: unknown) {
+      toast.error(
+        error instanceof Error ? error.message : "Error fetching data"
+      );
+    }
 
-    toast.success("Sign Up Successful");
-    router.push("/auth/login");
+    // toast.success("Sign Up Successful");
+    // router.push("/auth/login");
   };
   return (
     <div className="flex min-h-screen justify-center items-center  ">
@@ -121,7 +132,17 @@ export default function RegisterPage() {
               }
               name="password"
               rules={[
-                { required: true, message: "Please input your password!" },
+                { required: true, message: "Please enter your password" },
+                {
+                  validator: (_, value) =>
+                    !value || value.length >= 8
+                      ? Promise.resolve()
+                      : Promise.reject(
+                          new Error(
+                            "Password must be at least 8 characters long"
+                          )
+                        ),
+                },
               ]}
             >
               <Input.Password

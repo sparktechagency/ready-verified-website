@@ -5,6 +5,7 @@ import Image from "next/image";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
+import { myFetch } from "@/utils/myFetch";
 const { Text } = Typography;
 
 export default function VerifyOtpPage() {
@@ -13,23 +14,54 @@ export default function VerifyOtpPage() {
   const [form] = Form.useForm();
   const router = useRouter();
   const onFinish = (values: any) => {
-    // console.log("verify otp values:", parseInt(values.otp));
-    toast.success("OTP verified successfully");
-    router.push("/auth/reset-password");
+    console.log("verify otp values:", parseInt(values.otp));
+
+    toast.promise(
+      myFetch("/auth/verify-email", {
+        method: "POST",
+        body: {
+          email: Cookies.get("resetEmail") || "",
+          oneTimeCode: parseInt(values.otp),
+        },
+      }),
+      {
+        loading: "Verifying OTP...",
+        success: (res) => {
+          console.log(res);
+          if (res?.success) {
+            Cookies.set("resetToken", res?.data || "", {
+              expires: 1,
+              path: "/",
+            });
+            router.push("/auth/reset-password");
+            return res?.message || "OTP verified successfully";
+          }
+          throw new Error(res?.message || "Failed to verify OTP");
+        },
+        error: (err) => err.message || "Error verifying OTP",
+      }
+    );
   };
 
   // resend otp
   const handleResendOtp = () => {
-    // toast.promise(
-    //   forgotPassword({ email: Cookies.get("resetEmail") || "" }).unwrap(),
-    //   {
-    //     loading: "Resending OTP...",
-    //     success: (res) => {
-    //       return <b>{res.message}</b>;
-    //     },
-    //     error: (res) => `Error: ${res.data?.message || "Something went wrong"}`,
-    //   }
-    // );
+    toast.promise(
+      myFetch("/auth/forget-password", {
+        method: "POST",
+        body: { email: Cookies.get("resetEmail") || "" },
+      }),
+      {
+        loading: "Resending OTP...",
+        success: (res) => {
+          console.log(res);
+          if (res?.success) {
+            return res?.message || "OTP re-sent successfully";
+          }
+          throw new Error(res?.message || "Failed to send OTP");
+        },
+        error: (err) => err.message || "Error sending OTP",
+      }
+    );
   };
   return (
     <div className="flex min-h-screen justify-center items-center ">
