@@ -35,7 +35,7 @@ export default function Navbar({ user }: any) {
     setMobileMenuOpen(false);
   };
   // const user = await getProfile()
-  console.log(user, imgUrl + user?.image);
+  // console.log(user, imgUrl + user?.image);
 
   const handleMenuClick = ({ key }: { key: string }) => {
     if (key === "profile") {

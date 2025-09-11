@@ -8,9 +8,22 @@ import TestimonialSection from "@/components/webpages/home/TestimonialSection";
 import HowItWorks from "./HowItWorksSection";
 import EmployerHome from "@/components/Employer-school-pages/EmployerHome";
 import getProfile from "@/utils/getProfile";
+import { myFetch } from "@/utils/myFetch";
 
 export default async function HomePage() {
   const user = (await getProfile()) || null;
+  const { data: resumes } = await myFetch("/template?type=resume", {
+    method: "GET",
+    tags: ["resume"],
+  });
+  const { data: coverLetters } = await myFetch("/template?type=cover-letter", {
+    method: "GET",
+    tags: ["cover-letter"],
+  });
+  const { data: faq } = await myFetch("/faq");
+
+  // console.log("resume", resumes);
+  // console.log("cv", coverLetters);
   return (
     <>
       {user?.role === "EMPLOYEE" ? (
@@ -22,9 +35,9 @@ export default async function HomePage() {
           <Banner />
           <AssessmentSection />
           <HowItWorks />
-          <CVTemplatesSection />
+          <CVTemplatesSection resumes={resumes} coverLetters={coverLetters} />
           <ResumeSection />
-          <FAQ />
+          <FAQ faq={faq} />
           <TestimonialSection />
         </>
       )}
