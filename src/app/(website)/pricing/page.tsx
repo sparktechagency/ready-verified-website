@@ -1,10 +1,13 @@
 import PricingPage from "@/components/webpages/pricing-page/PricingPage";
+import { myFetch } from "@/utils/myFetch";
 import React from "react";
 
-export default function page() {
+export default async function page() {
+  const {data: pricingData} = await myFetch("/package");
+  // console.log(pricingData);
   return (
     <div>
-      <PricingPage />
+      <PricingPage pricingData={pricingData} />
     </div>
   );
 }

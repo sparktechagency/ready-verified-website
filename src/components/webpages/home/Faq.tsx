@@ -3,8 +3,8 @@
 import { Collapse, ConfigProvider } from "antd";
 
 export default function FAQSection({ faq }: { faq?: any }) {
-  const items = faq?.map((item: any) => ({
-    key: item._id,
+  const items = faq?.map((item: any, index: number) => ({
+    key: String(index + 1),
     label: item.question,
     children: item.answer,
   }));

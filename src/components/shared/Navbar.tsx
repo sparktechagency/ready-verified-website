@@ -12,7 +12,7 @@ import { useRouter } from "next/navigation";
 import { useAuthContext } from "@/contexts/AuthContext";
 import getProfile from "@/utils/getProfile";
 import { imgUrl } from "@/app/(website)/layout";
-
+import Cookies from "js-cookie";
 const navigationItems = [
   { key: "home", label: "Home", href: "/" },
   { key: "about", label: "About Us", href: "/about" },
@@ -30,6 +30,10 @@ export default function Navbar({ user }: any) {
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
+  const cookeUser = Cookies.get("user");
+  if (!cookeUser && user) {
+    Cookies.set("user", JSON.stringify(user));
+  }
 
   const closeMobileMenu = () => {
     setMobileMenuOpen(false);

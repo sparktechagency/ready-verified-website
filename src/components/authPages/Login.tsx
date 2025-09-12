@@ -27,6 +27,7 @@ export default function Login() {
           loading: "Logging In...",
           success: (res) => {
             if (res?.success) {
+              Cookies.remove("user");
               Cookies.set("accessToken", res?.data || "");
               router.push("/");
               return res?.message || "Login Successful!";

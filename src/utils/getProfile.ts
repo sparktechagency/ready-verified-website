@@ -2,6 +2,7 @@
 
 import { cookies } from "next/headers";
 
+
 const getProfile = async () => {
   const token = (await cookies()).get("accessToken")?.value;
 
@@ -9,12 +10,14 @@ const getProfile = async () => {
     next: {
       tags: ["user-profile"],
     },
+    cache:"force-cache",
     headers: {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
     },
   });
   const { data } = await res?.json();
+
   return data;
 };
 

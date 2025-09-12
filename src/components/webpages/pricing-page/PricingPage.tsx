@@ -5,7 +5,11 @@ import { Card, Button, Row, Col, Typography } from "antd";
 
 const { Title, Text, Paragraph } = Typography;
 
-export default function PricingPage() {
+interface PricingPageProps {
+  pricingData: any;
+}
+
+export default function PricingPage({ pricingData }: PricingPageProps) {
   const handleGetStarted = (planId: string) => {
     // console.log(`Selected plan: ${planId}`);
     // Handle plan selection logic here
@@ -48,29 +52,32 @@ export default function PricingPage() {
 
         {/* Pricing Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-12 mt-10">
-          {pricingPlans.map((plan) => (
+          {pricingData?.map((plan: any) => (
             <Card
-              key={plan.id}
+              key={plan._id}
               style={{
                 height: "100%",
-                backgroundColor: plan.highlighted ? "#E8EFF6" : "#F1F4F9",
-                scale: plan.highlighted ? "1.05" : "1",
+                backgroundColor: "#F1F4F9",
               }}
-              className={`h-full pricing-card `}
-              bodyStyle={{
-                padding: "40px 32px",
-                height: "100%",
-                display: "flex",
-                flexDirection: "column",
+              className="h-full pricing-card"
+              styles={{
+                body: {
+                  padding: "40px 32px",
+                  height: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                },
               }}
             >
               <div className="text-center mb-8">
                 {/* Price */}
                 <div className="mb-4">
                   <span className="text-4xl lg:text-5xl font-bold text-[#3D3D3D]">
-                    {plan.price}
+                    ${plan.price}
                   </span>
-                  <span className="text-lg text-[#3D3D3D]">{plan.period}</span>
+                  <span className="text-lg text-[#3D3D3D]">
+                    /{plan.recurring}
+                  </span>
                 </div>
 
                 {/* Plan Name */}
@@ -87,7 +94,7 @@ export default function PricingPage() {
               {/* Features */}
               <div className="flex-1 mb-8">
                 <ul className="flex flex-col space-y-2">
-                  {plan.features.map((feature, index) => (
+                  {plan?.features?.map((feature: any, index: number) => (
                     <li key={index} className="flex items-start text-[#858585]">
                       <span className="text-gray-400 mr-3 mt-1">•</span>
                       <span>{feature}</span>
@@ -98,18 +105,18 @@ export default function PricingPage() {
 
               {/* Button */}
               <Button
-                type={plan.buttonType}
+                type="primary"
                 size="large"
                 block
                 style={{
                   width: "100%",
-                  backgroundColor: plan.highlighted ? "#1A5FA4" : "#E8EFF6",
-                  borderColor: plan.highlighted ? "#1A5FA4" : "#E8EFF6",
+                  backgroundColor: "#1A5FA4",
+                  borderColor: "#1A5FA4",
                   fontWeight: 400,
                 }}
-                onClick={() => handleGetStarted(plan.id)}
+                onClick={() => window.open(plan.payment_link, "_blank")}
               >
-                {plan.buttonText}
+                Get Started
               </Button>
             </Card>
           ))}

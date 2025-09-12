@@ -3,7 +3,7 @@
 import { createContext, useContext, useState, ReactNode } from "react";
 import { setCookie, deleteCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
-
+import Cookies from "js-cookie";
 // Define the context type
 interface AuthContextType {
   token: string | null | unknown;
@@ -53,7 +53,7 @@ export const AuthProvider = ({
   const logout = () => {
     setUser(null);
     deleteCookie("accessToken");
-    deleteCookie("user");
+    Cookies.remove("user")
     router.push("/auth/login");
   };
 
