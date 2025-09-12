@@ -2,8 +2,8 @@
 
 import { Collapse, ConfigProvider } from "antd";
 
-export default function FAQSection({ faq }: { faq: any[] }) {
-  const items = faq?.map((item) => ({
+export default function FAQSection({ faq }: { faq?: any }) {
+  const items = faq?.map((item: any) => ({
     key: item._id,
     label: item.question,
     children: item.answer,

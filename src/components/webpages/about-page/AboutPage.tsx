@@ -7,7 +7,10 @@ import AboutTestimonial from "./AboutTestimonial";
 import JourneySection from "./JourneySection";
 import ContactSection from "./AboutContactSection";
 import FAQSection from "../home/Faq";
-export default function AboutPage() {
+import { myFetch } from "@/utils/myFetch";
+export default async function AboutPage() {
+  const { data: faq } = await myFetch("/faq");
+
   return (
     <>
       <OurStorySection />
@@ -16,7 +19,7 @@ export default function AboutPage() {
       <WhyChooseUsSection />
       <AboutTestimonial />
       <JourneySection />
-      <FAQSection />
+      <FAQSection faq={faq} />
       <ContactSection />
     </>
   );
