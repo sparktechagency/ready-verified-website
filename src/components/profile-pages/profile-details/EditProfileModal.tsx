@@ -4,6 +4,9 @@ import { Modal, Form, Input, Select, Radio, Button, DatePicker } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
 import { useEffect } from "react";
 import dayjs from "dayjs";
+import { myFetch } from "@/utils/myFetch";
+import { toast } from "sonner";
+import { revalidateTags } from "@/helpers/revalidateHelper";
 
 const { Option } = Select;
 
@@ -38,17 +41,40 @@ export default function EditProfileModal({
     }
   }, [visible, initialValues, form]);
 
-  const handleSave = () => {
-    form.validateFields().then((values) => {
+  const handleSave =() => {
+    form.validateFields().then(async(values) => {
       const formatted = {
         ...values,
         date_of_birth: values.date_of_birth
           ? values.date_of_birth.toDate()
           : null,
       };
-      console.log("Updated personal info:", formatted);
+
+      const res = myFetch("/user/profile",{
+        method:"PATCH",
+        body:formatted,
+      })
+
+      toast.promise(res,{
+        loading:"Updating Profile....",
+        success:(res)=>{
+          if(res.success){
+            revalidateTags(["user-profile"])
+            return res.message
+          }
+
+          throw new Error("Update profile faild")
+        },
+        error:(err)=>{
+          return err.message
+        }
+      })
+      
+
       onClose();
     });
+
+
   };
 
   return (
@@ -78,14 +104,14 @@ export default function EditProfileModal({
             <Input placeholder="dennis.willie@example.com" />
           </Form.Item>
           <Form.Item label="Contact Number*" name="contact">
-            <Input placeholder="+1 (555) 123-4567" />
+            <Input placeholder="+1 (555) 123-4567" value={initialValues.contact} />
           </Form.Item>
         </div>
 
         {/* Address */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <Form.Item label="Street Address*" name="street_address">
-            <Input placeholder="123 Main Street" />
+            <Input placeholder="123 Main Street" value={initialValues.street_address} />
           </Form.Item>
           <Form.Item
             label="Secondary Street Address"

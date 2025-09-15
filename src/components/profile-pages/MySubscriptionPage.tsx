@@ -1,5 +1,7 @@
 "use client";
 
+import { ISubscription } from "@/types/types";
+import { myFetch } from "@/utils/myFetch";
 import {
   Card,
   Button,
@@ -11,6 +13,7 @@ import {
   Space,
   Divider,
 } from "antd";
+import React, { useEffect } from "react";
 
 const { Title, Text, Paragraph } = Typography;
 interface subscriptionDetailsProps {
@@ -24,6 +27,22 @@ interface subscriptionDetailsProps {
   highlighted?: boolean;
 }
 export default function MySubscriptionPage() {
+  const [subscription, setSubscription] = React.useState<ISubscription>();
+
+  useEffect(() => {
+    myFetch('/subscription',{
+      cache:"no-store"
+    })
+      .then((res) => {
+        setSubscription(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  },[])
+
+  
+  
   const paymentHistory = [
     {
       type: "Last Payment",
@@ -41,14 +60,10 @@ export default function MySubscriptionPage() {
 
   const subscriptionDetails: subscriptionDetailsProps = {
     id: "free",
-    name: "Free",
-    price: "$0",
-    period: "/month",
-    features: [
-      "Limited features",
-      "Basic search filters",
-      "Up to 5 job postings",
-    ],
+    name: subscription?.package?.name||"Free Plan",
+    price: `${subscription?.price||0}`,
+    period: "/"+subscription?.package?.recurring||"/month",
+    features: subscription?.package?.features||[],
     buttonText: "Get Started",
     buttonType: "primary",
     highlighted: false,
@@ -143,10 +158,10 @@ export default function MySubscriptionPage() {
             }}
           >
             <Title level={3} style={{ marginBottom: "8px", color: "#3D3D3D" }}>
-              Yearly Subscription
+              {subscription?.package?.name||"Free Plan"}
             </Title>
             <Text style={{ color: "#858585" }}>
-              Renew Date: 28 September 2025
+              Renew Date: {new Date(subscription?.endDate!).toLocaleDateString()}
             </Text>
 
             <div
@@ -160,9 +175,9 @@ export default function MySubscriptionPage() {
                 backgroundColor: "#B8CDE347",
               }}
             >
-              <Text>Main License + 6 Additional Assessments</Text>
+              <Text>{subscription?.package?.features?.toString()||[].toString()}</Text>
               <Text strong style={{ fontSize: "16px" }}>
-                $9.99/month
+                ${subscription?.price||0}/{subscription?.package?.recurring||"month"}
               </Text>
             </div>
           </div>

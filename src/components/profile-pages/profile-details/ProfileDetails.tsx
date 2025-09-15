@@ -7,34 +7,38 @@ import ProfessionalDetailsModal from "./ProfessionalDetailsModal";
 import { Edit } from "lucide-react";
 import { imgUrl } from "@/app/(website)/layout";
 import { ReadOnlyField } from "./ReadOnlyField";
+import { IUser } from "@/types/types";
 
-export default function ProfileDetailsPage({ user }: any) {
+export default function ProfileDetailsPage({ user }: {user:IUser|null}) {
   // split full name into first, middle, last
   const nameParts = user?.name?.trim()?.split(" ") || [];
   const firstName = nameParts[0] || "";
   const middleInitial = nameParts.length === 3 ? nameParts[1] : "";
   const lastName = nameParts.length > 1 ? nameParts[nameParts.length - 1] : "";
 
+  console.log(user);
+  
+
   const personalInfo = {
     firstName,
     middleInitial,
     lastName,
-    suffix: "",
+    suffix: user?.suffix,
     email: user?.email,
-    cellNumber: user?.contact,
-    streetAddress: "",
-    secondaryStreetAddress: "",
-    city: "",
-    state: "",
-    zip: "",
-    country: "Bangladesh",
-    dateOfBirth: "",
-    gender: "",
-    raceOrEthnicGroup: "",
-    education: "",
-    highSchoolName: "",
-    highSchoolGraduationYear: "",
-    additionalLanguages: "",
+    contact: user?.contact,
+    street_address:user?.street_address,
+    secondary_street_address: user?.secondary_street_address,
+    city: user?.city,
+    state: user?.state,
+    zip_code: user?.zip_code,
+    country: user?.country,
+    date_of_birth:new Date(user?.date_of_birth!),
+    gender: user?.gender,
+    ethic: user?.ethic,
+    education: user?.education,
+    school_name: user?.school_name,
+    graduation_year: user?.graduation_year,
+    additional_languages: user?.additional_languages,
   };
 
   const professionalInfo = {
@@ -140,7 +144,7 @@ export default function ProfileDetailsPage({ user }: any) {
           <ReadOnlyField label="Email" value={personalInfo?.email} required />
           <ReadOnlyField
             label="Cell Number"
-            value={personalInfo?.cellNumber}
+            value={personalInfo?.contact}
             required
           />
         </GridFields>
@@ -148,19 +152,19 @@ export default function ProfileDetailsPage({ user }: any) {
         <GridFields>
           <ReadOnlyField
             label="Street Address"
-            value={personalInfo?.streetAddress}
+            value={personalInfo?.street_address}
             required
           />
           <ReadOnlyField
             label="Secondary Street Address"
-            value={personalInfo?.secondaryStreetAddress}
+            value={personalInfo?.secondary_street_address}
           />
           <ReadOnlyField label="City" value={personalInfo?.city} required />
         </GridFields>
 
         <GridFields>
           <ReadOnlyField label="State" value={personalInfo?.state} required />
-          <ReadOnlyField label="Zip" value={personalInfo?.zip} required />
+          <ReadOnlyField label="zip_code" value={personalInfo?.zip_code} required />
           <ReadOnlyField
             label="Country"
             value={personalInfo?.country}
@@ -171,13 +175,13 @@ export default function ProfileDetailsPage({ user }: any) {
         <GridFields>
           <ReadOnlyField
             label="Date of Birth"
-            value={personalInfo?.dateOfBirth}
+            value={new Date(personalInfo?.date_of_birth!).toLocaleDateString()}
             required
           />
           <ReadOnlyField label="Gender" value={personalInfo?.gender} required />
           <ReadOnlyField
             label="Race or Ethnic Group"
-            value={personalInfo?.raceOrEthnicGroup}
+            value={personalInfo?.ethic}
           />
         </GridFields>
 
@@ -185,18 +189,18 @@ export default function ProfileDetailsPage({ user }: any) {
           <ReadOnlyField label="Education" value={personalInfo?.education} />
           <ReadOnlyField
             label="High School Name"
-            value={personalInfo?.highSchoolName}
+            value={personalInfo?.school_name}
           />
           <ReadOnlyField
             label="High School Graduation Year(YYYY)"
-            value={personalInfo?.highSchoolGraduationYear}
+            value={personalInfo?.graduation_year}
           />
         </GridFields>
 
         <GridFields>
           <ReadOnlyField
             label="Additional Languages"
-            value={personalInfo?.additionalLanguages}
+            value={personalInfo?.additional_languages?.toString()}
           />
         </GridFields>
       </Section>

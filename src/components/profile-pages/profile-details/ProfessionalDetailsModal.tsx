@@ -3,6 +3,9 @@
 import { Modal, Form, Input, Select, Button, Upload, Row, Col } from "antd";
 import { CloseOutlined, UploadOutlined } from "@ant-design/icons";
 import { useEffect } from "react";
+import { myFetch } from "@/utils/myFetch";
+import { revalidateTags } from "@/helpers/revalidateHelper";
+import { toast } from "sonner";
 
 const { Option } = Select;
 
@@ -26,9 +29,44 @@ export default function ProfessionalDetailsModal({
   }, [visible, initialValues, form]);
 
   const handleSave = () => {
-    form.validateFields().then((values) => {
-      console.log("Updated professional info:", values);
-      onClose();
+    
+    form.validateFields().then(async(values) => {
+      const formData = new FormData()
+      formData.append('job_title', values.jobTitle)
+      formData.append('industry', values.industry)
+      formData.append('experience', values.experience)
+      formData.append('doc', values.resume.file.originFileObj)
+      formData.append('linkedin_url', values.linkedInProfile)
+      formData.append('skills', values.skills)
+      formData.append('languages', values.languages)
+
+      const res =myFetch('/user/professional-details', {
+        method:"PATCH",
+        body: formData,
+      })
+
+      toast.promise(res, {
+        loading:"Updating Professional Details....",
+        success:(res)=>{
+          if(res.success){
+            
+            revalidateTags(["user-profile"])
+            onClose();
+            return res.message
+          }
+
+          console.log(res);
+          
+
+          throw new Error("Update profile faild")
+        },
+        error:(err:any)=>{
+          return err.message
+        }
+      })
+
+      
+      
     });
   };
 

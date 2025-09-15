@@ -21,12 +21,13 @@ import {
   DownloadOutlined,
   ReloadOutlined,
 } from "@ant-design/icons";
+import { IOrder } from "@/types/types";
 const { Title, Text } = Typography;
 
 interface transactionModalProps {
   isModalOpen: boolean;
   setIsModalOpen: any;
-  selectedTransaction: any;
+  selectedTransaction: IOrder | null;
   formatDate: any;
   getStatusColor: any;
 }
@@ -77,8 +78,8 @@ export default function TransactionModal({
                   }}
                 >
                   <Image
-                    src={selectedTransaction.cvImage || "/placeholder.svg"}
-                    alt={`${selectedTransaction.cvFormat} CV Template`}
+                    src={selectedTransaction?.template?.thumbnail || "/placeholder.svg"}
+                    alt={`CV Template`}
                     fill
                     style={{ objectFit: "cover" }}
                   />
@@ -90,7 +91,7 @@ export default function TransactionModal({
               <Space direction="vertical" style={{ width: "100%" }}>
                 <div>
                   <Title level={4} style={{ marginBottom: "8px" }}>
-                    {selectedTransaction.cvTitle}
+                    {selectedTransaction.template?.title}
                   </Title>
                   <Tag color={getStatusColor(selectedTransaction.status)}>
                     {selectedTransaction.status.charAt(0).toUpperCase() +
@@ -102,7 +103,7 @@ export default function TransactionModal({
                   <Col span={12}>
                     <Text type="secondary">CV Format</Text>
                     <div>
-                      <Text>{selectedTransaction.cvFormat}</Text>
+                      {/* <Text>{selectedTransaction.cvFormat}</Text> */}
                     </div>
                   </Col>
                   <Col span={12}>
@@ -112,7 +113,7 @@ export default function TransactionModal({
                         strong
                         style={{ fontSize: "18px", color: "#1890ff" }}
                       >
-                        ${selectedTransaction.amount}
+                        ${selectedTransaction.price}
                       </Text>
                     </div>
                   </Col>
@@ -134,13 +135,13 @@ export default function TransactionModal({
               </Title>
               <Descriptions column={1} size="small">
                 <Descriptions.Item label="Transaction ID">
-                  <Text code>{selectedTransaction.transactionId}</Text>
+                  <Text code>{selectedTransaction.trxId}</Text>
                 </Descriptions.Item>
                 <Descriptions.Item label="Payment Method">
-                  {selectedTransaction.paymentMethod}
+                  {"Card"}
                 </Descriptions.Item>
                 <Descriptions.Item label="Transaction Date">
-                  {formatDate(selectedTransaction.transactionDate)}
+                  {formatDate(selectedTransaction.createdAt)}
                 </Descriptions.Item>
               </Descriptions>
             </Col>
@@ -155,13 +156,13 @@ export default function TransactionModal({
               </Title>
               <Descriptions column={1} size="small">
                 <Descriptions.Item label="Name">
-                  {selectedTransaction.customerName}
+                  {selectedTransaction?.user?.name}
                 </Descriptions.Item>
                 <Descriptions.Item label="Email">
-                  {selectedTransaction.customerEmail}
+                  {selectedTransaction?.user?.email}
                 </Descriptions.Item>
                 <Descriptions.Item label="Downloads">
-                  {selectedTransaction.downloadCount}
+                  {selectedTransaction?.user?.tier_resume_taken || 0}
                 </Descriptions.Item>
               </Descriptions>
             </Col>

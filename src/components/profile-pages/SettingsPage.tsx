@@ -3,21 +3,31 @@ import React from "react";
 import { Button, Form, Input } from "antd";
 import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
 import { toast } from "sonner";
+import { myFetch } from "@/utils/myFetch";
 export default function SettingsPage() {
   const [form] = Form.useForm();
 
   // console.log(agentData);
   const onFinish = (values: any) => {
-    // console.log("settings values", values);
+    const res =myFetch('/auth/change-password', {
+      method:"POST",
+      body: values,
+    })
+
+    toast.promise(res, {
+      loading: "Changing password...",
+      success: (res) => {
+        if (res?.success) {
+          form.resetFields();
+          return res?.message || "Password changed successfully";
+        }
+        throw new Error(res?.message || "Failed to change password");
+      },
+      error: (err) => err.message || "Error changing password",
+    });
+    
   };
 
-  //   useEffect(() => {
-  //     if (agentData?.data) {
-  //       form.setFieldsValue({
-  //         currentPassword: agentData?.data?.passwordShow || "",
-  //       });
-  //     }
-  //   }, [agentData?.data, form]);
   return (
     <Form
       style={{
@@ -31,8 +41,12 @@ export default function SettingsPage() {
         label="Current Password"
         name="currentPassword"
         rules={[
-          { required: true, message: "Please input your current password!" },
+          { required: true, message: "Please input your current password!"},{
+            min: 8,
+            message: "Password must be at least 8 characters long",
+          }
         ]}
+        
       >
         <Input.Password
           placeholder="Enter current password"
@@ -50,7 +64,10 @@ export default function SettingsPage() {
       <Form.Item
         label="New Password"
         name="newPassword"
-        rules={[{ required: true, message: "Please input your new password!" }]}
+        rules={[{ required: true, message: "Please input your new password!" },{
+          min: 8,
+          message: "Password must be at least 8 characters long",
+        }]}
       >
         <Input.Password
           placeholder="Enter new password"
@@ -70,7 +87,8 @@ export default function SettingsPage() {
         name="confirmPassword"
         dependencies={["newPassword"]}
         rules={[
-          { required: true, message: "Please confirm your password!" },
+          { required: true, message: "Please confirm your password!" },{min: 8,
+          message: "Password must be at least 8 characters long",},
           ({ getFieldValue }) => ({
             validator(_, value) {
               if (!value || getFieldValue("newPassword") === value) {

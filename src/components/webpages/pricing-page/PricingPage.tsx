@@ -1,6 +1,8 @@
 "use client";
 
+import { imgUrl } from "@/app/(website)/layout";
 import { pricingPlans } from "@/data/pricingPlans";
+import { myFetch } from "@/utils/myFetch";
 import { Card, Button, Row, Col, Typography } from "antd";
 
 const { Title, Text, Paragraph } = Typography;
@@ -114,7 +116,12 @@ export default function PricingPage({ pricingData }: PricingPageProps) {
                   borderColor: "#1A5FA4",
                   fontWeight: 400,
                 }}
-                onClick={() => window.open(plan.payment_link, "_blank")}
+                onClick={async() => {
+                  const data = await myFetch(`/subscription/${plan._id}`, {
+                    method: "POST",
+                  })
+                 window.open(data?.data, "_blank")
+                }}
               >
                 Get Started
               </Button>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import {
   Card,
@@ -23,15 +23,25 @@ import {
 } from "@ant-design/icons";
 import { mockTransactions, Transaction } from "@/data/mockTransaction";
 import TransactionModal from "./TransactionModal";
+import { IOrder } from "@/types/types";
+import { myFetch } from "@/utils/myFetch";
 
 const { Title, Text } = Typography;
 
 export default function MyTransactionPage() {
   const [selectedTransaction, setSelectedTransaction] =
-    useState<Transaction | null>(null);
+    useState<IOrder | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleTransactionClick = (transaction: Transaction) => {
+  const [transactions,setTransections] = useState<IOrder[]>([]);
+  useEffect(() => {
+    myFetch("/order/transactions").then((res) => {
+      setTransections(res.data);
+    });
+    
+  },[])
+
+  const handleTransactionClick = (transaction: IOrder) => {
     setSelectedTransaction(transaction);
     setIsModalOpen(true);
   };
@@ -81,8 +91,8 @@ export default function MyTransactionPage() {
       </div>
 
       <Row gutter={[16, 16]}>
-        {mockTransactions?.map((transaction) => (
-          <Col xs={24} sm={12} lg={8} key={transaction.id}>
+        {transactions?.map((transaction) => (
+          <Col xs={24} sm={12} lg={8} key={transaction._id}>
             <Card
               style={cardStyle}
               hoverable
@@ -124,8 +134,8 @@ export default function MyTransactionPage() {
                   }}
                 >
                   <Image
-                    src={transaction.cvImage || "/placeholder.svg"}
-                    alt={`${transaction.cvFormat} CV Template`}
+                    src={transaction.template?.thumbnail || "/placeholder.svg"}
+                    alt={`CV Template`}
                     fill
                     style={{ objectFit: "cover" }}
                   />
@@ -136,8 +146,8 @@ export default function MyTransactionPage() {
                 <div
                   style={{ display: "flex", justifyContent: "space-between" }}
                 >
-                  <Text strong>Format</Text>
-                  <Text type="secondary">{transaction.cvFormat}</Text>
+                  {/* <Text strong>Format</Text>
+                  <Text type="secondary">{transaction.cvFormat}</Text> */}
                 </div>
 
                 <div
@@ -145,7 +155,7 @@ export default function MyTransactionPage() {
                 >
                   <Text strong>Date</Text>
                   <Text type="secondary">
-                    {formatDate(transaction.transactionDate)}
+                    {formatDate(transaction.createdAt)}
                   </Text>
                 </div>
 
@@ -158,7 +168,7 @@ export default function MyTransactionPage() {
                 >
                   <Text strong>Amount</Text>
                   <Text strong style={{ fontSize: "18px", color: "#1890ff" }}>
-                    ${transaction.amount}
+                    ${transaction.price}
                   </Text>
                 </div>
               </Space>

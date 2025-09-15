@@ -16,6 +16,10 @@ import {
 import { useRouter, usePathname } from "next/navigation";
 import { GemIcon, Settings } from "lucide-react";
 import { toast } from "sonner";
+import { use, useEffect, useState } from "react";
+import getProfile from "@/utils/getProfile";
+import { IUser } from "@/types/types";
+import { imgUrl } from "@/app/(website)/layout";
 
 const { Sider } = Layout;
 const { Text } = Typography;
@@ -57,6 +61,21 @@ export default function Sidebar() {
     },
   ];
 
+  const [profile,setProfile]=useState<IUser|null>(null)
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      const profile = await getProfile();
+      setProfile(profile);
+    };
+    fetchProfile();
+  }, []);
+
+
+  ;
+  
+  
+
   const handleMenuClick = ({ key }: { key: string }) => {
     router.push(key);
   };
@@ -97,15 +116,15 @@ export default function Sidebar() {
           borderBottom: "1px solid #f0f0f0",
         }}
       >
-        <Avatar size={80} src="/user/user1.jpg" />
+        <Avatar size={80} src={imgUrl+ profile?.image||""} />
         <div style={{ marginTop: "12px" }}>
           <Text
             strong
             style={{ fontSize: "16px", display: "block", color: "#3D3D3D" }}
           >
-            Dennis E. Willie
+            {profile?.name}
           </Text>
-          <p className="text-[12px] text-[#858585]">dennis_willie@gmail.com</p>
+          <p className="text-[12px] text-[#858585]">{profile?.email}</p>
         </div>
       </div>
 
