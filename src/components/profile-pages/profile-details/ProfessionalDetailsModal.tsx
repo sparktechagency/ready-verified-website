@@ -2,6 +2,7 @@
 
 import { Modal, Form, Input, Select, Button, Upload, Row, Col } from "antd";
 import { CloseOutlined, UploadOutlined } from "@ant-design/icons";
+import { useEffect } from "react";
 
 const { Option } = Select;
 
@@ -18,9 +19,15 @@ export default function ProfessionalDetailsModal({
 }: ProfessionalDetailsModalProps) {
   const [form] = Form.useForm();
 
+  useEffect(() => {
+    if (visible) {
+      form.setFieldsValue(initialValues);
+    }
+  }, [visible, initialValues, form]);
+
   const handleSave = () => {
     form.validateFields().then((values) => {
-      // console.log("Professional details:", values);
+      console.log("Updated professional info:", values);
       onClose();
     });
   };
@@ -28,13 +35,7 @@ export default function ProfessionalDetailsModal({
   return (
     <Modal
       title={
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
+        <div className="flex items-center justify-between">
           <span>Professional Details</span>
           <Button type="text" icon={<CloseOutlined />} onClick={onClose} />
         </div>
@@ -63,15 +64,16 @@ export default function ProfessionalDetailsModal({
           <Col span={12}>
             <Form.Item label="Experience*" name="experience">
               <Select placeholder="Select experience">
-                <Option value="0-1">0-1 years</Option>
-                <Option value="1-3">1-3 years</Option>
-                <Option value="3-5">3-5 years</Option>
+                <Option value="0">0 years</Option>
+                <Option value="1">1 year</Option>
+                <Option value="2">2 years</Option>
+                <Option value="3">3 years</Option>
                 <Option value="5+">5+ years</Option>
               </Select>
             </Form.Item>
           </Col>
           <Col span={12}>
-            <Form.Item label="LinkedIn Profile website" name="linkedinProfile">
+            <Form.Item label="LinkedIn Profile website" name="linkedInProfile">
               <Input placeholder="Enter URL here" />
             </Form.Item>
           </Col>
@@ -80,12 +82,12 @@ export default function ProfessionalDetailsModal({
         <Row gutter={16}>
           <Col span={12}>
             <Form.Item label="Skills" name="skills">
-              <Input placeholder="Enter skills" />
+              <Input placeholder="Enter skills (comma separated)" />
             </Form.Item>
           </Col>
           <Col span={12}>
             <Form.Item label="Languages" name="languages">
-              <Input placeholder="Enter languages" />
+              <Input placeholder="Enter languages (comma separated)" />
             </Form.Item>
           </Col>
         </Row>

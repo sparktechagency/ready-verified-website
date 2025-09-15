@@ -1,7 +1,9 @@
 "use client";
 
-import { Modal, Form, Input, Select, Radio, Button, Row, Col } from "antd";
+import { Modal, Form, Input, Select, Radio, Button, DatePicker } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
+import { useEffect } from "react";
+import dayjs from "dayjs";
 
 const { Option } = Select;
 
@@ -18,9 +20,33 @@ export default function EditProfileModal({
 }: EditProfileModalProps) {
   const [form] = Form.useForm();
 
+  useEffect(() => {
+    if (visible && initialValues) {
+      form.setFieldsValue({
+        ...initialValues,
+        date_of_birth: initialValues.date_of_birth
+          ? dayjs(initialValues.date_of_birth)
+          : null,
+        name: [
+          initialValues.firstName,
+          initialValues.middleInitial,
+          initialValues.lastName,
+        ]
+          .filter(Boolean)
+          .join(" "),
+      });
+    }
+  }, [visible, initialValues, form]);
+
   const handleSave = () => {
     form.validateFields().then((values) => {
-      // console.log("Form values:", values);
+      const formatted = {
+        ...values,
+        date_of_birth: values.date_of_birth
+          ? values.date_of_birth.toDate()
+          : null,
+      };
+      console.log("Updated personal info:", formatted);
       onClose();
     });
   };
@@ -28,13 +54,7 @@ export default function EditProfileModal({
   return (
     <Modal
       title={
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
+        <div className="flex items-center justify-between">
           <span>Edit Profile</span>
           <Button type="text" icon={<CloseOutlined />} onClick={onClose} />
         </div>
@@ -47,137 +67,98 @@ export default function EditProfileModal({
       centered
     >
       <Form form={form} layout="vertical" style={{ marginTop: "24px" }}>
-        <Row gutter={[16, 16]}>
-          <Col  xs={24} sm={12} md={8}>
-            <Form.Item label="Full Name*" name="fullName">
-              <Input placeholder="Dennis" />
-            </Form.Item>
-          </Col>
-          <Col  xs={24} sm={12} md={8}>
-            <Form.Item label="Middle Initial" name="middleInitial">
-              <Input />
-            </Form.Item>
-          </Col>
-          <Col xs={24} sm={12} md={8}>
-            <Form.Item label="Last Name*" name="lastName">
-              <Input placeholder="Willie" />
-            </Form.Item>
-          </Col>
-        </Row>
-
-        <Row gutter={16}>
-          <Col xs={24} sm={12} md={8}>
-            <Form.Item label="Suffix" name="suffix">
-              <Input placeholder="Suffix" />
-            </Form.Item>
-          </Col>
-          <Col xs={24} sm={12} md={8}>
-            <Form.Item label="Email*" name="email">
-              <Input placeholder="dennis.willie@example.com" />
-            </Form.Item>
-          </Col>
-          <Col xs={24} sm={12} md={8}>
-            <Form.Item label="Cell Number*" name="cellNumber">
-              <Input placeholder="+1 (555) 123-4567" />
-            </Form.Item>
-          </Col>
-        </Row>
-
-        <Row gutter={16}>
-          <Col span={12}>
-            <Form.Item label="Street Number and Name*" name="streetAddress">
-              <Input placeholder="123 Main Street" />
-            </Form.Item>
-          </Col>
-          <Col span={12}>
-            <Form.Item label="Additional Address Info" name="additionalAddress">
-              <Input placeholder="Apt, Suite, etc." />
-            </Form.Item>
-          </Col>
-        </Row>
-
-        <Row gutter={16}>
-          <Col xs={24} sm={12} md={8}>
-            <Form.Item label="City*" name="city">
-              <Input placeholder="New York" />
-            </Form.Item>
-          </Col>
-          <Col xs={24} sm={12} md={8}>
-            <Form.Item label="State*" name="state">
-              <Input placeholder="NY" />
-            </Form.Item>
-          </Col>
-          <Col xs={24} sm={12} md={8}>
-            <Form.Item label="Zip*" name="zip">
-              <Input placeholder="10001" />
-            </Form.Item>
-          </Col>
-        </Row>
-
-        <Row gutter={16}>
-          <Col xs={24} sm={12} md={8}>
-            <Form.Item label="Country*" name="country">
-              <Select placeholder="Select Country">
-                <Option value="us">United States</Option>
-                <Option value="ca">Canada</Option>
-                <Option value="uk">United Kingdom</Option>
-              </Select>
-            </Form.Item>
-          </Col>
-          <Col xs={24} sm={12} md={8}>
-            <Form.Item label="Date of Birth*" name="dateOfBirth">
-              <Input placeholder="MM/DD/YYYY" />
-            </Form.Item>
-          </Col>
-          <Col xs={24} sm={12} md={8}>
-            <Form.Item label="Gender" name="gender">
-              <Radio.Group>
-                <Radio value="male">Male</Radio>
-                <Radio value="female">Female</Radio>
-                <Radio value="other">Other</Radio>
-              </Radio.Group>
-            </Form.Item>
-          </Col>
-        </Row>
-
-        <Row gutter={16}>
-          <Col span={12}>
-            <Form.Item label="Race or Ethnic Group" name="ethnicity">
-              <Input placeholder="Optional/Prefer not to answer" />
-            </Form.Item>
-          </Col>
-          <Col span={12}>
-            <Form.Item label="Education" name="education">
-              <Select placeholder="Select Education Level">
-                <Option value="high-school">High School</Option>
-                <Option value="bachelors">Bachelor's Degree</Option>
-                <Option value="masters">Master's Degree</Option>
-                <Option value="phd">PhD</Option>
-              </Select>
-            </Form.Item>
-          </Col>
-        </Row>
-
-        <Row gutter={16}>
-          <Col span={12}>
-            <Form.Item label="High School Name" name="highSchoolName">
-              <Input placeholder="Central High School" />
-            </Form.Item>
-          </Col>
-          <Col span={12}>
-            <Form.Item
-              label="High School Graduation Year(YYYY)"
-              name="graduationYear"
-            >
-              <Input placeholder="2008" />
-            </Form.Item>
-          </Col>
-        </Row>
-
-        <Form.Item label="Additional Languages" name="additionalLanguages">
-          <Input placeholder="Language 1" />
+        {/* Name */}
+        <Form.Item label="Full Name*" name="name">
+          <Input placeholder="Dennis Willie" />
         </Form.Item>
 
+        {/* Contact & Email */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <Form.Item label="Email*" name="email">
+            <Input placeholder="dennis.willie@example.com" />
+          </Form.Item>
+          <Form.Item label="Contact Number*" name="contact">
+            <Input placeholder="+1 (555) 123-4567" />
+          </Form.Item>
+        </div>
+
+        {/* Address */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <Form.Item label="Street Address*" name="street_address">
+            <Input placeholder="123 Main Street" />
+          </Form.Item>
+          <Form.Item
+            label="Secondary Street Address"
+            name="secondary_street_address"
+          >
+            <Input placeholder="Apt, Suite, etc." />
+          </Form.Item>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <Form.Item label="City*" name="city">
+            <Input placeholder="New York" />
+          </Form.Item>
+          <Form.Item label="State*" name="state">
+            <Input placeholder="NY" />
+          </Form.Item>
+          <Form.Item label="Zip Code*" name="zip_code">
+            <Input placeholder="10001" />
+          </Form.Item>
+          <Form.Item label="Country*" name="country">
+            <Input placeholder="Bangladesh" />
+          </Form.Item>
+        </div>
+
+        {/* DOB & Gender */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <Form.Item label="Date of Birth*" name="date_of_birth">
+            <DatePicker format="MM/DD/YYYY" className="w-full" />
+          </Form.Item>
+          <Form.Item label="Gender" name="gender">
+            <Radio.Group>
+              <Radio value="male">Male</Radio>
+              <Radio value="female">Female</Radio>
+              <Radio value="other">Other</Radio>
+            </Radio.Group>
+          </Form.Item>
+        </div>
+
+        {/* Ethnic Group & Education */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <Form.Item label="Race or Ethnic Group" name="ethic">
+            <Input placeholder="Optional/Prefer not to answer" />
+          </Form.Item>
+          <Form.Item label="Education" name="education">
+            <Select placeholder="Select Education Level">
+              <Option value="high-school">High School</Option>
+              <Option value="bachelors">Bachelor's Degree</Option>
+              <Option value="masters">Master's Degree</Option>
+              <Option value="phd">PhD</Option>
+            </Select>
+          </Form.Item>
+        </div>
+
+        {/* School Name & Graduation Year */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <Form.Item label="School Name" name="school_name">
+            <Input placeholder="Central High School" />
+          </Form.Item>
+          <Form.Item label="Graduation Year (YYYY)" name="graduation_year">
+            <Input placeholder="2008" />
+          </Form.Item>
+        </div>
+
+        {/* Additional Languages */}
+        <Form.Item label="Additional Languages" name="additional_languages">
+          <Select
+            mode="tags"
+            style={{ width: "100%" }}
+            placeholder="Add languages"
+          />
+        </Form.Item>
+
+        {/* Save Button */}
         <div style={{ textAlign: "right", marginTop: "24px" }}>
           <Button
             type="primary"

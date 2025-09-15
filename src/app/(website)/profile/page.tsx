@@ -1,10 +1,13 @@
 import ProfileDetailsPage from "@/components/profile-pages/profile-details/ProfileDetails";
+import getProfile from "@/utils/getProfile";
 import React from "react";
 
-export default function page() {
+export default async function page() {
+  const user = await getProfile();
+
   return (
     <div>
-      <ProfileDetailsPage />
+      <ProfileDetailsPage user={user} />
     </div>
   );
 }

@@ -8,9 +8,7 @@ interface PersonalInformationProps {
 }
 
 const PersonalInformation: React.FC<PersonalInformationProps> = ({ form }) => (
-  <div
-    className="w-full md:w-[90vw] lg:w-[80vw] xl:w-[70vw] 2xl:w-[60vw] mx-auto"
-  >
+  <div className="w-full md:w-[90vw] lg:w-[80vw] xl:w-[70vw] 2xl:w-[60vw] mx-auto">
     <Title level={4} style={{ marginBottom: "30px", color: "#1f2937" }}>
       Personal Information:
     </Title>
@@ -20,7 +18,7 @@ const PersonalInformation: React.FC<PersonalInformationProps> = ({ form }) => (
           <Form.Item label="Full Name*" name="fullName">
             <Input
               placeholder="Samuel Jacob"
-              style={{ backgroundColor: "#E8EFF6", height:"40px" }}
+              style={{ backgroundColor: "#E8EFF6", height: "40px" }}
             />
           </Form.Item>
         </Col>
@@ -28,7 +26,7 @@ const PersonalInformation: React.FC<PersonalInformationProps> = ({ form }) => (
           <Form.Item label="Headline*" name="headline">
             <Input
               placeholder="Enter headline"
-              style={{ backgroundColor: "#E8EFF6", height:"40px" }}
+              style={{ backgroundColor: "#E8EFF6", height: "40px" }}
             />
           </Form.Item>
         </Col>
@@ -38,7 +36,7 @@ const PersonalInformation: React.FC<PersonalInformationProps> = ({ form }) => (
           <Form.Item label="Email*" name="email">
             <Input
               placeholder="samuel@gmail.com"
-              style={{ backgroundColor: "#E8EFF6", height:"40px" }}
+              style={{ backgroundColor: "#E8EFF6", height: "40px" }}
             />
           </Form.Item>
         </Col>
@@ -46,7 +44,7 @@ const PersonalInformation: React.FC<PersonalInformationProps> = ({ form }) => (
           <Form.Item label="Contact Number*" name="contactNumber">
             <Input
               placeholder="+8 0984752000"
-              style={{ backgroundColor: "#E8EFF6", height:"40px" }}
+              style={{ backgroundColor: "#E8EFF6", height: "40px" }}
             />
           </Form.Item>
         </Col>
@@ -56,7 +54,7 @@ const PersonalInformation: React.FC<PersonalInformationProps> = ({ form }) => (
           <Form.Item label="Address" name="address">
             <Input
               placeholder="2672 Westheimer Rd. Santa Ana, USA."
-              style={{ backgroundColor: "#E8EFF6", height:"40px" }}
+              style={{ backgroundColor: "#E8EFF6", height: "40px" }}
             />
           </Form.Item>
         </Col>

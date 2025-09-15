@@ -1,17 +1,14 @@
 "use client";
 
-import { Button, Input } from "antd";
+import { Button } from "antd";
 import { useState } from "react";
 import EditProfileModal from "./EditProfileModal";
 import ProfessionalDetailsModal from "./ProfessionalDetailsModal";
 import { Edit } from "lucide-react";
-import { getLocalUser } from "@/utils/getlocalUser";
 import { imgUrl } from "@/app/(website)/layout";
 import { ReadOnlyField } from "./ReadOnlyField";
 
-export default function ProfileDetailsPage() {
-  const user = getLocalUser();
-
+export default function ProfileDetailsPage({ user }: any) {
   // split full name into first, middle, last
   const nameParts = user?.name?.trim()?.split(" ") || [];
   const firstName = nameParts[0] || "";
@@ -102,7 +99,7 @@ export default function ProfileDetailsPage() {
       <div className="px-4 py-4 bg-[#487FB6] rounded-sm text-[#F1F1F1] text-sm flex items-center justify-between mb-6">
         <h4>
           Customer ID:{" "}
-          <span className="text-[#FFC400] font-bold">
+          <span className="text-[#FFC400] font-bold uppercase">
             #{user?._id?.slice(-6) ?? "123456"}
           </span>
         </h4>
@@ -124,26 +121,26 @@ export default function ProfileDetailsPage() {
         <GridFields>
           <ReadOnlyField
             label="First Name"
-            value={personalInfo.firstName}
+            value={personalInfo?.firstName}
             required
           />
           <ReadOnlyField
             label="Middle Initial"
-            value={personalInfo.middleInitial}
+            value={personalInfo?.middleInitial}
           />
           <ReadOnlyField
             label="Last Name"
-            value={personalInfo.lastName}
+            value={personalInfo?.lastName}
             required
           />
         </GridFields>
 
         <GridFields>
-          <ReadOnlyField label="Suffix" value={personalInfo.suffix} />
-          <ReadOnlyField label="Email" value={personalInfo.email} required />
+          <ReadOnlyField label="Suffix" value={personalInfo?.suffix} />
+          <ReadOnlyField label="Email" value={personalInfo?.email} required />
           <ReadOnlyField
             label="Cell Number"
-            value={personalInfo.cellNumber}
+            value={personalInfo?.cellNumber}
             required
           />
         </GridFields>
@@ -151,22 +148,22 @@ export default function ProfileDetailsPage() {
         <GridFields>
           <ReadOnlyField
             label="Street Address"
-            value={personalInfo.streetAddress}
+            value={personalInfo?.streetAddress}
             required
           />
           <ReadOnlyField
             label="Secondary Street Address"
-            value={personalInfo.secondaryStreetAddress}
+            value={personalInfo?.secondaryStreetAddress}
           />
-          <ReadOnlyField label="City" value={personalInfo.city} required />
+          <ReadOnlyField label="City" value={personalInfo?.city} required />
         </GridFields>
 
         <GridFields>
-          <ReadOnlyField label="State" value={personalInfo.state} required />
-          <ReadOnlyField label="Zip" value={personalInfo.zip} required />
+          <ReadOnlyField label="State" value={personalInfo?.state} required />
+          <ReadOnlyField label="Zip" value={personalInfo?.zip} required />
           <ReadOnlyField
             label="Country"
-            value={personalInfo.country}
+            value={personalInfo?.country}
             required
           />
         </GridFields>
@@ -174,32 +171,32 @@ export default function ProfileDetailsPage() {
         <GridFields>
           <ReadOnlyField
             label="Date of Birth"
-            value={personalInfo.dateOfBirth}
+            value={personalInfo?.dateOfBirth}
             required
           />
-          <ReadOnlyField label="Gender" value={personalInfo.gender} required />
+          <ReadOnlyField label="Gender" value={personalInfo?.gender} required />
           <ReadOnlyField
             label="Race or Ethnic Group"
-            value={personalInfo.raceOrEthnicGroup}
+            value={personalInfo?.raceOrEthnicGroup}
           />
         </GridFields>
 
         <GridFields>
-          <ReadOnlyField label="Education" value={personalInfo.education} />
+          <ReadOnlyField label="Education" value={personalInfo?.education} />
           <ReadOnlyField
             label="High School Name"
-            value={personalInfo.highSchoolName}
+            value={personalInfo?.highSchoolName}
           />
           <ReadOnlyField
             label="High School Graduation Year(YYYY)"
-            value={personalInfo.highSchoolGraduationYear}
+            value={personalInfo?.highSchoolGraduationYear}
           />
         </GridFields>
 
         <GridFields>
           <ReadOnlyField
             label="Additional Languages"
-            value={personalInfo.additionalLanguages}
+            value={personalInfo?.additionalLanguages}
           />
         </GridFields>
       </Section>
@@ -212,12 +209,12 @@ export default function ProfileDetailsPage() {
         <GridFields>
           <ReadOnlyField
             label="Job Title"
-            value={professionalInfo.jobTitle}
+            value={professionalInfo?.jobTitle}
             required
           />
           <ReadOnlyField
             label="Industry"
-            value={professionalInfo.industry}
+            value={professionalInfo?.industry}
             required
           />
         </GridFields>
@@ -225,26 +222,29 @@ export default function ProfileDetailsPage() {
         <GridFields>
           <ReadOnlyField
             label="Experience"
-            value={professionalInfo.experience}
+            value={professionalInfo?.experience}
             required
           />
           <ReadOnlyField
             isLink={true}
             label="LinkedIn Profile website"
-            value={professionalInfo.linkedInProfile}
+            value={professionalInfo?.linkedInProfile}
           />
         </GridFields>
 
         <GridFields>
-          <ReadOnlyField label="Skills" value={professionalInfo.skills} />
-          <ReadOnlyField label="Languages" value={professionalInfo.languages} />
+          <ReadOnlyField label="Skills" value={professionalInfo?.skills} />
+          <ReadOnlyField
+            label="Languages"
+            value={professionalInfo?.languages}
+          />
         </GridFields>
 
         <GridFields>
           <ReadOnlyField
             isLink={true}
             label="Resume"
-            value={professionalInfo.resume}
+            value={professionalInfo?.resume}
           />
         </GridFields>
       </Section>
