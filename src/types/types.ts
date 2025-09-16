@@ -103,3 +103,14 @@ export interface IOrder {
   paymentId: string;
   trxId: string;
 }
+
+export type ICategory = {
+    icon: string,
+    title: string,
+    questions:{
+        question: string,
+        type:"boolean" | "plain",
+    }[],
+    status:"active" | "deleted"
+    _id:string
+}

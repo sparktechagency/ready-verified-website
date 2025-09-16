@@ -58,7 +58,7 @@ const AssessmentProcess: React.FC = () => {
           },
           selectedAssessment,
         };
-        // console.log("All Form Values:", finalValues);
+        console.log("All Form Values:", finalValues);
         // navigate("/results", { state: { formData: finalValues } })
         router.push("/assessments/assessment-process/payment");
         return;

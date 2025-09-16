@@ -1,10 +1,18 @@
 "use client";
+import { imgUrl } from "@/app/(website)/layout";
+import { myFetch } from "@/utils/myFetch";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
 export default async function MyCertificatePage() {
-  const res = await fetch("https://your-backend.com/html-content");
-  const htmlContent = await res.text();
+  // const res = await fetch("https://your-backend.com/html-content");
+  // const htmlContent = await res.text();
+
+  const [cirtificates, setCirtificates] = useState([]);
+
+  useEffect(() => {
+    myFetch("/user/certificate").then((res) => setCirtificates(res.data))
+  }, []);
 
   const certificates = [
     {
@@ -28,17 +36,14 @@ export default async function MyCertificatePage() {
         My Certificate
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
-        {certificates?.map((certificate) => (
-          <div key={certificate._id} className="flex flex-col items-center">
-            <Image
-              src={certificate.image}
-              alt="certificate"
+        {cirtificates?.map((certificate) => (
+          <div key={certificate} className="flex flex-col items-center">
+            <iframe
+              src={imgUrl + certificate}
               width={300}
               height={200}
-              className="object-cover rounded-lg"
-              layout="responsive"
-              objectFit="cover"
-              objectPosition="center"
+              className="rounded-lg scrollbar-hide"
+              
               // quality={100}
               // priority
               // placeholder="blur"
@@ -48,7 +53,7 @@ export default async function MyCertificatePage() {
         ))}
       </div>
       {/* render html */}
-      <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
+      {/* <div dangerouslySetInnerHTML={{ __html: htmlContent }} /> */}
     </div>
   );
 }

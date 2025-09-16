@@ -1,6 +1,10 @@
 "use client";
+import { imgUrl } from "@/app/(website)/layout";
+import { ICategory } from "@/types/types";
+import { myFetch } from "@/utils/myFetch";
 import { Card, Row, Col, Typography, Checkbox } from "antd";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 const { Title, Text } = Typography;
 
@@ -52,7 +56,23 @@ const assessmentOptions: AssessmentOption[] = [
 const AssessmentSelection: React.FC<AssessmentSelectionProps> = ({
   selectedAssessment,
   handleAssessmentSelect,
-}) => (
+}) => {
+  const [categories, setCategories] = useState<ICategory[]>([]);
+
+  const fetchCategories = async () => {
+    try {
+      const response = await myFetch("/category");
+      const data = response
+      setCategories(data.data);
+    } catch (error) {
+      console.error("Error fetching categories:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchCategories();
+  },[])
+  return (
   <div>
     <div
       className={`${selectedAssessment ? "block" : "hidden"}`}
@@ -67,20 +87,20 @@ const AssessmentSelection: React.FC<AssessmentSelectionProps> = ({
       Which of these best describes your Assessment?
     </Title>
     <Row gutter={[16, 16]}>
-      {assessmentOptions.map((option) => (
-        <Col xs={24} sm={12} md={12} lg={8} key={option.id}>
+      {categories.map((option) => (
+        <Col xs={24} sm={12} md={12} lg={8} key={option._id}>
           <Card
             hoverable
-            onClick={() => handleAssessmentSelect(option.id)}
+            onClick={() => handleAssessmentSelect(option._id)}
             style={{
               textAlign: "center",
               cursor: "pointer",
               border:
-                selectedAssessment === option.id
+                selectedAssessment === option._id
                   ? "2px solid #1A5FA4"
                   : "1px solid #96B5D5",
               backgroundColor:
-                selectedAssessment === option.id ? "#1A5FA4" : "#E8EFF6",
+                selectedAssessment === option._id ? "#1A5FA4" : "#E8EFF6",
               borderRadius: "12px",
               minHeight: "180px",
               display: "flex",
@@ -98,8 +118,8 @@ const AssessmentSelection: React.FC<AssessmentSelectionProps> = ({
               }}
             >
               <Image
-                src={option.icon || "/placeholder.svg"}
-                alt={option.subtitle}
+                src={imgUrl+option.icon || "/placeholder.svg"}
+                alt={option.title}
                 width={60}
                 height={60}
                 style={{ borderRadius: "50%" }}
@@ -109,21 +129,21 @@ const AssessmentSelection: React.FC<AssessmentSelectionProps> = ({
               strong
               style={{
                 fontSize: "16px",
-                color: selectedAssessment === option.id ? "#FFFFFF" : "#1f2937",
+                color: selectedAssessment === option._id ? "#FFFFFF" : "#1f2937",
                 fontWeight: 500,
               }}
             >
-              {option.title}
+              {"Certificate of Credibility:"}
             </Text>
             <br />
             <Text
               strong
               style={{
                 fontSize: "16px",
-                color: selectedAssessment === option.id ? "#FFFFFF" : "#1f2937",
+                color: selectedAssessment === option._id ? "#FFFFFF" : "#1f2937",
               }}
             >
-              {option.subtitle}
+              {option.title}
             </Text>
           </Card>
         </Col>
@@ -131,5 +151,6 @@ const AssessmentSelection: React.FC<AssessmentSelectionProps> = ({
     </Row>
   </div>
 );
+}
 
 export default AssessmentSelection;
