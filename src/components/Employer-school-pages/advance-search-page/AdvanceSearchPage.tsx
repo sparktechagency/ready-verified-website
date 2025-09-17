@@ -1,12 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Layout, Select, Table, Button, Typography, Drawer, Grid } from "antd";
 import { FilterOutlined, EyeOutlined, MenuOutlined } from "@ant-design/icons";
 import { useRouter, useSearchParams } from "next/navigation";
 import CandidateDetailsModal from "./CandidateDetailsModal";
 import FilterSidebar from "./FilterSidebar";
 import { Candidate, mockCandidates } from "@/data/CandidatesData";
+import { FetchResponse, myFetch } from "@/utils/myFetch";
+import { ICandidate, JOB_LEVEL } from "@/types/assignment.type";
 
 const { Sider, Content } = Layout;
 const { Title, Text, Paragraph } = Typography;
@@ -19,7 +21,8 @@ export default function AdvanceSearchPage() {
   );
   const [modalVisible, setModalVisible] = useState(false);
   const [drawerVisible, setDrawerVisible] = useState(false);
-  const [filteredCandidates, setFilteredCandidates] = useState(mockCandidates);
+  const [filteredCandidates, setFilteredCandidates] = useState<Candidate[]>([]);
+  const [pagination, setPagination] = useState();
   const searchParam = useSearchParams();
   const search = searchParam.get("search");
   const [searchValue, setSearchValue] = useState(search || "");
@@ -28,16 +31,36 @@ export default function AdvanceSearchPage() {
     managementLevel: "All",
     department: "All",
   });
+
+  useEffect(() => {
+    myFetch(`/assessment?${searchValue?`searchTerm=${searchValue}`:""}&${filters.managementLevel!=="All"?`level=${filters.managementLevel}`:""}`,{
+      cache:"no-store"
+    }).then((res) => {
+      if(res?.data){
+        setPagination(res?.pagination as any);
+        const data:ICandidate[] = res?.data;;
+        const candidates = data.map((candidate) => {
+          const result:Candidate = {
+            address: candidate?.personal_information?.address,
+            key: candidate._id,
+            name: candidate?.personal_information?.name,
+            level: candidate?.level,
+            skill: candidate?.professional_information?.skills[0],
+            category: candidate?.category?.title,
+            overview: candidate?.personal_information?.overview,
+            skills: candidate?.professional_information?.skills,
+          }
+          return result;
+        });
+
+        setFilteredCandidates(candidates);
+
+      }
+    })
+  },[filters,searchValue]);
   const router = useRouter();
 
-  const managementLevels = [
-    "All",
-    "C-Level",
-    "VP-Level",
-    "Director",
-    "Manager",
-    "Non-Manager",
-  ];
+  const managementLevels = Object.values(JOB_LEVEL)
   const departments = [
     "All",
     "C-Level",
@@ -50,14 +73,6 @@ export default function AdvanceSearchPage() {
   const handleFilterChange = (type: string, value: string) => {
     const newFilters = { ...filters, [type]: value };
     setFilters(newFilters);
-
-    let filtered = mockCandidates;
-    if (newFilters.managementLevel !== "All") {
-      filtered = filtered.filter(
-        (candidate) => candidate.level === newFilters.managementLevel
-      );
-    }
-    setFilteredCandidates(filtered);
   };
 
   const showCandidateDetails = (candidate: Candidate) => {
@@ -83,9 +98,9 @@ export default function AdvanceSearchPage() {
       key: "skill",
     },
     {
-      title: "Employees",
-      dataIndex: "employs",
-      key: "employs",
+      title: "Category",
+      dataIndex: "category",
+      key: "category",
     },
     {
       title: "Action",
@@ -167,6 +182,7 @@ export default function AdvanceSearchPage() {
             dataSource={filteredCandidates}
             pagination={{
               pageSize: 10,
+              total:(pagination as any)?.total,
               showTotal: (total, range) =>
                 `Showing ${range[0]}-${range[1]} of ${total} items per page`,
             }}

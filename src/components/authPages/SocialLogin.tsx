@@ -2,6 +2,7 @@ import React from "react";
 import { FaFacebook } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { Button, Form, Input, Checkbox, Divider, Space } from "antd";
+import { imgUrl } from "@/app/(website)/layout";
 
 export default function SocialLogin() {
   return (
@@ -9,6 +10,7 @@ export default function SocialLogin() {
       {/* Social Login Buttons */}
       <div className="w-full flex flex-col md:flex-row gap-4 mb-6 ">
         <Button
+        onClick={() => globalThis.open(`${imgUrl}/api/v1/auth/google`, "_self")}
           size="large"
           style={{
             backgroundColor: "#E8EFF6",

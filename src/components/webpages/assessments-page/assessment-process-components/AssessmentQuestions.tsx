@@ -1,5 +1,8 @@
 "use client";
+import { ICategory } from "@/types/types";
+import { myFetch } from "@/utils/myFetch";
 import { Form, Radio, Typography, Input } from "antd";
+import { useEffect, useState } from "react";
 
 const { Title, Text } = Typography;
 const { TextArea } = Input;
@@ -7,6 +10,8 @@ const { TextArea } = Input;
 interface AssessmentQuestionsProps {
   form: any;
   selectedAssessment: string;
+  setQuestionsValues: (values: any) => void;
+  currentStep: number;
 }
 
 interface Question {
@@ -101,13 +106,42 @@ const questions: Question[] = [
 const AssessmentQuestions: React.FC<AssessmentQuestionsProps> = ({
   form,
   selectedAssessment,
-}) => (
+  setQuestionsValues,
+  currentStep,
+}) => {
+  const [category,setCategory]= useState<ICategory>()
+  useEffect(() => {
+    myFetch(`/category/${selectedAssessment}`).then((res) => {
+      setCategory(res.data)
+    })
+  },[])
+
+  const question = category?.questions || []
+
+  const formattedData = question.map((question) => ({
+    id: question.question,
+    text: question.question,
+    type: question.type === "boolean" ? "radio" : "textarea",
+    options: question.type === "boolean" ? [{ value: "yes", label: "Yes" }, { value: "no", label: "No" }] : undefined,
+    requiredMessage: "Please select an answer",
+  }));
+
+  
+  
+
+
+  // useEffect(() => {
+  //   setQuestionsValues(form.getFieldsValue());
+  // }, [currentStep]);
+
+  
+  return (
   <div className="w-full md:w-[90vw] lg:w-[80vw] xl:w-[70vw] 2xl:w-[60vw] mx-auto h-[50vh] overflow-auto px-4">
     <Title level={3} style={{ marginBottom: "30px", color: "#1f2937", borderBottom: "1px solid #96B5D5", paddingBottom: "10px"}}>
-      Certificate of Credibility: {selectedAssessment}
+      Certificate of Credibility: {category?.title}
     </Title>
     <Form form={form} layout="vertical">
-      {questions.map((question, index) => (
+      {formattedData.map((question, index) => (
         <Form.Item
           key={question.id}
           name={question.id}
@@ -150,5 +184,6 @@ const AssessmentQuestions: React.FC<AssessmentQuestionsProps> = ({
     </Form>
   </div>
 );
+}
 
 export default AssessmentQuestions;

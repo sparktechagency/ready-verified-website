@@ -1,9 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Card, Button, Row, Col, Typography, message } from "antd";
 import {
-  ArrowLeftOutlined,
   LeftOutlined,
   RightOutlined,
   CalendarOutlined,
@@ -31,32 +30,46 @@ const timeSlots: TimeSlot[] = [
   { id: "8", time: "04:00 - 04:30 PM", available: true },
 ];
 
-export default function SchedulePage() {
-  const today = new Date();
+const months = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
 
-  const [selectedDate, setSelectedDate] = useState<number | null>(
-    today.getDate()
-  );
+function buildFullDate(year: number, month: number, day: number, timeSlot: string) {
+  // "2:00 - 2:30 PM" → শুধু start time নিতে হবে
+  const startTime = timeSlot.split(" "); // "2:00 PM"
+
+  const AmOrPm = startTime.pop()
+
+  const standerTime = `${startTime[0]} ${AmOrPm}`
+
+  // লোকাল টাইম ধরে Date বানানো হচ্ছে
+  const dateStr = `${months[month]} ${day}, ${year} ${standerTime}`;
+  return new Date(dateStr); 
+}
+export default function SchedulePage({setSchuduleData}:{setSchuduleData:(data:any)=>void}) {
+ 
+  
+  const today = new Date();
+  const [selectedDate, setSelectedDate] = useState<number | null>(today.getDate());
   const [currentMonth, setCurrentMonth] = useState(today.getMonth());
   const [currentYear, setCurrentYear] = useState(today.getFullYear());
-  const [selectedTime, setSelectedTime] = useState("9:00 - 9:30 AM");
+  const [selectedTime, setSelectedTime] = useState<string>("9:00 - 9:30 AM");
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-  const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
+
+  const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
   const generateCalendarDays = () => {
     const days = [];
@@ -65,44 +78,36 @@ export default function SchedulePage() {
     const prevMonthDays = new Date(currentYear, currentMonth, 0).getDate();
 
     for (let i = 0; i < startDay; i++) {
-      days.push({
-        day: prevMonthDays - (startDay - 1 - i),
-        isCurrentMonth: false,
-      });
+      days.push({ day: prevMonthDays - (startDay - 1 - i), isCurrentMonth: false });
     }
-
     for (let day = 1; day <= daysInMonth; day++) {
       days.push({ day, isCurrentMonth: true });
     }
-
     const remainingDays = 42 - days.length;
     for (let day = 1; day <= remainingDays; day++) {
       days.push({ day, isCurrentMonth: false });
     }
-
     return days;
   };
-
-  const calendarDays = generateCalendarDays();
-  const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
   const handleMonthChange = (direction: "prev" | "next") => {
     setSelectedDate(null);
     if (direction === "prev") {
       if (currentMonth === 0) {
         setCurrentMonth(11);
-        setCurrentYear(currentYear - 1);
-      } else {
-        setCurrentMonth(currentMonth - 1);
-      }
+        setCurrentYear((y) => y - 1);
+      } else setCurrentMonth((m) => m - 1);
     } else {
       if (currentMonth === 11) {
         setCurrentMonth(0);
-        setCurrentYear(currentYear + 1);
-      } else {
-        setCurrentMonth(currentMonth + 1);
-      }
+        setCurrentYear((y) => y + 1);
+      } else setCurrentMonth((m) => m + 1);
     }
+
+    setSchuduleData({
+      year:currentYear,
+      month:currentMonth+1,
+    })
   };
 
   const handleSubmit = async () => {
@@ -111,14 +116,15 @@ export default function SchedulePage() {
       return;
     }
 
-    setLoading(true);
+    const fullDate = buildFullDate(currentYear, currentMonth, selectedDate, selectedTime);
+    console.log("Final selected DateTime:", fullDate.toLocaleString());
 
-    setTimeout(() => {
-      setLoading(false);
-      setShowSuccessModal(true);
-      // console.log("selectedDate:", selectedDate, "selectedTime:", selectedTime);
-      message.success("Schedule booked successfully!");
-    }, 1500);
+    // setLoading(true);
+    // setTimeout(() => {
+    //   setLoading(false);
+    //   setShowSuccessModal(true);
+    //   message.success("Schedule booked successfully!");
+    // }, 1500);
   };
 
   const handleClose = () => {
@@ -130,6 +136,7 @@ export default function SchedulePage() {
     <div className="min-h-[calc(100vh-86px)] p-4">
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-10 items-center">
+          {/* Calendar Icon & Title */}
           <div className="flex justify-center">
             <div className="text-center">
               <div className="relative inline-block mb-6">
@@ -137,10 +144,7 @@ export default function SchedulePage() {
                   <div className="w-full h-6 bg-red-500 rounded-t-lg flex items-center justify-center">
                     <div className="flex space-x-1">
                       {[...Array(6)].map((_, i) => (
-                        <div
-                          key={i}
-                          className="w-1 h-1 bg-white rounded-full"
-                        />
+                        <div key={i} className="w-1 h-1 bg-white rounded-full" />
                       ))}
                     </div>
                   </div>
@@ -152,15 +156,16 @@ export default function SchedulePage() {
                   <ClockCircleOutlined className="text-white text-sm" />
                 </div>
               </div>
-
               <Title level={2} className="mb-0">
                 Schedule <span className="text-green-500">Date & Time</span>
               </Title>
             </div>
           </div>
 
+          {/* Calendar + Time Slots */}
           <div>
             <Card className="shadow-sm">
+              {/* Month Navigation */}
               <div className="mb-8">
                 <div className="flex items-center justify-between mb-4">
                   <Button
@@ -180,24 +185,26 @@ export default function SchedulePage() {
                   />
                 </div>
 
+                {/* Week Days */}
                 <div className="grid grid-cols-7 gap-2 mb-2">
                   {weekDays.map((day) => (
-                    <div
-                      key={day}
-                      className="text-center text-gray-600 font-medium py-2"
-                    >
+                    <div key={day} className="text-center text-gray-600 font-medium py-2">
                       {day}
                     </div>
                   ))}
                 </div>
 
+                {/* Dates */}
                 <div className="grid grid-cols-7 gap-2">
-                  {calendarDays.map((dayObj, index) => (
+                  {generateCalendarDays().map((dayObj, index) => (
                     <button
                       key={index}
-                      onClick={() =>
-                        dayObj.isCurrentMonth && setSelectedDate(dayObj.day)
-                      }
+                      onClick={() => {
+                        dayObj.isCurrentMonth && setSelectedDate(dayObj.day);
+                        setSchuduleData({
+                          date: dayObj.day
+                        })
+                      }}
                       className={`h-10 w-10 rounded-lg text-sm font-medium transition-all duration-200
                         ${
                           !dayObj.isCurrentMonth
@@ -205,8 +212,7 @@ export default function SchedulePage() {
                             : selectedDate === dayObj.day
                             ? "bg-[#1A5FA4] text-white shadow-md"
                             : "text-gray-700 hover:bg-blue-50 hover:text-blue-600"
-                        }
-                      `}
+                        }`}
                       disabled={!dayObj.isCurrentMonth}
                     >
                       {dayObj.day}
@@ -215,6 +221,7 @@ export default function SchedulePage() {
                 </div>
               </div>
 
+              {/* Time Slots */}
               <div>
                 <Title level={5} className="mb-4 text-blue-600">
                   Schedule Time
@@ -227,11 +234,13 @@ export default function SchedulePage() {
                         size="large"
                         onClick={() => {
                           setSelectedTime(slot.time);
-                          //   console.log("Selected time:", slot.time);
+                          setSchuduleData({
+                            time: slot.time
+                          })
                         }}
                         className="w-full h-12 rounded-lg font-medium transition-all duration-200"
                         style={
-                          selectedTime.trim() === slot.time.trim()
+                          selectedTime === slot.time
                             ? {
                                 backgroundColor: "#1A5FA4",
                                 color: "white",
@@ -255,21 +264,8 @@ export default function SchedulePage() {
           </div>
         </div>
 
-        <div className="flex justify-end items-center mt-8">
-          {/* <Button
-            type="text"
-            icon={<ArrowLeftOutlined />}
-            onClick={handleBack}
-            style={{
-              color: "#1A5FA4",
-              fontSize: "16px",
-              height: "40px",
-              borderColor: "#1A5FA426",
-            }}
-          >
-            Back
-          </Button> */}
-
+        {/* Submit */}
+        {/* <div className="flex justify-end items-center mt-8">
           <Button
             style={{
               backgroundColor: "#1A5FA4",
@@ -286,9 +282,10 @@ export default function SchedulePage() {
           >
             Submit
           </Button>
-        </div>
+        </div> */}
       </div>
 
+      {/* Success Modal */}
       <SuccessModal
         visible={showSuccessModal}
         onClose={handleClose}
@@ -300,14 +297,10 @@ export default function SchedulePage() {
               {months[currentMonth]} {selectedDate}, {selectedTime}
             </span>
             . After admin approval, the{" "}
-            <span style={{ color: "#2FB236", fontWeight: "bold" }}>
-              Zoom link
-            </span>{" "}
+            <span style={{ color: "#2FB236", fontWeight: "bold" }}>Zoom link</span>{" "}
             will be emailed to you within{" "}
-            <span style={{ color: "#2FB236", fontWeight: "bold" }}>
-              48 hours
-            </span>
-            . Please join at the scheduled date and time.
+            <span style={{ color: "#2FB236", fontWeight: "bold" }}>48 hours</span>.
+            Please join at the scheduled date and time.
           </>
         }
       />

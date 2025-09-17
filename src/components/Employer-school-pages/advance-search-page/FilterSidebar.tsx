@@ -67,7 +67,7 @@ const FilterSidebar = ({
         </Space>
       </div>
 
-      <div>
+      {/* <div>
         <Space direction="vertical" style={{ width: "100%" }}>
           <Text strong style={{ color: "#1890ff" }}>
             <FilterOutlined /> Departments & Job Functions
@@ -84,7 +84,7 @@ const FilterSidebar = ({
             ))}
           </Select>
         </Space>
-      </div>
+      </div> */}
     </Card>
   </div>
 );

@@ -42,7 +42,7 @@ export default async function MyCertificatePage() {
               src={imgUrl + certificate}
               width={300}
               height={200}
-              className="rounded-lg scrollbar-hide"
+              className="rounded-lg scrollbar-hide overflow-hidden"
               
               // quality={100}
               // priority

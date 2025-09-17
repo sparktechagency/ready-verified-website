@@ -1,5 +1,6 @@
 "use client";
 import { Form, Input, Row, Col, Typography } from "antd";
+import TextArea from "antd/es/input/TextArea";
 
 const { Title } = Typography;
 
@@ -15,7 +16,7 @@ const PersonalInformation: React.FC<PersonalInformationProps> = ({ form }) => (
     <Form form={form} layout="vertical">
       <Row gutter={[24, 0]}>
         <Col xs={24} md={12}>
-          <Form.Item label="Full Name*" name="fullName">
+          <Form.Item label="Full Name*" name="fullName" rules={[{ required: true }]}>
             <Input
               placeholder="Samuel Jacob"
               style={{ backgroundColor: "#E8EFF6", height: "40px" }}
@@ -23,7 +24,7 @@ const PersonalInformation: React.FC<PersonalInformationProps> = ({ form }) => (
           </Form.Item>
         </Col>
         <Col xs={24} md={12}>
-          <Form.Item label="Headline*" name="headline">
+          <Form.Item label="Headline*" name="headline" rules={[{ required: true }]}>
             <Input
               placeholder="Enter headline"
               style={{ backgroundColor: "#E8EFF6", height: "40px" }}
@@ -33,7 +34,7 @@ const PersonalInformation: React.FC<PersonalInformationProps> = ({ form }) => (
       </Row>
       <Row gutter={[24, 0]}>
         <Col xs={24} md={12}>
-          <Form.Item label="Email*" name="email">
+          <Form.Item label="Email*" name="email" rules={[{ required: true }]}>
             <Input
               placeholder="samuel@gmail.com"
               style={{ backgroundColor: "#E8EFF6", height: "40px" }}
@@ -41,7 +42,7 @@ const PersonalInformation: React.FC<PersonalInformationProps> = ({ form }) => (
           </Form.Item>
         </Col>
         <Col xs={24} md={12}>
-          <Form.Item label="Contact Number*" name="contactNumber">
+          <Form.Item label="Contact Number*" name="contactNumber" rules={[{ required: true }]}>
             <Input
               placeholder="+8 0984752000"
               style={{ backgroundColor: "#E8EFF6", height: "40px" }}
@@ -51,10 +52,20 @@ const PersonalInformation: React.FC<PersonalInformationProps> = ({ form }) => (
       </Row>
       <Row>
         <Col xs={24}>
-          <Form.Item label="Address" name="address">
+          <Form.Item label="Address" name="address" rules={[{ required: true }]}>
             <Input
               placeholder="2672 Westheimer Rd. Santa Ana, USA."
               style={{ backgroundColor: "#E8EFF6", height: "40px" }}
+            />
+          </Form.Item>
+        </Col>
+      </Row>
+      <Row>
+        <Col xs={24}>
+          <Form.Item label="Overview" name="overview" rules={[{ required: true }]}>
+            <TextArea
+              placeholder="Write about yourself..."
+              style={{ backgroundColor: "#E8EFF6", height: "100px" }}
             />
           </Form.Item>
         </Col>

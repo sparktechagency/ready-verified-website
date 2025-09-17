@@ -213,3 +213,12 @@ body {
 .custom-table .ant-table-tbody > tr.even-row:hover > td {
   background-color: #d8e3ef !important;
 }
+
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none !important;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none !important;  /* IE and Edge */
+  scrollbar-width: none !important;  /* Firefox */
+}
