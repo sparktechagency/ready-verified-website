@@ -4,8 +4,6 @@ import getProfile from "@/utils/getProfile";
 import React from "react";
 
 export const imgUrl = process.env.NEXT_PUBLIC_IMG_URL!;
-let userProfile:any = null;
-
 
 export default async function layout({
   children,
@@ -15,8 +13,6 @@ export default async function layout({
   // console.log(children);
   const user = await getProfile();
 
-
- 
   return (
     <div className="flex flex-col min-h-screen bg-[#F8FAFF]">
       <nav className=" sticky top-0 z-50">
