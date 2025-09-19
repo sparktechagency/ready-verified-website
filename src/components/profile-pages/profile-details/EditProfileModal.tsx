@@ -41,8 +41,8 @@ export default function EditProfileModal({
     }
   }, [visible, initialValues, form]);
 
-  const handleSave =() => {
-    form.validateFields().then(async(values) => {
+  const handleSave = () => {
+    form.validateFields().then(async (values) => {
       const formatted = {
         ...values,
         date_of_birth: values.date_of_birth
@@ -50,31 +50,28 @@ export default function EditProfileModal({
           : null,
       };
 
-      const res = myFetch("/user/profile",{
-        method:"PATCH",
-        body:formatted,
-      })
+      const res = myFetch("/user/profile", {
+        method: "PATCH",
+        body: formatted,
+      });
 
-      toast.promise(res,{
-        loading:"Updating Profile....",
-        success:(res)=>{
-          if(res.success){
-            revalidateTags(["user-profile"])
-            return res.message
+      toast.promise(res, {
+        loading: "Updating Profile....",
+        success: (res) => {
+          if (res.success) {
+            revalidateTags(["user-profile"]);
+            return res.message;
           }
 
-          throw new Error("Update profile faild")
+          throw new Error("Update profile faild");
         },
-        error:(err)=>{
-          return err.message
-        }
-      })
-      
+        error: (err) => {
+          return err.message;
+        },
+      });
 
       onClose();
     });
-
-
   };
 
   return (
@@ -104,14 +101,20 @@ export default function EditProfileModal({
             <Input placeholder="dennis.willie@example.com" />
           </Form.Item>
           <Form.Item label="Contact Number*" name="contact">
-            <Input placeholder="+1 (555) 123-4567" value={initialValues.contact} />
+            <Input
+              placeholder="+1 (555) 123-4567"
+              value={initialValues.contact}
+            />
           </Form.Item>
         </div>
 
         {/* Address */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <Form.Item label="Street Address*" name="street_address">
-            <Input placeholder="123 Main Street" value={initialValues.street_address} />
+            <Input
+              placeholder="123 Main Street"
+              value={initialValues.street_address}
+            />
           </Form.Item>
           <Form.Item
             label="Secondary Street Address"

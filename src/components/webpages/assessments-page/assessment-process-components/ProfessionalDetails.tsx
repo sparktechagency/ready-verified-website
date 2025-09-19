@@ -70,13 +70,15 @@ const ProfessionalDetails: React.FC<ProfessionalDetailsProps> = ({ form }) => (
       </Row>
       <div>
         <div className="w-full ">
-          <Form.Item style={{ width: "100%" }} label="Resume*" name="resume">
-            <Upload
-              style={{
-                width: "100%",
-              }}
-            >
+          <Form.Item
+            label="Resume*"
+            name="resume"
+            valuePropName="fileList"
+            getValueFromEvent={(e) => (Array.isArray(e) ? e : e?.fileList)}
+          >
+            <Upload name="resume" listType="text" style={{ width: "100%" }}>
               <Button
+                block
                 icon={
                   <UploadOutlined
                     style={{
@@ -88,9 +90,10 @@ const ProfessionalDetails: React.FC<ProfessionalDetailsProps> = ({ form }) => (
                 style={{
                   backgroundColor: "#E8EFF6",
                   height: "120px",
-                  width: "100%",
                   display: "flex",
                   flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
                   color: "#ABABAB",
                 }}
               >

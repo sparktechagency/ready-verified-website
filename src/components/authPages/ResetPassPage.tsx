@@ -14,18 +14,7 @@ export default function ResetPassPage() {
 
   const onFinish = (values: any) => {
     console.log(values);
-    // router.push("/auth/login");
-    // toast.promise(resetPassword(values).unwrap(), {
-    //   loading: "Resetting password...",
-    //   success: (res) => {
-    //     // console.log(res);
-    //     router.push("/auth/login");
-    //     Cookies.remove("resetEmail");
-    //     Cookies.remove("resetToken");
-    //     return <b>{res.message}</b>;
-    //   },
-    //   error: (res) => `Error: ${res.data?.message || "Something went wrong"}`,
-    // });
+   
     toast.promise(
       myFetch("/auth/reset-password", {
         method: "POST",

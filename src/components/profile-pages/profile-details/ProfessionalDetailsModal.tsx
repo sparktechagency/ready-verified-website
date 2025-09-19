@@ -83,6 +83,7 @@ export default function ProfessionalDetailsModal({
       footer={null}
       width={600}
       closable={false}
+      centered
     >
       <Form form={form} layout="vertical" style={{ marginTop: "24px" }}>
         <Row gutter={16}>

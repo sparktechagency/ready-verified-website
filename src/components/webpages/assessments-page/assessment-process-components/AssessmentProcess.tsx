@@ -13,6 +13,7 @@ import { IAssessment, IUser, IUserProfile } from "@/types/types";
 import getProfile from "@/utils/getProfile";
 import SchedulePage from "./schedule-page/SchedulePage";
 import { myFetch } from "@/utils/myFetch";
+import { imgUrl } from "@/app/(website)/layout";
 
 const steps = [
   { title: "Assessment", description: "" },
@@ -29,14 +30,12 @@ function buildFullDate(
   day: number,
   timeSlot: string
 ) {
-  // "2:00 - 2:30 PM" → শুধু start time নিতে হবে
   const startTime = timeSlot.split(" "); // "2:00 PM"
 
   const AmOrPm = startTime.pop();
 
   const standerTime = `${startTime[0]} ${AmOrPm}`;
 
-  // লোকাল টাইম ধরে Date বানানো হচ্ছে
   const dateStr = `${year}-${month}-${day} ${standerTime}`;
   return new Date(dateStr).toISOString();
 }
@@ -106,9 +105,9 @@ const AssessmentProcess: React.FC = () => {
           selectedAssessment,
         };
 
-        const assData = finalValues as any as IUserProfile
+        const assData = finalValues as any as IUserProfile;
         console.log(assData);
-        
+
         const asssessmentData = {
           personal_information: {
             name: assData.fullName,
@@ -132,7 +131,7 @@ const AssessmentProcess: React.FC = () => {
             language: assData.language,
             publications: assData.publications,
             references: assData.references,
-            volunter_experience: assData.volunteerExperience
+            volunter_experience: assData.volunteerExperience,
           },
           qna: Object.keys(assData?.quiz || {}).map((key) => ({
             question: key,
@@ -144,23 +143,32 @@ const AssessmentProcess: React.FC = () => {
 
         const formdata = new FormData();
 
-       formdata.append("personal_information", JSON.stringify(asssessmentData.personal_information));
-       formdata.append("professional_information", JSON.stringify(asssessmentData.professional_information));
-       formdata.append("other_information", JSON.stringify(asssessmentData.other_information));
-       formdata.append("qna", JSON.stringify(asssessmentData.qna));
-       formdata.append("category", selectedAssessment);
-       formdata.append("start_time", asssessmentData.start_time);
+        formdata.append(
+          "personal_information",
+          JSON.stringify(asssessmentData.personal_information)
+        );
+        formdata.append(
+          "professional_information",
+          JSON.stringify(asssessmentData.professional_information)
+        );
+        formdata.append(
+          "other_information",
+          JSON.stringify(asssessmentData.other_information)
+        );
+        formdata.append("qna", JSON.stringify(asssessmentData.qna));
+        formdata.append("category", selectedAssessment);
+        formdata.append("start_time", asssessmentData.start_time);
 
-        const res = myFetch('/assessment',{
+        const res = myFetch("/assessment", {
           method: "POST",
-          body: formdata
-        })
+          body: formdata,
+        });
 
         toast.promise(res, {
           loading: "Submitting Assessment...",
           success: (res) => {
             console.log(res);
-            
+
             if (res?.success) {
               globalThis.open(res?.data, "_blank");
               return res?.message || "Assessment Submitted Successfully!";
@@ -169,7 +177,7 @@ const AssessmentProcess: React.FC = () => {
           },
           error: (err) => err.message || "Error Submitting Assessment",
         });
-        
+
         return;
       }
 
@@ -208,7 +216,16 @@ const AssessmentProcess: React.FC = () => {
         previousExperience:
           user?.proffessional_details?.experience?.toString()!,
         publications: ""!,
-        resume: user?.proffessional_details?.resume_url || ""!,
+        resume: user?.proffessional_details?.resume_url
+          ? [
+              {
+                uid: "-1",
+                name: "resume.pdf",
+                status: "done",
+                url: user?.proffessional_details?.resume_url,
+              },
+            ]
+          : [],
         skills: user?.proffessional_details?.skills.toString()!,
         volunteerExperience: ""!,
       };

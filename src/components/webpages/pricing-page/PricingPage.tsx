@@ -1,7 +1,5 @@
 "use client";
 
-import { imgUrl } from "@/app/(website)/layout";
-import { pricingPlans } from "@/data/pricingPlans";
 import { myFetch } from "@/utils/myFetch";
 import { Card, Button, Row, Col, Typography } from "antd";
 
@@ -9,9 +7,13 @@ const { Title, Text, Paragraph } = Typography;
 
 interface PricingPageProps {
   pricingData: any;
+  subscribedPackage: any;
 }
 
-export default function PricingPage({ pricingData }: PricingPageProps) {
+export default function PricingPage({
+  pricingData,
+  subscribedPackage,
+}: PricingPageProps) {
   const handleGetStarted = (planId: string) => {
     // console.log(`Selected plan: ${planId}`);
     // Handle plan selection logic here
@@ -75,10 +77,10 @@ export default function PricingPage({ pricingData }: PricingPageProps) {
                 {/* Price */}
                 <div className="mb-4">
                   <span className="text-4xl lg:text-5xl font-bold text-[#3D3D3D]">
-                    ${plan.price}
+                    ${plan?.price}
                   </span>
                   <span className="text-lg text-[#3D3D3D]">
-                    /{plan.recurring}
+                    /{plan?.recurring}
                   </span>
                 </div>
 
@@ -89,7 +91,7 @@ export default function PricingPage({ pricingData }: PricingPageProps) {
                     fontWeight: 500,
                   }}
                 >
-                  {plan.name}
+                  {plan?.name}
                 </Text>
               </div>
 
@@ -110,20 +112,29 @@ export default function PricingPage({ pricingData }: PricingPageProps) {
                 type="primary"
                 size="large"
                 block
+                disabled={subscribedPackage?.package?._id === plan._id}
                 style={{
                   width: "100%",
-                  backgroundColor: "#1A5FA4",
-                  borderColor: "#1A5FA4",
+                  backgroundColor:
+                    subscribedPackage?.package?._id === plan._id
+                      ? "gray"
+                      : "#1A5FA4",
+                  borderColor:
+                    subscribedPackage?.package?._id === plan._id
+                      ? "transparent"
+                      : "#1A5FA4",
                   fontWeight: 400,
                 }}
-                onClick={async() => {
+                onClick={async () => {
                   const data = await myFetch(`/subscription/${plan._id}`, {
                     method: "POST",
-                  })
-                 window.open(data?.data, "_blank")
+                  });
+                  window.open(data?.data, "_blank");
                 }}
               >
-                Get Started
+                {subscribedPackage?.package?._id === plan._id
+                  ? "Current Plan"
+                  : "Get Started"}
               </Button>
             </Card>
           ))}

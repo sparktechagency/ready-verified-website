@@ -9,7 +9,7 @@ import { imgUrl } from "@/app/(website)/layout";
 import { ReadOnlyField } from "./ReadOnlyField";
 import { IUser } from "@/types/types";
 
-export default function ProfileDetailsPage({ user }: {user:IUser|null}) {
+export default function ProfileDetailsPage({ user }: { user: IUser | null }) {
   // split full name into first, middle, last
   const nameParts = user?.name?.trim()?.split(" ") || [];
   const firstName = nameParts[0] || "";
@@ -17,7 +17,6 @@ export default function ProfileDetailsPage({ user }: {user:IUser|null}) {
   const lastName = nameParts.length > 1 ? nameParts[nameParts.length - 1] : "";
 
   console.log(user);
-  
 
   const personalInfo = {
     firstName,
@@ -26,13 +25,13 @@ export default function ProfileDetailsPage({ user }: {user:IUser|null}) {
     suffix: user?.suffix,
     email: user?.email,
     contact: user?.contact,
-    street_address:user?.street_address,
+    street_address: user?.street_address,
     secondary_street_address: user?.secondary_street_address,
     city: user?.city,
     state: user?.state,
     zip_code: user?.zip_code,
     country: user?.country,
-    date_of_birth:new Date(user?.date_of_birth!),
+    date_of_birth: new Date(user?.date_of_birth!),
     gender: user?.gender,
     ethic: user?.ethic,
     education: user?.education,
@@ -164,7 +163,11 @@ export default function ProfileDetailsPage({ user }: {user:IUser|null}) {
 
         <GridFields>
           <ReadOnlyField label="State" value={personalInfo?.state} required />
-          <ReadOnlyField label="zip_code" value={personalInfo?.zip_code} required />
+          <ReadOnlyField
+            label="zip_code"
+            value={personalInfo?.zip_code}
+            required
+          />
           <ReadOnlyField
             label="Country"
             value={personalInfo?.country}
@@ -246,9 +249,13 @@ export default function ProfileDetailsPage({ user }: {user:IUser|null}) {
 
         <GridFields>
           <ReadOnlyField
-            isLink={true}
+            isLink={user?.proffessional_details?.resume_url ? true : false}
             label="Resume"
-            value={professionalInfo?.resume}
+            value={
+              user?.proffessional_details?.resume_url
+                ? professionalInfo?.resume
+                : "N/A"
+            }
           />
         </GridFields>
       </Section>

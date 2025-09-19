@@ -2,10 +2,15 @@
 import { Button, Typography, Row, Col, Space, Grid } from "antd";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import WarningModal from "./WarningModal";
 
 const { Title, Text, Paragraph } = Typography;
 
-const GetStartedSection = () => {
+const GetStartedSection = ({ user }: any) => {
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const router = useRouter();
   const features = [
     {
       id: 1,
@@ -38,8 +43,16 @@ const GetStartedSection = () => {
   ];
   const { lg } = Grid.useBreakpoint();
 
+  const handleGetStartedClick = () => {
+    if (!user) {
+      // If no user is found, show the modal
+      setIsModalVisible(true);
+    } else {
+      router.push("/assessments/assessment-process");
+    }
+  };
   return (
-    <div className="my-12 container mx-auto px-4  flex justify-center items-center ">
+    <div className=" min-h-[calc(100vh-86px)] 2xl:py-0 lg:py-12  container mx-auto px-4  flex justify-center items-center ">
       <div className="bg-[#F1F4F9] rounded-2xl  pt-16 pb-8 px-4 lg:px-40 ">
         <Row gutter={[48, 48]} align="middle">
           {/* Left Column - Main Content */}
@@ -150,25 +163,28 @@ const GetStartedSection = () => {
 
         {/* Get Started Button */}
         <Row justify="end" style={{ marginTop: "60px" }}>
-          <Link href={"/assessments/assessment-process"}>
-            <Button
-              type="primary"
-              size="large"
-              style={{
-                backgroundColor: "#1A5FA4",
-                borderColor: "#1A5FA4",
-                borderRadius: "8px",
-                height: "42px",
-                padding: "0 32px",
-                fontSize: "16px",
-                fontWeight: 500,
-              }}
-            >
-              Get Started
-            </Button>
-          </Link>
+          <Button
+            type="primary"
+            size="large"
+            style={{
+              backgroundColor: "#1A5FA4",
+              borderColor: "#1A5FA4",
+              borderRadius: "8px",
+              height: "42px",
+              padding: "0 32px",
+              fontSize: "16px",
+              fontWeight: 500,
+            }}
+            onClick={handleGetStartedClick}
+          >
+            Get Started
+          </Button>
         </Row>
       </div>
+      <WarningModal
+        isModalVisible={isModalVisible}
+        setIsModalVisible={setIsModalVisible}
+      />
     </div>
   );
 };

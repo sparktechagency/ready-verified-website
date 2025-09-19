@@ -62,7 +62,7 @@ const AssessmentSelection: React.FC<AssessmentSelectionProps> = ({
   const fetchCategories = async () => {
     try {
       const response = await myFetch("/category");
-      const data = response
+      const data = response;
       setCategories(data.data);
     } catch (error) {
       console.error("Error fetching categories:", error);
@@ -71,86 +71,88 @@ const AssessmentSelection: React.FC<AssessmentSelectionProps> = ({
 
   useEffect(() => {
     fetchCategories();
-  },[])
+  }, []);
   return (
-  <div>
-    <div
-      className={`${selectedAssessment ? "block" : "hidden"}`}
-      style={{ marginBottom: "20px" }}
-    >
-      <Checkbox style={{ color: "#ff4d4f", fontSize: "14px" }}>
-        Five tests: $40 each. One 30-min credibility assessment: $250.
-        Non-refundable. Payment upfront.
-      </Checkbox>
-    </div>
-    <Title level={4} style={{ marginBottom: "30px", color: "#1f2937" }}>
-      Which of these best describes your Assessment?
-    </Title>
-    <Row gutter={[16, 16]}>
-      {categories.map((option) => (
-        <Col xs={24} sm={12} md={12} lg={8} key={option._id}>
-          <Card
-            hoverable
-            onClick={() => handleAssessmentSelect(option._id)}
-            style={{
-              textAlign: "center",
-              cursor: "pointer",
-              border:
-                selectedAssessment === option._id
-                  ? "2px solid #1A5FA4"
-                  : "1px solid #96B5D5",
-              backgroundColor:
-                selectedAssessment === option._id ? "#1A5FA4" : "#E8EFF6",
-              borderRadius: "12px",
-              minHeight: "180px",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-            }}
-            bodyStyle={{ padding: "20px" }}
-          >
-            <div
+    <div>
+      <div
+        className={`${selectedAssessment ? "block" : "hidden"}`}
+        style={{ marginBottom: "20px" }}
+      >
+        <Checkbox style={{ color: "#ff4d4f", fontSize: "14px" }}>
+          Five tests: $40 each. One 30-min credibility assessment: $250.
+          Non-refundable. Payment upfront.
+        </Checkbox>
+      </div>
+      <Title level={4} style={{ marginBottom: "30px", color: "#1f2937" }}>
+        Which of these best describes your Assessment?
+      </Title>
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-6">
+        {categories?.map((option) => (
+          <div key={option._id}>
+            <Card
+              hoverable
+              onClick={() => handleAssessmentSelect(option._id)}
               style={{
-                marginBottom: "16px",
+                textAlign: "center",
+                cursor: "pointer",
+                border:
+                  selectedAssessment === option._id
+                    ? "2px solid #1A5FA4"
+                    : "1px solid #96B5D5",
+                backgroundColor:
+                  selectedAssessment === option._id ? "#1A5FA4" : "#E8EFF6",
+                borderRadius: "12px",
+                minHeight: "180px",
                 display: "flex",
+                flexDirection: "column",
                 justifyContent: "center",
-                alignItems: "center",
               }}
+              bodyStyle={{ padding: "20px" }}
             >
-              <Image
-                src={imgUrl+option.icon || "/placeholder.svg"}
-                alt={option.title}
-                width={60}
-                height={60}
-                style={{ borderRadius: "50%" }}
-              />
-            </div>
-            <Text
-              strong
-              style={{
-                fontSize: "16px",
-                color: selectedAssessment === option._id ? "#FFFFFF" : "#1f2937",
-                fontWeight: 500,
-              }}
-            >
-              {"Certificate of Credibility:"}
-            </Text>
-            <br />
-            <Text
-              strong
-              style={{
-                fontSize: "16px",
-                color: selectedAssessment === option._id ? "#FFFFFF" : "#1f2937",
-              }}
-            >
-              {option.title}
-            </Text>
-          </Card>
-        </Col>
-      ))}
-    </Row>
-  </div>
-);
-}
+              <div
+                style={{
+                  marginBottom: "16px",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <Image
+                  src={imgUrl + option.icon || "/placeholder.svg"}
+                  alt={option.title}
+                  width={60}
+                  height={60}
+                  style={{ borderRadius: "50%" }}
+                />
+              </div>
+              <Text
+                strong
+                style={{
+                  fontSize: "16px",
+                  color:
+                    selectedAssessment === option._id ? "#FFFFFF" : "#1f2937",
+                  fontWeight: 500,
+                }}
+              >
+                {"Certificate of Credibility:"}
+              </Text>
+              <br />
+              <Text
+                strong
+                style={{
+                  fontSize: "16px",
+                  color:
+                    selectedAssessment === option._id ? "#FFFFFF" : "#1f2937",
+                }}
+              >
+                {option.title}
+              </Text>
+            </Card>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
 
 export default AssessmentSelection;

@@ -30,8 +30,8 @@ export default function MySubscriptionPage() {
   const [subscription, setSubscription] = React.useState<ISubscription>();
 
   useEffect(() => {
-    myFetch('/subscription',{
-      cache:"no-store"
+    myFetch("/subscription", {
+      cache: "no-store",
     })
       .then((res) => {
         setSubscription(res.data);
@@ -39,10 +39,8 @@ export default function MySubscriptionPage() {
       .catch((err) => {
         console.log(err);
       });
-  },[])
+  }, []);
 
-  
-  
   const paymentHistory = [
     {
       type: "Last Payment",
@@ -59,11 +57,11 @@ export default function MySubscriptionPage() {
   ];
 
   const subscriptionDetails: subscriptionDetailsProps = {
-    id: "free",
-    name: subscription?.package?.name||"Free Plan",
-    price: `${subscription?.price||0}`,
-    period: "/"+subscription?.package?.recurring||"/month",
-    features: subscription?.package?.features||[],
+    id: subscription?.package?._id || "free-plan",
+    name: subscription?.package?.name || "Free Plan",
+    price: `${subscription?.price || 0}`,
+    period: "/" + subscription?.package?.recurring || "/month",
+    features: subscription?.package?.features || [],
     buttonText: "Get Started",
     buttonType: "primary",
     highlighted: false,
@@ -141,7 +139,7 @@ export default function MySubscriptionPage() {
                 fontWeight: 400,
               }}
             >
-              {subscriptionDetails.buttonText}
+              Current Plan
             </Button>
           </Card>
         </div>
@@ -158,10 +156,11 @@ export default function MySubscriptionPage() {
             }}
           >
             <Title level={3} style={{ marginBottom: "8px", color: "#3D3D3D" }}>
-              {subscription?.package?.name||"Free Plan"}
+              {subscription?.package?.name || "Free Plan"}
             </Title>
             <Text style={{ color: "#858585" }}>
-              Renew Date: {new Date(subscription?.endDate!).toLocaleDateString()}
+              Renew Date:{" "}
+              {new Date(subscription?.endDate!).toLocaleDateString()}
             </Text>
 
             <div
@@ -175,9 +174,12 @@ export default function MySubscriptionPage() {
                 backgroundColor: "#B8CDE347",
               }}
             >
-              <Text>{subscription?.package?.features?.toString()||[].toString()}</Text>
+              <Text>
+                {subscription?.package?.features?.toString() || [].toString()}
+              </Text>
               <Text strong style={{ fontSize: "16px" }}>
-                ${subscription?.price||0}/{subscription?.package?.recurring||"month"}
+                ${subscription?.price || 0}/
+                {subscription?.package?.recurring || "month"}
               </Text>
             </div>
           </div>
