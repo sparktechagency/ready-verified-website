@@ -94,6 +94,7 @@ export default function PricingPage({
                   {plan?.name}
                 </Text>
               </div>
+              -++
 
               {/* Features */}
               <div className="flex-1 mb-8">

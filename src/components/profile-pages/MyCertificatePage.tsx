@@ -11,25 +11,10 @@ export default async function MyCertificatePage() {
   const [cirtificates, setCirtificates] = useState([]);
 
   useEffect(() => {
-    myFetch("/user/certificate").then((res) => setCirtificates(res.data))
+    myFetch("/user/certificate").then((res) => setCirtificates(res.data));
   }, []);
+  console.log(cirtificates);
 
-  const certificates = [
-    {
-      _id: 1,
-      name: "Certificate Name",
-      date: "2022-01-01",
-      issuer: "Issuer Name",
-      image: "/images/certificate.png",
-    },
-    {
-      _id: 2,
-      name: "Certificate Name",
-      date: "2022-01-01",
-      issuer: "Issuer Name",
-      image: "/images/certificate.png",
-    },
-  ];
   return (
     <div>
       <h1 className="text-lg md:text-2xl font-semibold text-[#1A5FA4]">
@@ -43,7 +28,7 @@ export default async function MyCertificatePage() {
               width={300}
               height={200}
               className="rounded-lg scrollbar-hide overflow-hidden"
-              
+
               // quality={100}
               // priority
               // placeholder="blur"

@@ -222,7 +222,7 @@ const AssessmentProcess: React.FC = () => {
                 uid: "-1",
                 name: "resume.pdf",
                 status: "done",
-                url: user?.proffessional_details?.resume_url,
+                url: imgUrl + user?.proffessional_details?.resume_url,
               },
             ]
           : [],

@@ -2,44 +2,26 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import {
-  Card,
-  Modal,
-  Tag,
-  Button,
-  Divider,
-  Row,
-  Col,
-  Typography,
-  Space,
-  Descriptions,
-} from "antd";
-import {
-  CreditCardOutlined,
-  FileTextOutlined,
-  MoreOutlined,
-  DownloadOutlined,
-  ReloadOutlined,
-} from "@ant-design/icons";
-import { mockTransactions, Transaction } from "@/data/mockTransaction";
+import { Card, Tag, Row, Col, Typography, Space } from "antd";
+
 import TransactionModal from "./TransactionModal";
 import { IOrder } from "@/types/types";
 import { myFetch } from "@/utils/myFetch";
 
-const { Title, Text } = Typography;
+const { Text } = Typography;
 
 export default function MyTransactionPage() {
-  const [selectedTransaction, setSelectedTransaction] =
-    useState<IOrder | null>(null);
+  const [selectedTransaction, setSelectedTransaction] = useState<IOrder | null>(
+    null
+  );
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const [transactions,setTransections] = useState<IOrder[]>([]);
+  const [transactions, setTransections] = useState<IOrder[]>([]);
   useEffect(() => {
     myFetch("/order/transactions").then((res) => {
       setTransections(res.data);
     });
-    
-  },[])
+  }, []);
 
   const handleTransactionClick = (transaction: IOrder) => {
     setSelectedTransaction(transaction);
@@ -98,7 +80,7 @@ export default function MyTransactionPage() {
               hoverable
               onClick={() => handleTransactionClick(transaction)}
             >
-              <div
+              {/* <div
                 style={{
                   textAlign: "center",
                   marginBottom: "16px",
@@ -140,8 +122,14 @@ export default function MyTransactionPage() {
                     style={{ objectFit: "cover" }}
                   />
                 </div>
-              </div>
-
+              </div> */}
+              <Tag
+                color={getStatusColor(transaction.status)}
+                style={{ marginBottom: "12px" }}
+              >
+                {transaction.status.charAt(0).toUpperCase() +
+                  transaction.status.slice(1)}
+              </Tag>
               <Space direction="vertical" style={{ width: "100%" }}>
                 <div
                   style={{ display: "flex", justifyContent: "space-between" }}

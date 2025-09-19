@@ -10,7 +10,9 @@ export default function SocialLogin() {
       {/* Social Login Buttons */}
       <div className="w-full flex flex-col md:flex-row gap-4 mb-6 ">
         <Button
-        onClick={() => globalThis.open(`${imgUrl}/api/v1/auth/google`, "_self")}
+          onClick={() =>
+            globalThis.open(`${imgUrl}/api/v1/auth/google`, "_self")
+          }
           size="large"
           style={{
             backgroundColor: "#E8EFF6",
@@ -28,7 +30,7 @@ export default function SocialLogin() {
         >
           Log in with Google
         </Button>
-        <Button
+        {/* <Button
           style={{
             backgroundColor: "#E8EFF6",
             color: "#3D3D3D",
@@ -48,7 +50,7 @@ export default function SocialLogin() {
           }
         >
           Log in with Facebook
-        </Button>
+        </Button> */}
       </div>
 
       {/* Divider */}
