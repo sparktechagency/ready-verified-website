@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Button } from "antd";
 import Image from "next/image";
 import { imgUrl } from "@/app/(website)/layout";
+import { TemplateCard } from "./TemplateCard";
 
 const SectionHeader = ({
   title,
@@ -61,6 +62,8 @@ export default function CVTemplatesSection({
     ? coverLetters
     : coverLetters?.slice(0, 4);
 
+  console.log(displayedLetters);
+
   return (
     <div className="container mx-auto px-4 my-12">
       {/* Resume Section */}
@@ -70,9 +73,9 @@ export default function CVTemplatesSection({
           onSeeAll={() => setShowAllResumes(!showAllResumes)}
           isExpanded={showAllResumes}
         />
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {displayedResumes?.map((template) => (
-            <CVCard key={template._id} template={template} />
+            <TemplateCard key={template._id} template={template} />
           ))}
         </div>
       </div>
@@ -84,9 +87,9 @@ export default function CVTemplatesSection({
           onSeeAll={() => setShowAllLetters(!showAllLetters)}
           isExpanded={showAllLetters}
         />
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {displayedLetters?.map((template) => (
-            <CVCard key={template._id} template={template} />
+            <TemplateCard key={template._id} template={template} />
           ))}
         </div>
       </div>

@@ -79,6 +79,7 @@ const AssessmentProcess: React.FC = () => {
       if ([1, 2, 3, 4].includes(currentStep)) {
         currentValues = await form.validateFields();
         console.log("Current Values:", currentValues, "step", currentStep);
+        console.log('all form values',  allFormValues);
 
         setAllFormValues((prev) => ({
           ...prev,
