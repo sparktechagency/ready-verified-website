@@ -34,7 +34,7 @@ export default function CandidateDetailsModal({
                 Candidate Name
               </Title>
               <Text style={{ fontSize: "16px", color: "#999" }}>
-                {selectedCandidate.name}
+                {selectedCandidate?.name}
               </Text>
             </div>
 
@@ -43,7 +43,7 @@ export default function CandidateDetailsModal({
                 Level
               </Title>
               <Text style={{ fontSize: "16px", color: "#999" }}>
-                {selectedCandidate.level}
+                {selectedCandidate?.level}
               </Text>
             </div>
 
@@ -52,7 +52,7 @@ export default function CandidateDetailsModal({
                 Overview
               </Title>
               <Paragraph style={{ color: "#999", lineHeight: "1.6" }}>
-                {selectedCandidate.overview}
+                {selectedCandidate?.overview}
               </Paragraph>
             </div>
 

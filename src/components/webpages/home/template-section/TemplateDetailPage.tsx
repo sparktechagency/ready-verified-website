@@ -1,22 +1,35 @@
+"use client";
 import { ArrowLeft, Download, Star, Check } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Badge, Button, Card } from "antd";
 import { imgUrl } from "@/app/(website)/layout";
+import { myFetch } from "@/utils/myFetch";
+import { toast } from "sonner";
 
 interface TemplateDetailPageProps {
   template: any;
 }
-export default async function TemplateDetailPage({
+export default function TemplateDetailPage({
   template,
 }: TemplateDetailPageProps) {
   //   const template = templatesData.find((t) => t._id === params.id);
+  const buyTemplate = async () => {
+    const res = await myFetch("/order",{
+      method:"POST",
+      body:{
+        template:template._id
+      }
+    })
 
-  console.log(template);
-  //   if (!template) {
-  //     notFound();
-  //   }
+    if(res.success){
+      globalThis.location.href=res.data
+    }
+    else{
+      toast.error(res.message)
+    }
+  }
 
   return (
     <div className="">
@@ -42,7 +55,7 @@ export default async function TemplateDetailPage({
             <div className="relative">
               <Image
                 src={imgUrl + template?.thumbnail || "/placeholder.svg"}
-                alt={template.title}
+                alt={template?.title}
                 width={600}
                 height={800}
                 className="w-full h-[calc(100vh-170px)] object-cover object-top rounded-lg border border-border/50 shadow-lg"
@@ -73,24 +86,24 @@ export default async function TemplateDetailPage({
             <div>
               <div className="flex items-center gap-3 mb-4">
                 <Badge className="!bg-[#1A5FA4] !text-white !px-2 !py-1 !rounded-md">
-                  {template.type.replace("-", " ").toUpperCase()}
+                  {template?.type?.replace("-", " ").toUpperCase()}
                 </Badge>
                 <span className="text-sm text-muted-foreground">
-                  Updated {new Date(template.updatedAt).toLocaleDateString()}
+                  Updated {new Date(template?.updatedAt).toLocaleDateString()}
                 </span>
               </div>
 
               <h1 className="text-3xl font-bold mb-4 text-balance">
-                {template.title}
+                {template?.title}
               </h1>
 
               <p className="text-lg text-gray-700 mb-6 text-pretty">
-                {template.description}
+                {template?.description}
               </p>
 
               <div className="flex items-center space-x-4 mb-8">
                 <span className="text-4xl font-bold text-primary">
-                  ${template.price}
+                  ${template?.price}
                 </span>
                 <span className="text-muted-foreground">One-time purchase</span>
               </div>
@@ -98,7 +111,8 @@ export default async function TemplateDetailPage({
               <div className="flex space-x-3">
                 <Button
                   size="large"
-                  className="flex-1 !bg-[#1A5FA4] !text-white !border-none"
+                  onClick={buyTemplate}
+                  className="flex-1 !h-[40px] !bg-[#1A5FA4] !text-white !border-none"
                 >
                   Buy Now
                 </Button>

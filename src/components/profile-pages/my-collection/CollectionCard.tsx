@@ -4,6 +4,8 @@ import Image from "next/image";
 import React from "react";
 
 export default function CollectionCard({ cv }: any) {
+  console.log(cv);
+  
   return (
     <div
       className="w-full"
@@ -21,7 +23,7 @@ export default function CollectionCard({ cv }: any) {
       }}
     >
       <Image
-        src={cv?.thumbnail ? imgUrl + cv?.thumbnail : "/cv/cv1.png"}
+        src={cv?.template?.thumbnail ? imgUrl + cv?.template?.thumbnail : "/cv/cv1.png"}
         alt="cv"
         width={500}
         height={500}
