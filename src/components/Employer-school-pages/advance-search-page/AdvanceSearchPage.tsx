@@ -6,7 +6,7 @@ import { FilterOutlined, EyeOutlined, MenuOutlined } from "@ant-design/icons";
 import { useRouter, useSearchParams } from "next/navigation";
 import CandidateDetailsModal from "./CandidateDetailsModal";
 import FilterSidebar from "./FilterSidebar";
-import { Candidate, mockCandidates } from "@/data/CandidatesData";
+import { Candidate } from "@/data/CandidatesData";
 import { FetchResponse, myFetch } from "@/utils/myFetch";
 import { ICandidate, JOB_LEVEL } from "@/types/assignment.type";
 
@@ -32,6 +32,9 @@ export default function AdvanceSearchPage() {
     department: "All",
   });
 
+  console.log(selectedCandidate);
+  
+
   useEffect(() => {
     myFetch(`/assessment?${searchValue?`searchTerm=${searchValue}`:""}&${filters.managementLevel!=="All"?`level=${filters.managementLevel}`:""}`,{
       cache:"no-store"
@@ -39,6 +42,7 @@ export default function AdvanceSearchPage() {
       if(res?.data){
         setPagination(res?.pagination as any);
         const data:ICandidate[] = res?.data;;
+        
         const candidates = data.map((candidate) => {
           const result:Candidate = {
             address: candidate?.personal_information?.address,
@@ -49,6 +53,8 @@ export default function AdvanceSearchPage() {
             category: candidate?.category?.title,
             overview: candidate?.personal_information?.overview,
             skills: candidate?.professional_information?.skills,
+            personal_information: candidate?.personal_information,
+            professional_information: candidate?.professional_information,
           }
           return result;
         });
@@ -76,6 +82,8 @@ export default function AdvanceSearchPage() {
   };
 
   const showCandidateDetails = (candidate: Candidate) => {
+    console.log("Candidate details:", candidate);
+    
     setSelectedCandidate(candidate);
     setModalVisible(true);
   };
@@ -106,6 +114,7 @@ export default function AdvanceSearchPage() {
       title: "Action",
       key: "action",
       render: (_: any, record: Candidate) => (
+        
         <Button
           type="link"
           onClick={() => showCandidateDetails(record)}
@@ -116,6 +125,9 @@ export default function AdvanceSearchPage() {
       ),
     },
   ];
+
+
+  
 
   return (
     <div className="min-h-[calc(100vh-64px)] flex justify-center items-start bg-[#FFFFFF]">
