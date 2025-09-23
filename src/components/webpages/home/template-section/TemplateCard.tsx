@@ -14,7 +14,7 @@ export function TemplateCard({ template }: TemplateCardProps) {
         <div className="p-0">
           <div className="relative overflow-hidden rounded-t-lg bg-[#F1F4F9]">
             <Image
-              src={imgUrl + template?.thumbnail || "/placeholder.svg"}
+              src={template.thumbnail? imgUrl + template.thumbnail : "/placeholder.svg"}
               alt={template.title}
               width={400}
               height={300}

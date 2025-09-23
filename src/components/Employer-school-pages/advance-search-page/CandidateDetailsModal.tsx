@@ -1,7 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { Modal, Typography, Space, Tag } from "antd";
+import { Modal, Typography, Space, Tag, Button } from "antd";
+import { FaFilePdf } from "react-icons/fa";
+import { imgUrl } from "@/app/(website)/layout";
 
 const { Title, Text, Paragraph } = Typography;
 
@@ -16,6 +18,8 @@ export default function CandidateDetailsModal({
   setModalVisible,
   selectedCandidate,
 }: candidateModalProps) {
+  console.log(selectedCandidate);
+  
   return (
     <Modal
       centered
@@ -29,13 +33,27 @@ export default function CandidateDetailsModal({
       {selectedCandidate && (
         <div>
           <Space direction="vertical" size="large" style={{ width: "100%" }}>
-            <div>
-              <Title level={3} style={{ marginBottom: "8px" }}>
-                Candidate Name
+            <div className="flex justify-between">
+              <div>
+                <Title level={3} style={{ marginBottom: "8px" }}>
+                  Name
+                </Title>
+                <Text style={{ fontSize: "16px", color: "#999" }}>
+                  {selectedCandidate?.name}
+                </Text>
+              </div>
+              <div>
+                   <div>
+                <Title level={3} style={{ marginBottom: "8px" }}>
+                Download Resume
               </Title>
-              <Text style={{ fontSize: "16px", color: "#999" }}>
-                {selectedCandidate?.name}
+              <Text style={{ color: "#999" }}>
+               <div className="text-red-500 cursor-pointer" onClick={()=>window.open(selectedCandidate?.professional_information?.resume_url?imgUrl+selectedCandidate?.professional_information?.resume_url:"")}>
+                 <FaFilePdf size={30} />
+               </div>
               </Text>
+              </div>
+              </div>
             </div>
 
             <div>
@@ -69,13 +87,16 @@ export default function CandidateDetailsModal({
               </Space>
             </div>
 
-            <div>
-              <Title level={3} style={{ marginBottom: "8px" }}>
+            <div className="flex justify-between">
+              <div>
+                <Title level={3} style={{ marginBottom: "8px" }}>
                 Ready Verified
               </Title>
               <Text style={{ color: "#999" }}>
                 📍 {selectedCandidate.address}
               </Text>
+              </div>
+           
             </div>
           </Space>
         </div>
