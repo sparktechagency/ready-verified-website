@@ -2,7 +2,7 @@
 import { ArrowLeft, Download, Star, Check } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import { notFound } from "next/navigation";
+import { notFound, useRouter } from "next/navigation";
 import { Badge, Button, Card } from "antd";
 import { imgUrl } from "@/app/(website)/layout";
 import { myFetch } from "@/utils/myFetch";
@@ -14,22 +14,22 @@ interface TemplateDetailPageProps {
 export default function TemplateDetailPage({
   template,
 }: TemplateDetailPageProps) {
+  const router = useRouter();
   //   const template = templatesData.find((t) => t._id === params.id);
   const buyTemplate = async () => {
-    const res = await myFetch("/order",{
-      method:"POST",
-      body:{
-        template:template._id
-      }
-    })
+    const res = await myFetch("/order", {
+      method: "POST",
+      body: {
+        template: template._id,
+      },
+    });
 
-    if(res.success){
-      globalThis.location.href=res.data
+    if (res.success) {
+      globalThis.location.href = res.data;
+    } else {
+      toast.error(res.message);
     }
-    else{
-      toast.error(res.message)
-    }
-  }
+  };
 
   return (
     <div className="">
@@ -37,13 +37,13 @@ export default function TemplateDetailPage({
       <header className=" ">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <Link
-              href="/"
+            <button
+              onClick={() => router.back()}
               className="flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors "
             >
               <ArrowLeft className="w-4 h-4" />
               <span>Back to Templates</span>
-            </Link>
+            </button>
           </div>
         </div>
       </header>
@@ -54,7 +54,11 @@ export default function TemplateDetailPage({
           <div className="space-y-6">
             <div className="relative">
               <Image
-                src={imgUrl + template?.thumbnail || "/placeholder.svg"}
+                src={
+                  template?.thumbnail
+                    ? imgUrl + template?.thumbnail
+                    : "/placeholder.svg"
+                }
                 alt={template?.title}
                 width={600}
                 height={800}

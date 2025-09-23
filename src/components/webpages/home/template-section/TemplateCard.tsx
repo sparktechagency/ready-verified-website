@@ -9,12 +9,16 @@ interface TemplateCardProps {
 
 export function TemplateCard({ template }: TemplateCardProps) {
   return (
-    <Link href={`/templates/${template._id}`}>
+    <Link href={`/templates/${template?._id}`}>
       <Card className="group cursor-pointer transition-all duration-200 hover:border-primary/50 hover:shadow-lg bg-card/50 backdrop-blur-sm">
         <div className="p-0">
           <div className="relative overflow-hidden rounded-t-lg bg-[#F1F4F9]">
             <Image
-              src={imgUrl + template?.thumbnail || "/placeholder.svg"}
+              src={
+                template?.thumbnail
+                  ? imgUrl + template?.thumbnail
+                  : "/placeholder.svg"
+              }
               alt={template.title}
               width={400}
               height={300}
