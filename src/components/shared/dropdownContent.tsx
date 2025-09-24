@@ -1,4 +1,4 @@
-import { imgUrl } from "@/app/(website)/layout";
+import { imgUrl } from "@/helpers/constants";
 import { Avatar, Button, Divider, Typography } from "antd";
 import { LogOut, User } from "lucide-react";
 import React from "react";

@@ -5,7 +5,7 @@ import { useState } from "react";
 import EditProfileModal from "./EditProfileModal";
 import ProfessionalDetailsModal from "./ProfessionalDetailsModal";
 import { Edit } from "lucide-react";
-import { imgUrl } from "@/app/(website)/layout";
+import { imgUrl } from "@/helpers/constants";
 import { ReadOnlyField } from "./ReadOnlyField";
 import { IUser } from "@/types/types";
 

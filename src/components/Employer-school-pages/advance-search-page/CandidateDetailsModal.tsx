@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Modal, Typography, Space, Tag, Button } from "antd";
 import { FaFilePdf } from "react-icons/fa";
-import { imgUrl } from "@/app/(website)/layout";
+import { imgUrl } from "@/helpers/constants";
 
 const { Title, Text, Paragraph } = Typography;
 

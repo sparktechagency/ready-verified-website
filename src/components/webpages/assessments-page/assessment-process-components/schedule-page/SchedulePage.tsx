@@ -45,23 +45,30 @@ const months = [
   "December",
 ];
 
-function buildFullDate(year: number, month: number, day: number, timeSlot: string) {
-  // "2:00 - 2:30 PM" → শুধু start time নিতে হবে
-  const startTime = timeSlot.split(" "); // "2:00 PM"
+function buildFullDate(
+  year: number,
+  month: number,
+  day: number,
+  timeSlot: string
+) {
+  const startTime = timeSlot.split(" ");
 
-  const AmOrPm = startTime.pop()
+  const AmOrPm = startTime.pop();
 
-  const standerTime = `${startTime[0]} ${AmOrPm}`
+  const standerTime = `${startTime[0]} ${AmOrPm}`;
 
-  // লোকাল টাইম ধরে Date বানানো হচ্ছে
   const dateStr = `${months[month]} ${day}, ${year} ${standerTime}`;
-  return new Date(dateStr); 
+  return new Date(dateStr);
 }
-export default function SchedulePage({setSchuduleData}:{setSchuduleData:(data:any)=>void}) {
- 
-  
+export default function SchedulePage({
+  setSchuduleData,
+}: {
+  setSchuduleData: (data: any) => void;
+}) {
   const today = new Date();
-  const [selectedDate, setSelectedDate] = useState<number | null>(today.getDate());
+  const [selectedDate, setSelectedDate] = useState<number | null>(
+    today.getDate()
+  );
   const [currentMonth, setCurrentMonth] = useState(today.getMonth());
   const [currentYear, setCurrentYear] = useState(today.getFullYear());
   const [selectedTime, setSelectedTime] = useState<string>("9:00 - 9:30 AM");
@@ -78,7 +85,10 @@ export default function SchedulePage({setSchuduleData}:{setSchuduleData:(data:an
     const prevMonthDays = new Date(currentYear, currentMonth, 0).getDate();
 
     for (let i = 0; i < startDay; i++) {
-      days.push({ day: prevMonthDays - (startDay - 1 - i), isCurrentMonth: false });
+      days.push({
+        day: prevMonthDays - (startDay - 1 - i),
+        isCurrentMonth: false,
+      });
     }
     for (let day = 1; day <= daysInMonth; day++) {
       days.push({ day, isCurrentMonth: true });
@@ -105,9 +115,9 @@ export default function SchedulePage({setSchuduleData}:{setSchuduleData:(data:an
     }
 
     setSchuduleData({
-      year:currentYear,
-      month:currentMonth+1,
-    })
+      year: currentYear,
+      month: currentMonth + 1,
+    });
   };
 
   const handleSubmit = async () => {
@@ -116,7 +126,12 @@ export default function SchedulePage({setSchuduleData}:{setSchuduleData:(data:an
       return;
     }
 
-    const fullDate = buildFullDate(currentYear, currentMonth, selectedDate, selectedTime);
+    const fullDate = buildFullDate(
+      currentYear,
+      currentMonth,
+      selectedDate,
+      selectedTime
+    );
     console.log("Final selected DateTime:", fullDate.toLocaleString());
 
     // setLoading(true);
@@ -144,7 +159,10 @@ export default function SchedulePage({setSchuduleData}:{setSchuduleData:(data:an
                   <div className="w-full h-6 bg-red-500 rounded-t-lg flex items-center justify-center">
                     <div className="flex space-x-1">
                       {[...Array(6)].map((_, i) => (
-                        <div key={i} className="w-1 h-1 bg-white rounded-full" />
+                        <div
+                          key={i}
+                          className="w-1 h-1 bg-white rounded-full"
+                        />
                       ))}
                     </div>
                   </div>
@@ -188,7 +206,10 @@ export default function SchedulePage({setSchuduleData}:{setSchuduleData:(data:an
                 {/* Week Days */}
                 <div className="grid grid-cols-7 gap-2 mb-2">
                   {weekDays.map((day) => (
-                    <div key={day} className="text-center text-gray-600 font-medium py-2">
+                    <div
+                      key={day}
+                      className="text-center text-gray-600 font-medium py-2"
+                    >
                       {day}
                     </div>
                   ))}
@@ -202,8 +223,8 @@ export default function SchedulePage({setSchuduleData}:{setSchuduleData:(data:an
                       onClick={() => {
                         dayObj.isCurrentMonth && setSelectedDate(dayObj.day);
                         setSchuduleData({
-                          date: dayObj.day
-                        })
+                          date: dayObj.day,
+                        });
                       }}
                       className={`h-10 w-10 rounded-lg text-sm font-medium transition-all duration-200
                         ${
@@ -235,8 +256,8 @@ export default function SchedulePage({setSchuduleData}:{setSchuduleData:(data:an
                         onClick={() => {
                           setSelectedTime(slot.time);
                           setSchuduleData({
-                            time: slot.time
-                          })
+                            time: slot.time,
+                          });
                         }}
                         className="w-full h-12 rounded-lg font-medium transition-all duration-200"
                         style={
@@ -297,10 +318,14 @@ export default function SchedulePage({setSchuduleData}:{setSchuduleData:(data:an
               {months[currentMonth]} {selectedDate}, {selectedTime}
             </span>
             . After admin approval, the{" "}
-            <span style={{ color: "#2FB236", fontWeight: "bold" }}>Zoom link</span>{" "}
+            <span style={{ color: "#2FB236", fontWeight: "bold" }}>
+              Zoom link
+            </span>{" "}
             will be emailed to you within{" "}
-            <span style={{ color: "#2FB236", fontWeight: "bold" }}>48 hours</span>.
-            Please join at the scheduled date and time.
+            <span style={{ color: "#2FB236", fontWeight: "bold" }}>
+              48 hours
+            </span>
+            . Please join at the scheduled date and time.
           </>
         }
       />

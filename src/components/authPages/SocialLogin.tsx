@@ -2,7 +2,7 @@ import React from "react";
 import { FaFacebook } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { Button, Form, Input, Checkbox, Divider, Space } from "antd";
-import { imgUrl } from "@/app/(website)/layout";
+import { imgUrl } from "@/helpers/constants";
 
 export default function SocialLogin() {
   return (

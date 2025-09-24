@@ -4,9 +4,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { notFound, useRouter } from "next/navigation";
 import { Badge, Button, Card } from "antd";
-import { imgUrl } from "@/app/(website)/layout";
+
 import { myFetch } from "@/utils/myFetch";
 import { toast } from "sonner";
+import { imgUrl } from "@/helpers/constants";
 
 interface TemplateDetailPageProps {
   template: any;

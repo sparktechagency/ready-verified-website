@@ -11,7 +11,7 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { useAuthContext } from "@/contexts/AuthContext";
 import getProfile from "@/utils/getProfile";
-import { imgUrl } from "@/app/(website)/layout";
+import { imgUrl } from "@/helpers/constants";
 import Cookies from "js-cookie";
 const navigationItems = [
   { key: "home", label: "Home", href: "/" },

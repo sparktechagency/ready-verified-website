@@ -13,7 +13,7 @@ import { IAssessment, IUser, IUserProfile } from "@/types/types";
 import getProfile from "@/utils/getProfile";
 import SchedulePage from "./schedule-page/SchedulePage";
 import { myFetch } from "@/utils/myFetch";
-import { imgUrl } from "@/app/(website)/layout";
+import { imgUrl } from "@/helpers/constants";
 
 const steps = [
   { title: "Assessment", description: "" },

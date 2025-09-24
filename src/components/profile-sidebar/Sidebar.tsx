@@ -19,7 +19,7 @@ import { toast } from "sonner";
 import { use, useEffect, useState } from "react";
 import getProfile from "@/utils/getProfile";
 import { IUser } from "@/types/types";
-import { imgUrl } from "@/app/(website)/layout";
+import { imgUrl } from "@/helpers/constants";
 
 const { Sider } = Layout;
 const { Text } = Typography;

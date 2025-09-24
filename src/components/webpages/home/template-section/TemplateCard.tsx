@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Badge, Card } from "antd";
-import { imgUrl } from "@/app/(website)/layout";
+import { imgUrl } from "@/helpers/constants";
 
 interface TemplateCardProps {
   template: any;

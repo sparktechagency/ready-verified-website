@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Button } from "antd";
 import Image from "next/image";
-import { imgUrl } from "@/app/(website)/layout";
+import { imgUrl } from "@/helpers/constants";
 import { TemplateCard } from "./TemplateCard";
 
 const SectionHeader = ({

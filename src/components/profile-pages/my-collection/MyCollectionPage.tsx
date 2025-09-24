@@ -1,5 +1,5 @@
 
-import { imgUrl } from "@/app/(website)/layout";
+import { imgUrl } from "@/helpers/constants";
 import { myFetch } from "@/utils/myFetch";
 import Image from "next/image";
 import React from "react";

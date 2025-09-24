@@ -1,5 +1,5 @@
 "use client";
-import { imgUrl } from "@/app/(website)/layout";
+import { imgUrl } from "@/helpers/constants";
 import { ICategory } from "@/types/types";
 import { myFetch } from "@/utils/myFetch";
 import { Card, Row, Col, Typography, Checkbox } from "antd";
