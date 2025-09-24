@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { toast } from "sonner";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import SocialLogin from "./SocialLogin";
 import { myFetch } from "@/utils/myFetch";
 import Cookies from "js-cookie";
@@ -14,6 +14,8 @@ import Cookies from "js-cookie";
 export default function Login() {
   const [form] = Form.useForm();
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirect = searchParams.get("redirect");
   const onFinish = (values: any) => {
     // console.log("Login values:", values);
     const loginUser = {
@@ -29,7 +31,7 @@ export default function Login() {
             if (res?.success) {
               Cookies.remove("user");
               Cookies.set("accessToken", res?.data || "");
-              router.push("/");
+              router.push(redirect ? redirect : "/");
               return res?.message || "Login Successful!";
             }
             throw new Error(res?.message || "Login Failed");

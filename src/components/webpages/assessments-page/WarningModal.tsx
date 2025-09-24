@@ -4,7 +4,7 @@ import React from "react";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import Title from "antd/es/typography/Title";
 import Paragraph from "antd/es/typography/Paragraph";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 interface WarningModalProps {
   isModalVisible: boolean;
@@ -15,8 +15,9 @@ export default function WarningModal({
   setIsModalVisible,
 }: WarningModalProps) {
   const router = useRouter();
+  const pathname = usePathname();
   const handleOk = () => {
-    router.push("/auth/login");
+    router.replace(`/auth/login?redirect=${pathname}`);
     setIsModalVisible(false);
   };
   return (

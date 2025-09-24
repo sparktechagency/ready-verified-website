@@ -11,11 +11,14 @@ export default async function page() {
     cache: "no-store",
   });
   // console.log(subscribedPackage);
+  const user = await getProfile();
+
   return (
     <div>
       <PricingPage
         pricingData={pricingData}
         subscribedPackage={subscribedPackage}
+        user={user}
       />
     </div>
   );

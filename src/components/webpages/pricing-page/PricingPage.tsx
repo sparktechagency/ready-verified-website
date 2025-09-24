@@ -1,22 +1,37 @@
 "use client";
 
 import { myFetch } from "@/utils/myFetch";
-import { Card, Button, Row, Col, Typography } from "antd";
+import { Card, Button, Typography } from "antd";
+import { useState } from "react";
+import WarningModal from "../assessments-page/WarningModal";
 
 const { Title, Text, Paragraph } = Typography;
 
 interface PricingPageProps {
   pricingData: any;
   subscribedPackage: any;
+  user: any;
 }
 
 export default function PricingPage({
   pricingData,
   subscribedPackage,
+  user,
 }: PricingPageProps) {
-  const handleGetStarted = (planId: string) => {
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const handleGetStarted = async (id: string) => {
     // console.log(`Selected plan: ${planId}`);
     // Handle plan selection logic here
+    if (user) {
+      const data = await myFetch(`/subscription/${id}`, {
+        method: "POST",
+      });
+      window.open(data?.data, "_blank");
+      return;
+    } else {
+      setIsModalVisible(true);
+    }
   };
 
   return (
@@ -123,12 +138,7 @@ export default function PricingPage({
                       : "#1A5FA4",
                   fontWeight: 400,
                 }}
-                onClick={async () => {
-                  const data = await myFetch(`/subscription/${plan._id}`, {
-                    method: "POST",
-                  });
-                  window.open(data?.data, "_blank");
-                }}
+                onClick={() => handleGetStarted(plan._id)}
               >
                 {subscribedPackage?.package?._id === plan._id
                   ? "Current Plan"
@@ -138,6 +148,10 @@ export default function PricingPage({
           ))}
         </div>
       </div>
+      <WarningModal
+        isModalVisible={isModalVisible}
+        setIsModalVisible={setIsModalVisible}
+      />
     </div>
   );
 }
