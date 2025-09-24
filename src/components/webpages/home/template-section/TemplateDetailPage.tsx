@@ -39,7 +39,7 @@ export default function TemplateDetailPage({
           <div className="flex items-center justify-between">
             <button
               onClick={() => router.back()}
-              className="flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors "
+              className="flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
             >
               <ArrowLeft className="w-4 h-4" />
               <span>Back to Templates</span>

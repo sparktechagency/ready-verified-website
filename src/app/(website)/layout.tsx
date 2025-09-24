@@ -3,7 +3,7 @@ import Navbar from "@/components/shared/Navbar";
 import getProfile from "@/utils/getProfile";
 import React from "react";
 
-export const imgUrl = process.env.NEXT_PUBLIC_IMG_URL || "";
+export const imgUrl = process.env.NEXT_PUBLIC_IMG_URL;
 
 export default async function layout({
   children,
