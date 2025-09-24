@@ -13,7 +13,7 @@ export default async function MyCertificatePage() {
   useEffect(() => {
     myFetch("/user/certificate").then((res) => setCirtificates(res.data));
   }, []);
-  console.log(cirtificates);
+  // console.log(cirtificates);
 
   return (
     <div>

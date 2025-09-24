@@ -8,7 +8,7 @@ import CollectionCard from "./CollectionCard";
 export default async function MyCollectionPage() {
   const res = await myFetch("/order");
   const data = res.data;
-  console.log(data);
+  // console.log(data);
   return (
     <div>
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4 min-h-[70vh] items-start">

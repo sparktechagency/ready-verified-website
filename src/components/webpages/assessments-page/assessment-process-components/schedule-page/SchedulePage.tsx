@@ -132,7 +132,7 @@ export default function SchedulePage({
       selectedDate,
       selectedTime
     );
-    console.log("Final selected DateTime:", fullDate.toLocaleString());
+    // console.log("Final selected DateTime:", fullDate.toLocaleString());
 
     // setLoading(true);
     // setTimeout(() => {

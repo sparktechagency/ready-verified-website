@@ -10,7 +10,7 @@ export default async function page() {
   const { data: subscribedPackage } = await myFetch("/subscription", {
     cache: "no-store",
   });
-  console.log(subscribedPackage);
+  // console.log(subscribedPackage);
   return (
     <div>
       <PricingPage

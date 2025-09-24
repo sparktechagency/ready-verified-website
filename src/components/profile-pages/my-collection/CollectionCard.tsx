@@ -4,7 +4,7 @@ import Image from "next/image";
 import React from "react";
 
 export default function CollectionCard({ cv }: any) {
-  console.log(cv);
+  // console.log(cv);
   
   return (
     <div

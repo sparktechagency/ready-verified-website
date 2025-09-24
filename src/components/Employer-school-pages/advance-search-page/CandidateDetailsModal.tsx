@@ -18,7 +18,7 @@ export default function CandidateDetailsModal({
   setModalVisible,
   selectedCandidate,
 }: candidateModalProps) {
-  console.log(selectedCandidate);
+  // console.log(selectedCandidate);
   
   return (
     <Modal

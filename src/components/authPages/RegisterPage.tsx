@@ -21,7 +21,7 @@ export default function RegisterPage() {
       password: values.password,
       role: Cookies.get("role"),
     };
-    console.log("signup values:", newUser);
+    // console.log("signup values:", newUser);
     try {
       toast.promise(myFetch("/user", { method: "POST", body: newUser }), {
         loading: "Signing Up...",

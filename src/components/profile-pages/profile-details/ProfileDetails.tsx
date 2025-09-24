@@ -16,7 +16,7 @@ export default function ProfileDetailsPage({ user }: { user: IUser | null }) {
   const middleInitial = nameParts.length === 3 ? nameParts[1] : "";
   const lastName = nameParts.length > 1 ? nameParts[nameParts.length - 1] : "";
 
-  console.log(user);
+  // console.log(user);
 
   const personalInfo = {
     firstName,

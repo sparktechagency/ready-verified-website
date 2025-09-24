@@ -55,7 +55,7 @@ export default function ProfessionalDetailsModal({
             return res.message
           }
 
-          console.log(res);
+          // console.log(res);
           
 
           throw new Error("Update profile faild")

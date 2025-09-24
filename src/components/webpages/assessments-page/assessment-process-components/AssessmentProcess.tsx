@@ -78,8 +78,8 @@ const AssessmentProcess: React.FC = () => {
 
       if ([1, 2, 3, 4].includes(currentStep)) {
         currentValues = await form.validateFields();
-        console.log("Current Values:", currentValues, "step", currentStep);
-        console.log('all form values',  allFormValues);
+        // console.log("Current Values:", currentValues, "step", currentStep);
+        // console.log('all form values',  allFormValues);
 
         setAllFormValues((prev) => ({
           ...prev,
@@ -107,7 +107,7 @@ const AssessmentProcess: React.FC = () => {
         };
 
         const assData = finalValues as any as IUserProfile;
-        console.log(assData);
+        // console.log(assData);
 
         const asssessmentData = {
           personal_information: {
@@ -168,7 +168,7 @@ const AssessmentProcess: React.FC = () => {
         toast.promise(res, {
           loading: "Submitting Assessment...",
           success: (res) => {
-            console.log(res);
+            // console.log(res);
 
             if (res?.success) {
               globalThis.open(res?.data, "_blank");

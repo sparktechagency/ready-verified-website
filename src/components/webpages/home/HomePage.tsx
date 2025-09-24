@@ -22,7 +22,7 @@ export default async function HomePage() {
   });
   const { data: faq } = await myFetch("/faq");
 
-  console.log("resume", resumes);
+  // console.log("resume", resumes);
   // console.log("cv", coverLetters);
   return (
     <>

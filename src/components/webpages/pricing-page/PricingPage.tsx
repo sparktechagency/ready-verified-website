@@ -94,8 +94,6 @@ export default function PricingPage({
                   {plan?.name}
                 </Text>
               </div>
-              -++
-
               {/* Features */}
               <div className="flex-1 mb-8">
                 <ul className="flex flex-col space-y-2">
@@ -107,7 +105,6 @@ export default function PricingPage({
                   ))}
                 </ul>
               </div>
-
               {/* Button */}
               <Button
                 type="primary"

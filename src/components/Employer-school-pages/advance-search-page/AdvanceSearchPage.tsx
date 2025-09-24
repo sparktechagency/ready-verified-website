@@ -32,7 +32,7 @@ export default function AdvanceSearchPage() {
     department: "All",
   });
 
-  console.log(selectedCandidate);
+  // console.log(selectedCandidate);
   
 
   useEffect(() => {
@@ -82,7 +82,7 @@ export default function AdvanceSearchPage() {
   };
 
   const showCandidateDetails = (candidate: Candidate) => {
-    console.log("Candidate details:", candidate);
+    // console.log("Candidate details:", candidate);
     
     setSelectedCandidate(candidate);
     setModalVisible(true);

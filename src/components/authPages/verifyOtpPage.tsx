@@ -14,7 +14,7 @@ export default function VerifyOtpPage() {
   const [form] = Form.useForm();
   const router = useRouter();
   const onFinish = (values: any) => {
-    console.log("verify otp values:", parseInt(values.otp));
+    // console.log("verify otp values:", parseInt(values.otp));
 
     toast.promise(
       myFetch("/auth/verify-email", {
@@ -27,7 +27,7 @@ export default function VerifyOtpPage() {
       {
         loading: "Verifying OTP...",
         success: (res) => {
-          console.log(res);
+          // console.log(res);
           if (res?.success) {
             Cookies.set("resetToken", res?.data || "", {
               expires: 1,
@@ -53,7 +53,7 @@ export default function VerifyOtpPage() {
       {
         loading: "Resending OTP...",
         success: (res) => {
-          console.log(res);
+          // console.log(res);
           if (res?.success) {
             return res?.message || "OTP re-sent successfully";
           }

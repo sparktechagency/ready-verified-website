@@ -13,7 +13,7 @@ export default function ResetPassPage() {
   const [isModalVisible, setIsModalVisible] = React.useState(false);
 
   const onFinish = (values: any) => {
-    console.log(values);
+    // console.log(values);
    
     toast.promise(
       myFetch("/auth/reset-password", {

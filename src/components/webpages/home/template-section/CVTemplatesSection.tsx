@@ -62,7 +62,7 @@ export default function CVTemplatesSection({
     ? coverLetters
     : coverLetters?.slice(0, 4);
 
-  console.log(displayedLetters);
+  // console.log(displayedLetters);
 
   return (
     <div className="container mx-auto px-4 my-12">
