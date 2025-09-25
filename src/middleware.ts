@@ -11,7 +11,7 @@ export default async function middleware(Request:NextRequest) {
        const auth = (await cookies()).get("accessToken")?.value
        const searchParams = Request.nextUrl.searchParams
        const token = searchParams.get("token")
-       console.log(path,token,auth);
+;
        
        if(path=="/" && token && !auth){
         (await cookies()).set("accessToken",token)

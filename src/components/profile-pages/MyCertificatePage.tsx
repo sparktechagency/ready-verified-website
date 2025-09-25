@@ -3,6 +3,7 @@ import { imgUrl } from "@/helpers/constants";
 import { myFetch } from "@/utils/myFetch";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
+import CirtifcateViewer from "./CirtifcateViewer";
 
 export default async function MyCertificatePage() {
   // const res = await fetch("https://your-backend.com/html-content");
@@ -22,19 +23,15 @@ export default async function MyCertificatePage() {
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
         {cirtificates?.map((certificate) => (
-          <div key={certificate} className="flex flex-col items-center">
-            <iframe
-              src={imgUrl + certificate}
-              width={300}
-              height={200}
-              className="rounded-lg scrollbar-hide overflow-hidden"
-
-              // quality={100}
-              // priority
-              // placeholder="blur"
-              // blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="
-            />
-          </div>
+          // <div key={certificate} className="flex flex-col items-center">
+          //   <iframe
+          //     src={imgUrl + certificate}
+          //     width={300}
+          //     height={200}
+          //     className="rounded-lg scrollbar-hide overflow-hidden"
+          //   />
+          // </div>
+          <CirtifcateViewer key={certificate} certificate={certificate} />
         ))}
       </div>
       {/* render html */}
