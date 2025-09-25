@@ -9,7 +9,7 @@ interface TemplateCardProps {
 
 export function TemplateCard({ template }: TemplateCardProps) {
   return (
-    <Link href={`/templates/${template?._id}`}>
+    <Link key={template._id} href={`/templates/${template?._id}`}>
       <Card className="group cursor-pointer transition-all duration-200 hover:border-primary/50 hover:shadow-lg bg-card/50 backdrop-blur-sm">
         <div className="p-0">
           <div className="relative overflow-hidden rounded-t-lg bg-[#F1F4F9]">
