@@ -3,12 +3,15 @@ import React, { useState } from "react";
 import { Button, ConfigProvider, Form, Input, Typography } from "antd";
 import Image from "next/image";
 import { toast } from "sonner";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Cookies from "js-cookie";
 import { myFetch } from "@/utils/myFetch";
 const { Text } = Typography;
 
 export default function VerifyOtpPage() {
+  const searchParam = useSearchParams();
+  const isRegister = searchParam.get("register");
+  // console.log(isRegister);
   const [email, setEmail] = useState(Cookies.get("resetEmail") || "");
   // console.log(email);
   const [form] = Form.useForm();
@@ -33,7 +36,7 @@ export default function VerifyOtpPage() {
               expires: 1,
               path: "/",
             });
-            router.push("/auth/reset-password");
+            router.push(isRegister ? "/auth/login" : "/auth/reset-password");
             return res?.message || "OTP verified successfully";
           }
           throw new Error(res?.message || "Failed to verify OTP");

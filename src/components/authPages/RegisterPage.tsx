@@ -27,7 +27,11 @@ export default function RegisterPage() {
         loading: "Signing Up...",
         success: (res) => {
           if (res?.success) {
-            router.push("/auth/login");
+            Cookies.set("resetEmail", values.email || "", {
+              expires: 1,
+              path: "/",
+            });
+            router.push(`/auth/verify-otp?register=true`);
             return res?.message || "Sign Up Successful!";
           }
           throw new Error(res?.message || "Sign Up Failed");
